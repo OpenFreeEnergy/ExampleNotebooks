@@ -1,0 +1,63 @@
+name: full_tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    # nightly tests, 2 am
+    - cron: "0 2 * * *"
+
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-10.15, macos-11]
+        python-version: ["3.8", "3.9",]
+    env:
+      OE_LICENSE: ${{ github.workspace }}/oe_license.txt
+
+    steps:
+    - uses: actions/checkout@v2.4.0
+
+    - uses: conda-incubator/setup-miniconda@v2.1.1
+      with:
+        python-version: "${{ matrix.python-version }}"
+        environment-file: devtools/conda-envs/test_env.yaml
+        activate-environment: test
+        auto-activate-base: false
+        mamba-version: "*"
+        miniforge-version: latest
+        miniforge-variant: Mambaforge
+        use-mamba: true
+        channel-priority: true
+
+    - name: Additional info about the build
+      run: |
+        uname -a
+        df -h
+        ulimit -a
+    - name: Environment Information
+      run: |
+        conda info
+        conda list
+    - name: License OpenEye
+      run: |
+        echo "${SECRET_OE_LICENSE}" > ${OE_LICENSE}
+        python -c "from openeye import oechem; assert oechem.OEChemIsLicensed()"
+      env:
+        SECRET_OE_LICENSE: ${{ secrets.OE_LICENSE }}
+
+    - name: Run example notebooks
+      run: |
+        python -m pytest -v setup/ --nbval-lax -n auto --dist loadscope
