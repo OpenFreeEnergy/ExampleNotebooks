@@ -22,6 +22,7 @@ dependencies:
   - openmmtools
   - pip
   - pymbar
+  - python==3.8
   - pytest
   - pytest
   - pytest-cov
