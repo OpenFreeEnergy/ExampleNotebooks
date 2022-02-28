@@ -62,4 +62,4 @@ jobs:
 
     - name: Run example notebooks
       run: |
-        python -m pytest -v setup/ --nbval-lax -n auto --dist loadscope
+        python -m pytest -v setup/ openmm-rbfe/ --nbval-lax -n auto --dist loadscope
