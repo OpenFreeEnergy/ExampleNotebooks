@@ -3,11 +3,33 @@ channels:
   - jaimergp/label/unsupported-cudatoolkit-shim
   - conda-forge
 dependencies:
-  # setup
+  - MDAnalysis
+  - click
+  - coverage
+  - mdtraj
+  - nbval
+  - networkx
+  - nglview
+  - notebook
+  - numpy
+  - openff-forcefields
+  - openff-toolkit
+  - openff-toolkit
+  - openff-toolkit
   - openmm
   - openmmforcefields
-  - openff-toolkit
-  # CI
+  - openmmforcefields
+  - openmmtools
+  - pip
+  - pymbar
   - pytest
+  - pytest
+  - pytest-cov
   - pytest-xdist
-  - nbval
+  - pytest-xdist
+  - rdkit
+  - pip:
+    - git+https://github.com/OpenFreeEnergy/Lomap@2.0.0-rc
+    - plugcli
+    - cyjupyter
+    - git+https://github.com/OpenFreeEnergy/openfe
