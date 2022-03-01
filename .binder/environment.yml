@@ -30,7 +30,7 @@ dependencies:
   - pytest-xdist
   - rdkit
   - pip:
-    - git+https://github.com/OpenFreeEnergy/Lomap@2.0.0-rc
+    - git+https://github.com/OpenFreeEnergy/Lomap@main
     - plugcli
     - cyjupyter
-    - git+https://github.com/OpenFreeEnergy/openfe
+    - git+https://github.com/OpenFreeEnergy/openfe@main
