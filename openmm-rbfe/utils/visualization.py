@@ -30,13 +30,30 @@ def draw_radial_network(network):
                                                                    safe="")
         return impath
 
+    # get index of the benzene
+    molecules = {}
+    for edge in network.edges:
+        def add_to_dict(dicter, name):
+            if name in molecules:
+                molecules[name] += 1
+            else:
+                molecules[name] = 1
+        add_to_dict(molecules, edge.mol1.name)
+        add_to_dict(molecules, edge.mol2.name)
+
+    central_ligand = max(molecules, key=molecules.get)
+
+    for i, node in enumerate(network.nodes):
+        if node.name == central_ligand:
+            central_index = i
+
     # create a new graph based on the input network
     g = nx.graph.Graph()
     for idx, node in enumerate(network.nodes):
         g.add_node(idx, smiles=node.smiles, img=image(node.to_rdkit()),
                    hac=node.to_rdkit().GetNumAtoms())
     for i, edge in enumerate(network.edges):
-        g.add_edge(0, i+1)
+        g.add_edge(central_index, i+1)
 
     cy_g = cytoscape_data(g)
     stobj = [
