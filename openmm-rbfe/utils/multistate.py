@@ -81,6 +81,8 @@ class HybridCompatibilityMixin(object):
         context_cache = cache.ContextCache(platform)
 
         if n_replicas is None:
+            msg = (f"setting number of replicas to number of states: {n_states}")
+            warnings.warn(msg)
             n_replicas = n_states
         elif n_replicas > n_states:
             wmsg = (f"More sampler states: {n_replicas} requested than the "

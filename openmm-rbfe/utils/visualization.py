@@ -42,6 +42,7 @@ def draw_radial_network(network):
         add_to_dict(molecules, edge.mol2.name)
 
     central_ligand = max(molecules, key=molecules.get)
+    print("central ligand is: ", central_ligand)
 
     for i, node in enumerate(network.nodes):
         if node.name == central_ligand:
@@ -52,8 +53,9 @@ def draw_radial_network(network):
     for idx, node in enumerate(network.nodes):
         g.add_node(idx, smiles=node.smiles, img=image(node.to_rdkit()),
                    hac=node.to_rdkit().GetNumAtoms())
-    for i, edge in enumerate(network.edges):
-        g.add_edge(central_index, i+1)
+    for i, edge in enumerate(g.nodes):
+        if i != central_ligand:
+            g.add_edge(central_index, i)
 
     cy_g = cytoscape_data(g)
     stobj = [
