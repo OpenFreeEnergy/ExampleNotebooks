@@ -196,10 +196,10 @@ def _remove_constraints(old_to_new_atom_map, old_system, old_topology,
     no_const_old_to_new_atom_map = deepcopy(old_to_new_atom_map)
 
     h_elem = app.Element.getByAtomicNumber(1)
-    old_hydrogens = [
-        at.index for at in old_topology.atoms() if at.element == h_elem]
-    new_hydrogens = [
-        at.index for at in new_topology.atoms() if at.element == h_elem]
+    old_hydrogens = {
+        at.index for at in old_topology.atoms() if at.element == h_elem}
+    new_hydrogens = {
+        at.index for at in new_topology.atoms() if at.element == h_elem}
 
     old_constraints = {}
     loop_desc = "loading constraints from old topology"
