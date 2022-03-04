@@ -6,7 +6,6 @@
 
 import warnings
 from copy import deepcopy
-from tqdm import tqdm
 import numpy as np
 from openmm import app, unit
 
@@ -202,8 +201,7 @@ def _remove_constraints(old_to_new_atom_map, old_system, old_topology,
         at.index for at in new_topology.atoms() if at.element == h_elem}
 
     old_constraints = {}
-    loop_desc = "loading constraints from old topology"
-    for idx in tqdm(range(old_system.getNumConstraints()), desc=loop_desc):
+    for idx in range(old_system.getNumConstraints()):
         atom1, atom2, length = old_system.getConstraintParameters(idx)
         if atom1 in old_hydrogens:
             old_constraints[atom1] = length
@@ -211,8 +209,7 @@ def _remove_constraints(old_to_new_atom_map, old_system, old_topology,
             old_constraints[atom2] = length
 
     new_constraints = {}
-    loop_desc = "load constraints from new topology"
-    for idx in tqdm(range(new_system.getNumConstraints()), desc=loop_desc):
+    for idx in range(new_system.getNumConstraints()):
         atom1, atom2, length = new_system.getConstraintParameters(idx)
         if atom1 in new_hydrogens:
             new_constraints[atom1] = length
@@ -322,11 +319,6 @@ def get_system_mappings(old_to_new_atom_map,
                 "constrained bonds and changing bond lengths are not allowed.")
         warnings.warn(wmsg)
     else:
-        # It's not really a warning so let's make it a logger in the future
-        wmsg = ("Attempting to fix atom mapping to account for constraints. "
-                "This is a long operation and may take a few minutes.")
-        warnings.warn(wmsg)
-
         adjusted_old_to_new_map = _remove_constraints(
             adjusted_old_to_new_map, old_system, old_topology,
             new_system, new_topology)
