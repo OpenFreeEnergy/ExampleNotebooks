@@ -30,6 +30,7 @@ dependencies:
   - pytest-cov
   - pytest-xdist
   - pytest-xdist
+  - pydantic
   - python==3.9
   - rdkit
   - typing_extensions
