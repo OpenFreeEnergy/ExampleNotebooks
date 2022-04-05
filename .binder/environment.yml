@@ -6,7 +6,7 @@ dependencies:
   - MDAnalysis
   - click
   - coverage
-  - lomap
+  - lomap2
   - mdtraj
   - nbval
   - networkx
