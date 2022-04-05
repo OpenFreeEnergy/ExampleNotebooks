@@ -6,12 +6,14 @@ dependencies:
   - MDAnalysis
   - click
   - coverage
+  - lomap
   - mdtraj
   - nbval
   - networkx
   - nglview
   - notebook
   - numpy
+  - openfe
   - openff-forcefields
   - openff-toolkit
   - openff-toolkit
@@ -21,16 +23,13 @@ dependencies:
   - openmmforcefields
   - openmmtools
   - pip
+  - plugcli
   - pymbar
-  - python==3.9
   - pytest
   - pytest
   - pytest-cov
   - pytest-xdist
   - pytest-xdist
+  - python==3.9
   - rdkit
-  - pip:
-    - git+https://github.com/OpenFreeEnergy/Lomap@v2.0-alpha
-    - plugcli
-    - cyjupyter
-    - git+https://github.com/OpenFreeEnergy/openfe@v0.1
+  - typing_extensions
