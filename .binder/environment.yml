@@ -14,7 +14,7 @@ dependencies:
   - nglview
   - notebook
   - numpy
-  - openfe==0.2
+  - openfe==0.2.1
   - openff-forcefields
   - openff-toolkit
   - openmm
