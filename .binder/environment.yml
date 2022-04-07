@@ -6,7 +6,7 @@ dependencies:
   - MDAnalysis
   - click
   - coverage
-  - gufe
+  - gufe==0.2
   - lomap2
   - mdtraj
   - nbval
@@ -14,25 +14,19 @@ dependencies:
   - nglview
   - notebook
   - numpy
+  - openfe==0.2
   - openff-forcefields
   - openff-toolkit
-  - openff-toolkit
-  - openff-toolkit
   - openmm
-  - openmmforcefields
   - openmmforcefields
   - openmmtools
   - pip
   - plugcli
   - pymbar
   - pytest
-  - pytest
   - pytest-cov
-  - pytest-xdist
   - pytest-xdist
   - pydantic
   - python==3.9
   - rdkit
   - typing_extensions
-  - pip:
-    - git+https://github.com/OpenFreeEnergy/openfe@main
