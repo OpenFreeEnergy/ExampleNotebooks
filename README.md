@@ -5,3 +5,14 @@
 # OpenFE Notebooks
 
 Collection of notebooks for the Open FreeEnergy project.
+
+## Quick Start
+
+First, clone the repositroy and `cd` into the examples folder
+
+```bash
+git clone
+cd blah
+```
+
+Then install the conda env with `conda env create openfe/openfe-notebooks` and run the notebook with `juypter notebook blah`
