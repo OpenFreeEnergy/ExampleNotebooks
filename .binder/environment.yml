@@ -15,7 +15,7 @@ dependencies:
   - numpy
   - openff-forcefields
   - openff-toolkit==0.10.6
-  - openff-units>=0.16
+  - openff-units>=0.1.8
   - openmm
   - openmmtools
   - pip
