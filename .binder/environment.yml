@@ -6,6 +6,7 @@ dependencies:
   - MDAnalysis
   - click
   - coverage
+  - ipywidgets==7.*
   - lomap2
   - mdtraj
   - nbval
