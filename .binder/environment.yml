@@ -6,6 +6,7 @@ dependencies:
   - MDAnalysis
   - click
   - coverage
+  - lxml
   - lomap2
   - mdtraj
   - nbval
