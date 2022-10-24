@@ -33,5 +33,5 @@ dependencies:
   - pip:
     - git+https://github.com/OpenFreeEnergy/gufe@main
     - git+https://github.com/openmm/openmmforcefields@main
-    - git+https://github.com/OpenFreeEnergy/openfe@gufe_protocols
+    - git+https://github.com/OpenFreeEnergy/openfe@main
     - plugcli
