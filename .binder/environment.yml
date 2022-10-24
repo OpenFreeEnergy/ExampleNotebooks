@@ -6,8 +6,9 @@ dependencies:
   - MDAnalysis
   - click
   - coverage
-  - lxml
+  - ipywidgets==7.*
   - lomap2
+  - lxml
   - mdtraj
   - nbval
   - networkx
