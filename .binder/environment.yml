@@ -6,19 +6,19 @@ dependencies:
   - MDAnalysis
   - click
   - coverage
-  - gufe==0.2
+  - ipywidgets==7.*
   - lomap2
+  - lxml
   - mdtraj
   - nbval
   - networkx
   - nglview
   - notebook
   - numpy
-  - openfe==0.3
   - openff-forcefields
-  - openff-toolkit
+  - openff-toolkit==0.10.6
+  - openff-units>=0.1.8
   - openmm
-  - openmmforcefields==0.10.0
   - openmmtools
   - pip
   - plugcli
@@ -30,3 +30,8 @@ dependencies:
   - python==3.9
   - rdkit
   - typing_extensions
+  - pip:
+    - git+https://github.com/OpenFreeEnergy/gufe@main
+    - git+https://github.com/openmm/openmmforcefields@main
+    - git+https://github.com/OpenFreeEnergy/openfe@main
+    - plugcli
