@@ -16,11 +16,11 @@ dependencies:
   - notebook
   - numpy
   - openff-forcefields
-  - openff-toolkit==0.10.6
+  - openff-toolkit==0.11
   - openff-units>=0.1.8
-  - pint==0.19.2
   - openmm
   - openmmtools
+  - openmmforcefields==0.11.2
   - pip
   - plugcli
   - pymbar
@@ -31,8 +31,7 @@ dependencies:
   - python==3.9
   - rdkit
   - typing_extensions
+  - gufe==0.4
+  - openfe==0.4
   - pip:
-    - git+https://github.com/OpenFreeEnergy/gufe@main
-    - git+https://github.com/openmm/openmmforcefields@main
-    - git+https://github.com/OpenFreeEnergy/openfe@main
     - plugcli
