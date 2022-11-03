@@ -28,10 +28,8 @@ dependencies:
   - pytest-cov
   - pytest-xdist
   - pydantic
-  - python==3.9
+  - python==3.9.*
   - rdkit
   - typing_extensions
-  - gufe==0.4
-  - openfe==0.4
-  - pip:
-    - plugcli
+  - gufe==0.4.*
+  - openfe==0.4.*
