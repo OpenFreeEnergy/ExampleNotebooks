@@ -6,20 +6,21 @@ dependencies:
   - MDAnalysis
   - click
   - coverage
-  - gufe==0.2
+  - ipywidgets==7.*
   - lomap2
+  - lxml
   - mdtraj
   - nbval
   - networkx
   - nglview
   - notebook
   - numpy
-  - openfe==0.3
   - openff-forcefields
-  - openff-toolkit
+  - openff-toolkit==0.11.*
+  - openff-units>=0.1.8
   - openmm
-  - openmmforcefields==0.10.0
   - openmmtools
+  - openmmforcefields==0.11.2
   - pip
   - plugcli
   - pymbar
@@ -27,6 +28,8 @@ dependencies:
   - pytest-cov
   - pytest-xdist
   - pydantic
-  - python==3.9
+  - python==3.9.*
   - rdkit
   - typing_extensions
+  - gufe==0.4.*
+  - openfe==0.4.*
