@@ -23,13 +23,21 @@ Once miniconda is installed, from a terminal run:
 -  `conda create -n openfe -c conda-forge openfe jupyter`
 -  `conda activate openfe`
 
-Then you can download a copy of the notebooks via the command line as:
+Then you can download a copy of the notebooks:
+
+- https://github.com/OpenFreeEnergy/ExampleNotebooks/archive/refs/tags/nov-2022.tar.gz
+
+Or via the command line as:
 
 - `wget https://github.com/OpenFreeEnergy/ExampleNotebooks/archive/refs/tags/nov-2022.tar.gz`
 - `tar xf nov-2022.tar.gz`
+
+Then navigate to the downloaded notebooks:
+
 - `cd ExampleNotebooks-nov-2022/openmm-rbfe`
 
 Then launch the notebook application as:
 
 - `jupyter notebook`
 
+This should present a choice of two notebooks to follow.
