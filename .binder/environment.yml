@@ -6,7 +6,7 @@ dependencies:
   - MDAnalysis
   - click
   - coverage
-  - gufe==0.2
+  - gufe==0.4
   - lomap2
   - mdtraj
   - nbval
@@ -14,7 +14,7 @@ dependencies:
   - nglview
   - notebook
   - numpy
-  - openfe==0.3
+  - openfe==0.4
   - openff-forcefields
   - openff-toolkit
   - openmm
