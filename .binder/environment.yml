@@ -16,8 +16,6 @@ dependencies:
   - notebook
   - numpy
   - openff-forcefields
-  - openff-toolkit==0.11.*
-  - openff-units>=0.1.8
   - openmm
   - openmmtools
   - openmmforcefields==0.11.2
@@ -31,5 +29,5 @@ dependencies:
   - python==3.9.*
   - rdkit
   - typing_extensions
-  - gufe==0.4.*
-  - openfe==0.4.*
+  - gufe==0.5.*
+  - openfe==0.5.*
