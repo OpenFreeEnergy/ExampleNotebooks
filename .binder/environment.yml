@@ -14,7 +14,7 @@ dependencies:
   - networkx
   - nglview
   - notebook
-  - numpy
+  - numpy<1.24
   - openff-forcefields
   - openmm
   - openmmtools
