@@ -1,5 +1,5 @@
 # Files created by notebooks
-
+*.nc
 *.gro
 *.top
 
