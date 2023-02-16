@@ -2,6 +2,7 @@ name: openfe-notebooks
 channels:
   - jaimergp/label/unsupported-cudatoolkit-shim
   - conda-forge
+  - openeye
 dependencies:
   - MDAnalysis
   - click
@@ -31,3 +32,17 @@ dependencies:
   - typing_extensions
   - gufe==0.5.*
   - openfe==0.5.*
+ 
+  ## needed for perses
+  - openmoltools
+  - cloudpathlib
+  - dask
+  - distributed
+  - openeye-toolkits
+
+  - pip:
+    - git+https://github.com/OpenFreeEnergy/gufe
+    - git+https://github.com/OpenFreeEnergy/openfe
+    - git+https://github.com/dotsdl/openfe-benchmarks@ligandnetwork
+    - git+https://github.com/mikemhenry/openff-models.git@support_nested_models
+    - git+https://github.com/choderalab/perses@protocol-neqcyc
