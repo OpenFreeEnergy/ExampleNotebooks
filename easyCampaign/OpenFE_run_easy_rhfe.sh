@@ -12,7 +12,7 @@ mkdir rhfe_calculation -p
 cd rhfe_calculation || exit
 
 # PLAN the calculations
-openfe plan-rhfe-network -m ../molecules/benzenes_RHFE.sdf -o a_alchemicalNetwork
+openfe plan-rhfe-network -m ../molecules/rhfe/benzenes_RHFE.sdf -o a_alchemicalNetwork
 
 # DO the calculations
 mkdir b_simulation c_results -p
