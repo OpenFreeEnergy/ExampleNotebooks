@@ -19,7 +19,6 @@ dependencies:
   - openff-forcefields
   - openmm
   - openmmtools
-  - openmmforcefields==0.11.2
   - pip
   - plugcli
   - pymbar
@@ -30,8 +29,8 @@ dependencies:
   - python==3.9.*
   - rdkit
   - typing_extensions
-  - gufe==0.5.*
-  - openfe==0.5.*
+  - gufe==0.7.*
+  - openfe==0.7.*
  
   ## needed for perses
   - openmoltools
@@ -39,10 +38,3 @@ dependencies:
   - dask
   - distributed
   - openeye-toolkits
-
-  - pip:
-    - git+https://github.com/OpenFreeEnergy/gufe
-    - git+https://github.com/OpenFreeEnergy/openfe
-    - git+https://github.com/dotsdl/openfe-benchmarks@ligandnetwork
-    - git+https://github.com/mikemhenry/openff-models.git@support_nested_models
-    - git+https://github.com/choderalab/perses@protocol-neqcyc
