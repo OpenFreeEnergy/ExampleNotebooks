@@ -10,7 +10,7 @@ These can be ran in the browser via the Binder links.
 
 | Binder link | Description |
 | --- | --- |
-| [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenFreeEnergy/ExampleNotebooks/HEAD?labpath=openmm-rbfe%2FOpenFE_showcase_1_RBFE_of_T4lysozyme.ipynb) | Showcase of the OpenFE package as a whole |
+| [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenFreeEnergy/ExampleNotebooks/HEAD?labpath=openmm-rbfe%2FOpenFE_showcase_1_RBFE_of_T4lysozyme.ipynb) | Start here.  This notebook demonstrates how a free energy calculation can be defined, executed and analyzed using the `openfe` package. |
 | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenFreeEnergy/ExampleNotebooks/HEAD?labpath=openmm-rbfe%2FApplyingProtocolToNetworkQuickrunDemo.ipynb) | Demonstrating how to plan a free energy network and apply a protocol |
 
 ## Running these notebooks locally
