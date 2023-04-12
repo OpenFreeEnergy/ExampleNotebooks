@@ -14,7 +14,6 @@ dependencies:
   - networkx
   - nglview
   - notebook
-  - numpy<1.24
   - openff-forcefields
   - openmm
   - openmmtools
@@ -30,4 +29,3 @@ dependencies:
   - typing_extensions
   - gufe>=0.7.1
   - openfe>=0.7.1
- 

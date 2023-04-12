@@ -20,7 +20,7 @@ this is best done using [miniconda](https://docs.conda.io/en/latest/miniconda.ht
 
 Once miniconda is installed, from a terminal run:
 
--  `conda create -n openfe -c conda-forge openfe jupyter`
+-  `conda create -n openfe -c conda-forge openfe jupyter MDAnalysis nglview`
 -  `conda activate openfe`
 
 Then you can download a copy of the notebooks:
