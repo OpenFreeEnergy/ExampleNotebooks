@@ -29,15 +29,17 @@ Then you can download a copy of the notebooks:
 
 Or via the command line as:
 
-- `wget https://github.com/OpenFreeEnergy/ExampleNotebooks/archive/refs/tags/nov-2022.tar.gz`
-- `tar xf nov-2022.tar.gz`
+- `wget -O OpenFEExampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/master`
+- or (depending on your platform)
+- `curl -L -k -o OpenFEEXampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/master`
 
-Then navigate to the downloaded notebooks:
+Unpack, then navigate to the downloaded notebooks:
 
-- `cd ExampleNotebooks-nov-2022/openmm-rbfe`
+- `tar -xz OpenFEExampleNotebooks.tar.gz`
+- `cd OpenFreeEnergy-ExampleNotebooks-b79be48`
 
 Then launch the notebook application as:
 
 - `jupyter notebook`
 
-This should present a choice of two notebooks to follow.
+This should present a choice of notebooks to follow.
