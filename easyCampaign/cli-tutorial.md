@@ -19,12 +19,11 @@ repository](https://github.com/OpenFreeEnergy/ExampleNotebooks). If
 switching to an empty directory, you can get the files with:
 
 ```bash
-cp $EXAMPLES_REPO/easyCampaign/molecules/rbfe/* ./
+cp $EXAMPLES_REPO/easyCampaign/molecules/rhfe/* ./
 ```
 
-Then when you run `ls`, you should see that your directory has two files in it:
-`p38_old_ligands.sdf` and `p38_old_protein.pdb`. That will be the starting
-point for the tutorial.
+Then when you run `ls`, you should see that your directory has one file in it:
+`benzenes_RHFE.sdf`. That will be the starting point for the tutorial.
 
 ## Setting up the campaign
 
@@ -35,14 +34,15 @@ energy setups.
 For RBFE campaigns, the relevant command is `openfe plan-rbfe-network`. For
 RHFE, the command is `openfe plan-rhfe-network`. They work mostly the same,
 except that the RHFE planner does not take a protein. In this tutorial, we'll
-do an RBFE calculation. The only difference for RHFE is in the setup stage --
+do an RHFE calculation. The only difference for RBFE is in the setup stage --
 running the simulations and gathering the results are the same.
 
-To run the setup, we'll specify the protein using the `-p` option, and we'll
-tell it search for SDF/MOL2 files in the current directory using `-M ./`. We'll tell it to output into the same directory that we're working in with the `-o ./` option.
+To run the setup, we'll tell it search for SDF/MOL2 files in the current
+directory using `-M ./`. We'll tell it to output into the same directory that
+we're working in with the `-o ./` option.
 
 ```bash
-openfe plan-rbfe-network -p p38_old_protein.pdb -M ./ -o ./
+openfe plan-rhfe-network -M ./ -o ./
 ```
 
 Planning the campaign may a take a few minutes, as it tries to find the best
@@ -56,28 +56,28 @@ Now you're ready to run the simulations! Let's look at the structure of the
 
 ```text
 transformations
-├── lig_p38a_2aa_lig_p38a_2z
-│   ├── complex
-│   │   └── openfe-tutorial_easy_rbfe_lig_p38a_2aa_receptor_lig_p38a_2z_receptor.json
-│   └── solvent
-│       └── openfe-tutorial_easy_rbfe_lig_p38a_2aa_solvent_lig_p38a_2z_solvent.json
-├── lig_p38a_2aa_lig_p38a_3fly
-│   ├── complex
-│   │   └── openfe-tutorial_easy_rbfe_lig_p38a_2aa_receptor_lig_p38a_3fly_receptor.json
-│   └── solvent
-│       └── openfe-tutorial_easy_rbfe_lig_p38a_2aa_solvent_lig_p38a_3fly_solvent.json
+├── lig_10_lig_15
+│   ├── solvent
+│   │   └── openfe-tutorial_easy_rhfe_lig_10_solvent_lig_15_solvent.json
+│   └── vacuum
+│       └── openfe-tutorial_easy_rhfe_lig_10_vacuum_lig_15_vacuum.json
+├── lig_10_lig_5
+│   ├── solvent
+│   │   └── openfe-tutorial_easy_rhfe_lig_5_solvent_lig_10_solvent.json
+│   └── vacuum
+│       └── openfe-tutorial_easy_rhfe_lig_5_vacuum_lig_10_vacuum.json:w
 [continues]
 ```
 
 There is a subdirectory for each edge, named according to the ligand pair.
 Within that, there are directories for the two "legs" associated with this
-ligand transformation: the ligand transformation in solvent, and the ligand
-tranformation complexed with the receptor. Each JSON file represents a single
-leg to run, and contains all the necessary information to run that leg.
+ligand transformation: the ligand transformation in solvent and in vacuum.
+Each JSON file represents a single leg to run, and contains all the necessary
+information to run that leg.
 
 Note that this specific setup makes a number of choices for you. All of
 these choices can be customized in the Python API, and some can be customized
-using the CLI. To see additional CLI options, use `openfe plan-rbfe-network
+using the CLI. To see additional CLI options, use `openfe plan-rhfe-network
 --help`. Here are the specifics on how these simulation are set up:
 
 1. LOMAP is used to generate the atom mappings between ligands.
@@ -146,10 +146,9 @@ openfe gather ./results/ -o final_results.tsv
 
 This will write out a tab-separated table of results, including both the
 $\Delta G$ for each leg and the $\Delta\Delta G$ computed from pairs of legs.
-The first column labels the data, e.g., `DGcomplex(ligandB,ligandA)` for the
-$\Delta G$ of the transformation of ligand A into ligand B while in complex
-with the protein, or `DDGbind(ligandB,ligandA)` for the $\Delta\Delta G$ of
-binding ligand A vs. ligand B: $\Delta G$<sub>bind, $B$</sub>$ - \Delta
-G$<sub>bind$A$</sub>.
+The first column labels the data, e.g., `DGvacuum(ligandB,ligandA)` for the
+$\Delta G$ of the transformation of ligand A into ligand B in vacuum, or
+`DDGsolv(ligandB,ligandA)` for the $\Delta\Delta G$ of binding ligand A vs.
+ligand B: $\Delta G$<sub>solv, $B$</sub>$ - \Delta G$<sub>solv$A$</sub>.
 
 <!-- TODO example of output -->
