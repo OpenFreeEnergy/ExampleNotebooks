@@ -29,3 +29,4 @@ dependencies:
   - typing_extensions
   - gufe>=0.7.1
   - openfe>=0.7.1
+  - py3dmol
