@@ -65,7 +65,7 @@ transformations
 │   ├── solvent
 │   │   └── openfe-tutorial_easy_rhfe_lig_5_solvent_lig_10_solvent.json
 │   └── vacuum
-│       └── openfe-tutorial_easy_rhfe_lig_5_vacuum_lig_10_vacuum.json:w
+│       └── openfe-tutorial_easy_rhfe_lig_5_vacuum_lig_10_vacuum.json
 [continues]
 ```
 
