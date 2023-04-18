@@ -10,7 +10,7 @@ These can be ran in the browser via the Binder links.
 
 | Binder link | Description |
 | --- | --- |
-| [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenFreeEnergy/ExampleNotebooks/HEAD?labpath=openmm-rbfe%2FOpenFE_showcase_1_RBFE_of_T4lysozyme.ipynb) | Showcase of the OpenFE package as a whole |
+| [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenFreeEnergy/ExampleNotebooks/HEAD?labpath=openmm-rbfe%2FOpenFE_showcase_1_RBFE_of_T4lysozyme.ipynb) | Start here.  This notebook demonstrates how a free energy calculation can be defined, executed and analyzed using the `openfe` package. |
 | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenFreeEnergy/ExampleNotebooks/HEAD?labpath=openmm-rbfe%2FApplyingProtocolToNetworkQuickrunDemo.ipynb) | Demonstrating how to plan a free energy network and apply a protocol |
 
 ## Running these notebooks locally
@@ -29,15 +29,17 @@ Then you can download a copy of the notebooks:
 
 Or via the command line as:
 
-- `wget https://github.com/OpenFreeEnergy/ExampleNotebooks/archive/refs/tags/nov-2022.tar.gz`
-- `tar xf nov-2022.tar.gz`
+- `wget -O OpenFEExampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/master`
+- or (depending on your platform)
+- `curl -L -k -o OpenFEEXampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/master`
 
-Then navigate to the downloaded notebooks:
+Unpack, then navigate to the downloaded notebooks:
 
-- `cd ExampleNotebooks-nov-2022/openmm-rbfe`
+- `tar -xz OpenFEExampleNotebooks.tar.gz`
+- `cd OpenFreeEnergy-ExampleNotebooks-b79be48`
 
 Then launch the notebook application as:
 
 - `jupyter notebook`
 
-This should present a choice of two notebooks to follow.
+This should present a choice of notebooks to follow.

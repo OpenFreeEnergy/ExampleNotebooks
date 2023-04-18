@@ -27,5 +27,6 @@ dependencies:
   - python==3.9.*
   - rdkit
   - typing_extensions
-  - gufe==0.6.*
-  - openfe==0.6.*
+  - gufe>=0.7.1
+  - openfe>=0.7.1
+  - py3dmol
