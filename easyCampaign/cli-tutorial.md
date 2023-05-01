@@ -96,7 +96,7 @@ like:
 
 ```
 # this will take a long time!
-for file in transformations/**/*.json; do
+for file in transformations/*/*/*.json; do
   relpath=${file:16}  # strip off "transformations/"
   dirpath=${relpath%.*}  # strip off final ".json"
   openfe quickrun $file -o results/$relpath -d results/$dirpath
@@ -112,7 +112,7 @@ computing center. Here is an example of a very simple script that will create
 and submit a job script for the simplest SLURM use case:
 
 ```
-for file in transformations/**/*.json; do
+for file in transformations/*/*/*.json; do
   relpath=${file:16}  # strip off "transformations/"
   dirpath=${relpath%.*}  # strip off final ".json"
   jobpath="transformations/${dirpath}.job"
