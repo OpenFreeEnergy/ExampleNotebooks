@@ -1,5 +1,7 @@
 # Relative Free Energies with the OpenFE CLI
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/OpenFreeEnergy/ExampleNotebooks/blob/switch_to_colab/easyCampaign/Cli%20Demo.ipynb)
+
 This tutorial will show how to use the OpenFE command line interface to get
 free energies -- with no Python at all! This will work for simple setups, you
 may need to use the Python interface for more complicated setups.
