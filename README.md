@@ -2,6 +2,7 @@
 [![full_tests](https://github.com/OpenFreeEnergy/ExampleNotebooks/actions/workflows/CI.yml/badge.svg)](https://github.com/OpenFreeEnergy/ExampleNotebooks/actions/workflows/CI.yml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/OpenFreeEnergy/ExampleNotebooks/master.svg)](https://results.pre-commit.ci/latest/github/OpenFreeEnergy/ExampleNotebooks/main)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenFreeEnergy/ExampleNotebooks/HEAD)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/OpenFreeEnergy/ExampleNotebooks/blob/switch_to_colab/openmm-rbfe/OpenFE_showcase_1_RBFE_of_T4lysozyme.ipynb)
 
 # OpenFE Notebooks
 
