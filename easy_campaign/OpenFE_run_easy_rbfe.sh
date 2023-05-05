@@ -12,7 +12,7 @@ mkdir rbfe_calculation -p
 cd rbfe_calculation || exit
 
 # PLAN the calculations
-openfe plan-rbfe-network -m ../molecules/rbfe/p38_old_ligands.sdf -p ../molecules/rbfe/p38_old_protein.pdb -o a_alchemicalNetwork
+openfe plan-rbfe-network -M ../molecules/rbfe/tyk2_ligands.sdf -p ../molecules/rbfe/tyk2_protein.pdb -o a_alchemicalNetwork
 
 # DO the calculations
 mkdir b_simulation c_results -p
