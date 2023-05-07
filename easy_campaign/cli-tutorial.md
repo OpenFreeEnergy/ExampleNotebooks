@@ -12,18 +12,14 @@ stages; each of which corresponds to a CLI command:
 2. Running the simulations.
 3. Gathering the results of separate simulations into a single table.
 
-To work through this tutorial, let's start out with a fresh directory
-containing files from the tutorial in our [examples
-repository](https://github.com/OpenFreeEnergy/ExampleNotebooks). If
-`$EXAMPLES_REPO` is a path to a local copy of that repository, then after
-switching to an empty directory, you can get the files with:
+To work through this tutorial, start out with a fresh directory. You can download the tutorial materials (including this file) using the command:
 
 ```bash
-cp $EXAMPLES_REPO/easyCampaign/molecules/rhfe/* ./
+openfe fetch rhfe-tutorial
 ```
 
-Then when you run `ls`, you should see that your directory has one file in it:
-`benzenes_RHFE.sdf`. That will be the starting point for the tutorial.
+Then when you run `ls`, you should see that your directory has this file,
+`cli-tutorial.md`, a notebook called `rhfe-python-tutorial.ipynb`, and `benzenes_RHFE.sdf`.
 
 ## Setting up the campaign
 
@@ -42,7 +38,7 @@ directory using `-M ./`. We'll tell it to output into the same directory that
 we're working in with the `-o ./` option.
 
 ```bash
-openfe plan-rhfe-network -M ./ -o ./
+openfe plan-rhfe-network -M benzenes_RHFE.sdf -o setup
 ```
 
 Planning the campaign may a take a few minutes, as it tries to find the best
@@ -55,17 +51,14 @@ Now you're ready to run the simulations! Let's look at the structure of the
 <!-- take the top lines from `tree transformations/` -->
 
 ```text
-transformations
-├── lig_10_lig_15
-│   ├── solvent
-│   │   └── openfe-tutorial_easy_rhfe_lig_10_solvent_lig_15_solvent.json
-│   └── vacuum
-│       └── openfe-tutorial_easy_rhfe_lig_10_vacuum_lig_15_vacuum.json
-├── lig_10_lig_5
-│   ├── solvent
-│   │   └── openfe-tutorial_easy_rhfe_lig_5_solvent_lig_10_solvent.json
-│   └── vacuum
-│       └── openfe-tutorial_easy_rhfe_lig_5_vacuum_lig_10_vacuum.json
+setup
+├── ligand_network.graphml
+├── setup.json
+└── transformations
+    ├── easy_rhfe_lig_10_solvent_lig_15_solvent.json
+    ├── easy_rhfe_lig_10_vacuum_lig_15_vacuum.json
+    ├── easy_rhfe_lig_11_solvent_lig_14_solvent.json
+    ├── easy_rhfe_lig_11_vacuum_lig_14_vacuum.json
 [continues]
 ```
 
@@ -91,13 +84,14 @@ using the CLI. To see additional CLI options, use `openfe plan-rhfe-network
 
 ## Running the simulations
 
-In principle, you can run each simulation on your local machine with something
-like:
+For this tutorial, we have precalculated data that you can load, since
+running the simulations can take a long time. However, you could, in principle,
+run each simulation on your local machine with something like:
 
-```
-# this will take a long time!
-for file in transformations/*/*/*.json; do
-  relpath=${file:16}  # strip off "transformations/"
+```bash
+# this will take a very long time! don't actually do it!
+for file in setup/transformations/*.json; do
+  relpath=${file:22}  # strip off "setup/transformations/"
   dirpath=${relpath%.*}  # strip off final ".json"
   openfe quickrun $file -o results/$relpath -d results/$dirpath
 done
@@ -111,9 +105,9 @@ Details of what information is needed in that job script will depend on your
 computing center. Here is an example of a very simple script that will create
 and submit a job script for the simplest SLURM use case:
 
-```
-for file in transformations/*/*/*.json; do
-  relpath=${file:16}  # strip off "transformations/"
+```bash
+for file in setup/transformations/*.json; do
+  relpath=${file:22}  # strip off "setup/transformations/"
   dirpath=${relpath%.*}  # strip off final ".json"
   jobpath="transformations/${dirpath}.job"
   cmd="openfe quickrun $file -o results/$relpath -d results/$dirpath"
@@ -124,12 +118,37 @@ done
 
 ## Gathering the results
 
-Once the simulations have been run, you will see many results in the results
-directory. For each simulation, there will be a result JSON file, as well as a
-directory that includes files created during the simulation, with the names as
-given to the `openfe quickrun` command.
+To get example data, use the following commands:
 
-<!-- TODO directory structure -->
+```bash
+openfe fetch rhfe-tutorial-results
+tar xzf results.tar.gz
+```
+
+This will create a directory called `results/` that contains files in the file
+structure you would get from running the calculations as above. The result JSON
+files are the actual results of a simulation. Other files that are generated
+during the simulation (such as detailed simulation information) have been
+replaced by empty files to keep the size smaller. The structure looks something
+like this:
+
+<!-- take the top lines from `tree results` -->
+
+```text
+results
+├── easy_rhfe_lig_10_solvent_lig_15_solvent
+│   ├── shared_RelativeHybridTopologyProtocolUnit-333f0749f2554d6794c0dfb495c32bc3
+│   │   ├── checkpoint.nc
+│   │   └── simulation.nc
+│   ├── shared_RelativeHybridTopologyProtocolUnit-3a17c1c3a438403a88766e2ad4986d62
+│   │   ├── checkpoint.nc
+│   │   └── simulation.nc
+│   └── shared_RelativeHybridTopologyProtocolUnit-9aa9c8b808b64f6089ef22c9c83bc89d
+│       ├── checkpoint.nc
+│       └── simulation.nc
+├── easy_rhfe_lig_10_solvent_lig_15_solvent.json
+[continues]
+```
 
 The JSON results file contains not only the calculated $\Delta G$, and
 uncertainty estimate, but also important metadata about what happened during
@@ -140,7 +159,7 @@ fail, and will be recorded so you can later analyze what went wrong.
 To gather all the $\Delta G$ estimates into a single file, use the `openfe
 gather` command from withing the working directory used above:
 
-```
+```bash
 openfe gather ./results/ -o final_results.tsv
 ```
 
@@ -151,4 +170,24 @@ $\Delta G$ of the transformation of ligand A into ligand B in vacuum, or
 `DDGsolv(ligandB,ligandA)` for the $\Delta\Delta G$ of binding ligand A vs.
 ligand B: $\Delta G$<sub>solv, $B$</sub>$ - \Delta G$<sub>solv$A$</sub>.
 
-<!-- TODO example of output -->
+The resulting file looks something like this:
+
+<!-- take top lines from `cat final_results.tsv`; make sure to add a [snip] and
+     get some of the DGs as well as the DDGs -->
+
+```text
+measurement     estimate (kcal/mol)     uncertainty
+DDGhyd(lig_8, lig_6)    4.1     +-0.074
+DDGhyd(lig_6, lig_1)    -3.5    +-0.038
+DDGhyd(lig_15, lig_14)  3.3     +-0.056
+DDGhyd(lig_14, lig_13)  0.49    +-0.038
+[snip]
+DGvacuum(lig_6, lig_8)  -10.0   +-0.027
+DGsolvent(lig_6, lig_8) -6.1    +-0.069
+DGsolvent(lig_1, lig_6) 17.0    +-0.032
+DGvacuum(lig_1, lig_6)  20.0    +-0.022
+DGvacuum(lig_14, lig_15)        6.9     +-0.0028
+DGsolvent(lig_14, lig_15)       10.0    +-0.056
+DGsolvent(lig_13, lig_14)       15.0    +-0.037
+[continues]
+```
