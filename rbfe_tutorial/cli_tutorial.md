@@ -15,30 +15,32 @@ stages; each of which corresponds to a CLI command:
 To work through this tutorial, start out with a fresh directory. You can download the tutorial materials (including this file) using the command:
 
 ```bash
-openfe fetch rhfe-tutorial
+openfe fetch rbfe-tutorial
 ```
 
 Then when you run `ls`, you should see that your directory has this file,
-`cli-tutorial.md`, a notebook called `rhfe-python-tutorial.ipynb`, and `benzenes_RHFE.sdf`.
+`cli_tutorial.md`, a notebook called `python_tutorial.ipynb`, and
+<!-- TODO --> 
 
 ## Setting up the campaign
 
 The CLI makes setting up the simulation very easy -- it's just a single CLI
-command. There are separate commands for binding free energy and hydration free
-energy setups.
+command. There are separate commands for relative binding free energy (RBFE)
+and relative hydration free energy setups (RHFE).
 
 For RBFE campaigns, the relevant command is `openfe plan-rbfe-network`. For
 RHFE, the command is `openfe plan-rhfe-network`. They work mostly the same,
 except that the RHFE planner does not take a protein. In this tutorial, we'll
-do an RHFE calculation. The only difference for RBFE is in the setup stage --
+do an RBFE calculation. The only difference for RBFE is in the setup stage --
 running the simulations and gathering the results are the same.
 
-To run the setup, we'll tell it search for SDF/MOL2 files in the current
-directory using `-M ./`. We'll tell it to output into the same directory that
-we're working in with the `-o ./` option.
+<!-- TODO To run the setup, we'll tell it search for SDF/MOL2 files in the current
+directory using `-M `. --> 
+We'll tell it to output into a directory called `setup` with the we're working
+in with the `-o setup` option.
 
+<!-- TODO -->
 ```bash
-openfe plan-rhfe-network -M benzenes_RHFE.sdf -o setup
 ```
 
 Planning the campaign may a take a few minutes, as it tries to find the best
@@ -46,7 +48,6 @@ network from all possible transformations. This will create a file for each
 leg that we will calculate, all within a directory called `transformations`.
 Now you're ready to run the simulations! Let's look at the structure of the
 `transformations` directory:
-
 
 <!-- take the top lines from `tree transformations/` -->
 
@@ -73,11 +74,12 @@ these choices can be customized in the Python API, and some can be customized
 using the CLI. To see additional CLI options, use `openfe plan-rhfe-network
 --help`. Here are the specifics on how these simulation are set up:
 
-1. LOMAP is used to generate the atom mappings between ligands.
+1. LOMAP is used to generate the atom mappings between ligands, with the
+   parameters <!-- TODO -->
 2. The network is a minimal spanning tree, with the default LOMAP score used to
    score the mappings.
 3. Solvent is water with NaCl at an ionic strength of 0.15 M (neutralized).
-4. The protocol used is OpenFE's OpenMM RFE protocol, with default settings.
+4. The protocol used is OpenFE's OpenMM-based RFE protocol, with default settings.
 
 <!-- TODO there should be a link to the default settings here -->
 
