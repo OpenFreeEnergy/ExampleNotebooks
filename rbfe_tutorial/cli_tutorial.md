@@ -15,69 +15,83 @@ stages; each of which corresponds to a CLI command:
 To work through this tutorial, start out with a fresh directory. You can download the tutorial materials (including this file) using the command:
 
 ```bash
-openfe fetch rhfe-tutorial
+openfe fetch rbfe-tutorial
 ```
 
 Then when you run `ls`, you should see that your directory has this file,
-`cli-tutorial.md`, a notebook called `rhfe-python-tutorial.ipynb`, and `benzenes_RHFE.sdf`.
+`cli_tutorial.md`, a notebook called `python_tutorial.ipynb`, and files with
+the molecules we'll use in this tutorial: `tyk2_ligands.sdf` and
+`tyk2_protein.pdb`.
 
 ## Setting up the campaign
 
 The CLI makes setting up the simulation very easy -- it's just a single CLI
-command. There are separate commands for binding free energy and hydration free
-energy setups.
+command. There are separate commands for relative binding free energy (RBFE)
+and relative hydration free energy setups (RHFE).
 
 For RBFE campaigns, the relevant command is `openfe plan-rbfe-network`. For
 RHFE, the command is `openfe plan-rhfe-network`. They work mostly the same,
 except that the RHFE planner does not take a protein. In this tutorial, we'll
-do an RHFE calculation. The only difference for RBFE is in the setup stage --
+do an RBFE calculation. The only difference for RBFE is in the setup stage --
 running the simulations and gathering the results are the same.
 
-To run the setup, we'll tell it search for SDF/MOL2 files in the current
-directory using `-M ./`. We'll tell it to output into the same directory that
-we're working in with the `-o ./` option.
+To run the command, we'll tell it get all the ligands from the SDF by giving
+the option `-M tyk2_ligands.sdf`. You can also use `-M` with a directory, and
+it will load all molecules found in any SDF or MOL2 file in that directory.
+We'll tell the command to use the our PDB for the protein with `-p
+tyk2_protein.pdb`.  Finally, we'll tell it to output into a directory called
+`network_setup` with the `-o network_setup` option.
 
 ```bash
-openfe plan-rhfe-network -M benzenes_RHFE.sdf -o setup
+openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup
 ```
 
-Planning the campaign may a take a few minutes, as it tries to find the best
-network from all possible transformations. This will create a file for each
-leg that we will calculate, all within a directory called `transformations`.
-Now you're ready to run the simulations! Let's look at the structure of the
-`transformations` directory:
+Planning the campaign may take some time, as it tries to find the best
+network from all possible transformations. This will create directory called
+`network_setup`, which is structured like this:
 
-
-<!-- take the top lines from `tree transformations/` -->
+<!-- top lines from `tree network_setup` -->
 
 ```text
-setup
+network_setup
 ├── ligand_network.graphml
-├── setup.json
+├── network_setup.json
 └── transformations
-    ├── easy_rhfe_lig_10_solvent_lig_15_solvent.json
-    ├── easy_rhfe_lig_10_vacuum_lig_15_vacuum.json
-    ├── easy_rhfe_lig_11_solvent_lig_14_solvent.json
-    ├── easy_rhfe_lig_11_vacuum_lig_14_vacuum.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_47_complex.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_48_complex.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_50_complex.json
+    ├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json
+    ├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_46_solvent.json
 [continues]
 ```
 
-There is a subdirectory for each edge, named according to the ligand pair.
-Within that, there are directories for the two "legs" associated with this
-ligand transformation: the ligand transformation in solvent and in vacuum.
-Each JSON file represents a single leg to run, and contains all the necessary
-information to run that leg.
+The `ligand_network.graphml` file describes the atom mappings between the
+ligands. We can visualize it with the `openfe ligand-network-viewer` command:
+
+```bash
+openfe ligand-network-viewer network_setup/ligand_network.graphml
+```
+
+This opens an interactive viewer. You can move the ligand names around to get a
+better view of the structure, and if you click on the edge, you'll see the
+mapping for that edge.
+
+The files that describe each individual process we will run are located in the
+`transformations` subdirectory. Each JSON file represents a single leg to run,
+and contains all the necessary information to run that leg.
 
 Note that this specific setup makes a number of choices for you. All of
-these choices can be customized in the Python API, and some can be customized
-using the CLI. To see additional CLI options, use `openfe plan-rhfe-network
---help`. Here are the specifics on how these simulation are set up:
+these choices can be customized in the Python API. Here are the specifics on
+how these simulation are set up:
 
-1. LOMAP is used to generate the atom mappings between ligands.
+1. LOMAP is used to generate the atom mappings between ligands, with a
+   20-second timeout, element changes disallowed, and max3d set to 1.
 2. The network is a minimal spanning tree, with the default LOMAP score used to
    score the mappings.
 3. Solvent is water with NaCl at an ionic strength of 0.15 M (neutralized).
-4. The protocol used is OpenFE's OpenMM RFE protocol, with default settings.
+4. The protocol used is OpenFE's OpenMM-based RFE protocol, with default settings.
 
 <!-- TODO there should be a link to the default settings here -->
 
@@ -121,8 +135,8 @@ done
 To get example data, use the following commands:
 
 ```bash
-openfe fetch rhfe-tutorial-results
-tar xzf results.tar.gz
+openfe fetch rbfe-tutorial-results
+tar xzf rbfe_results.tar.gz
 ```
 
 This will create a directory called `results/` that contains files in the file
@@ -136,17 +150,28 @@ like this:
 
 ```text
 results
-├── easy_rhfe_lig_10_solvent_lig_15_solvent
-│   ├── shared_RelativeHybridTopologyProtocolUnit-333f0749f2554d6794c0dfb495c32bc3
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex
+│   ├── shared_RelativeHybridTopologyProtocolUnit-3ea82011-75f0-4bb6-b415-e7d05bd012f6
 │   │   ├── checkpoint.nc
 │   │   └── simulation.nc
-│   ├── shared_RelativeHybridTopologyProtocolUnit-3a17c1c3a438403a88766e2ad4986d62
+│   ├── shared_RelativeHybridTopologyProtocolUnit-5262feb6-cb50-4bb2-90a2-359810c2bb9c
 │   │   ├── checkpoint.nc
 │   │   └── simulation.nc
-│   └── shared_RelativeHybridTopologyProtocolUnit-9aa9c8b808b64f6089ef22c9c83bc89d
+│   └── shared_RelativeHybridTopologyProtocolUnit-7a6def34-2967-4452-8d47-483bc7219c06
 │       ├── checkpoint.nc
 │       └── simulation.nc
-├── easy_rhfe_lig_10_solvent_lig_15_solvent.json
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_46_complex
+│   ├── shared_RelativeHybridTopologyProtocolUnit-ad113e55-5636-474e-9be3-ee77fe887e77
+│   │   ├── checkpoint.nc
+│   │   └── simulation.nc
+│   ├── shared_RelativeHybridTopologyProtocolUnit-ca74ad3c-2ac8-4961-be7c-fa802a1ec76b
+│   │   ├── checkpoint.nc
+│   │   └── simulation.nc
+│   └── shared_RelativeHybridTopologyProtocolUnit-f848e671-fdd3-4b8d-8bd2-6eb5140e3ed3
+│       ├── checkpoint.nc
+│       └── simulation.nc
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
 [continues]
 ```
 
@@ -165,29 +190,33 @@ openfe gather ./results/ -o final_results.tsv
 
 This will write out a tab-separated table of results, including both the
 $\Delta G$ for each leg and the $\Delta\Delta G$ computed from pairs of legs.
-The first column labels the data, e.g., `DGvacuum(ligandB,ligandA)` for the
-$\Delta G$ of the transformation of ligand A into ligand B in vacuum, or
-`DDGsolv(ligandB,ligandA)` for the $\Delta\Delta G$ of binding ligand A vs.
-ligand B: $\Delta G$<sub>solv, $B$</sub>$ - \Delta G$<sub>solv$A$</sub>.
+The first column is a description of the data, e.g., `DGcomplex(ligandB,
+ligandA)` for the $\Delta G$ of the transformation of ligand
+A into ligand B in vacuum, or `DDGbind(ligeandB, ligandA)` for the
+$\Delta\Delta G$ of binding ligand A vs. ligand B: $\Delta G$<sub>bind,
+$B$</sub>$ - \Delta G$<sub>bind$A$</sub>. The second column tells the type of
+the result, either `RBFE` for a relative result or `solvent`/`complex` for an
+individual leg. The next two columns are the labels of the ligands, and then
+the computed result and its uncertainty.
 
 The resulting file looks something like this:
 
-<!-- take top lines from `cat final_results.tsv`; make sure to add a [snip] and
-     get some of the DGs as well as the DDGs -->
+<!-- take top lines from `cat final_results.tsv` -->
 
 ```text
-measurement     estimate (kcal/mol)     uncertainty
-DDGhyd(lig_8, lig_6)    4.1     +-0.074
-DDGhyd(lig_6, lig_1)    -3.5    +-0.038
-DDGhyd(lig_15, lig_14)  3.3     +-0.056
-DDGhyd(lig_14, lig_13)  0.49    +-0.038
-[snip]
-DGvacuum(lig_6, lig_8)  -10.0   +-0.027
-DGsolvent(lig_6, lig_8) -6.1    +-0.069
-DGsolvent(lig_1, lig_6) 17.0    +-0.032
-DGvacuum(lig_1, lig_6)  20.0    +-0.022
-DGvacuum(lig_14, lig_15)        6.9     +-0.0028
-DGsolvent(lig_14, lig_15)       10.0    +-0.056
-DGsolvent(lig_13, lig_14)       15.0    +-0.037
+measurement  type    ligand_i    ligand_j    estimate (kcal/mol) uncertainty (kcal/mol)
+DDGbind(lig_ejm_48, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_48  0.45    0.17
+DDGbind(lig_jmc_28, lig_ejm_46) RBFE    lig_ejm_46  lig_jmc_28  -0.12   0.044
+DDGbind(lig_ejm_46, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_46  -0.73   0.097
+DDGbind(lig_ejm_50, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_50  0.94    0.072
+DDGbind(lig_ejm_42, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_42  0.49    0.09
+DDGbind(lig_jmc_23, lig_ejm_46) RBFE    lig_ejm_46  lig_jmc_23  -0.39   0.046
+DDGbind(lig_ejm_43, lig_ejm_42) RBFE    lig_ejm_42  lig_ejm_43  1.2 0.14
+DDGbind(lig_jmc_27, lig_ejm_46) RBFE    lig_ejm_46  lig_jmc_27  -0.65   0.1
+DDGbind(lig_ejm_47, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_47  0.016   0.15
+DGsolvent(lig_ejm_31, lig_ejm_48)   solvent lig_ejm_31  lig_ejm_48  -20.0   0.043
+DGcomplex(lig_ejm_31, lig_ejm_48)   complex lig_ejm_31  lig_ejm_48  -19.0   0.17
+DGsolvent(lig_ejm_46, lig_jmc_28)   solvent lig_ejm_46  lig_jmc_28  14.0    0.043
+DGcomplex(lig_ejm_46, lig_jmc_28)   complex lig_ejm_46  lig_jmc_28  14.0    0.0069
 [continues]
 ```
