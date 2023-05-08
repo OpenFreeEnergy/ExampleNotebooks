@@ -53,7 +53,17 @@ network from all possible transformations. This will create directory called
 <!-- top lines from `tree network_setup` -->
 
 ```text
-[add this after #402 is merged in; could affect resulting network]
+network_setup
+├── ligand_network.graphml
+├── network_setup.json
+└── transformations
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_47_complex.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_48_complex.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_50_complex.json
+    ├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json
+    ├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_46_solvent.json
 [continues]
 ```
 
@@ -126,7 +136,7 @@ To get example data, use the following commands:
 
 ```bash
 openfe fetch rbfe-tutorial-results
-tar xzf results.tar.gz
+tar xzf rbfe_results.tar.gz
 ```
 
 This will create a directory called `results/` that contains files in the file
@@ -139,7 +149,29 @@ like this:
 <!-- take the top lines from `tree results` -->
 
 ```text
-[add this after #402 is merged in; could affect resulting network]
+results
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex
+│   ├── shared_RelativeHybridTopologyProtocolUnit-3ea82011-75f0-4bb6-b415-e7d05bd012f6
+│   │   ├── checkpoint.nc
+│   │   └── simulation.nc
+│   ├── shared_RelativeHybridTopologyProtocolUnit-5262feb6-cb50-4bb2-90a2-359810c2bb9c
+│   │   ├── checkpoint.nc
+│   │   └── simulation.nc
+│   └── shared_RelativeHybridTopologyProtocolUnit-7a6def34-2967-4452-8d47-483bc7219c06
+│       ├── checkpoint.nc
+│       └── simulation.nc
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_46_complex
+│   ├── shared_RelativeHybridTopologyProtocolUnit-ad113e55-5636-474e-9be3-ee77fe887e77
+│   │   ├── checkpoint.nc
+│   │   └── simulation.nc
+│   ├── shared_RelativeHybridTopologyProtocolUnit-ca74ad3c-2ac8-4961-be7c-fa802a1ec76b
+│   │   ├── checkpoint.nc
+│   │   └── simulation.nc
+│   └── shared_RelativeHybridTopologyProtocolUnit-f848e671-fdd3-4b8d-8bd2-6eb5140e3ed3
+│       ├── checkpoint.nc
+│       └── simulation.nc
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
 [continues]
 ```
 
@@ -172,6 +204,19 @@ The resulting file looks something like this:
 <!-- take top lines from `cat final_results.tsv` -->
 
 ```text
-[add this after #402 is merged in; could affect resulting network]
+measurement  type    ligand_i    ligand_j    estimate (kcal/mol) uncertainty (kcal/mol)
+DDGbind(lig_ejm_48, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_48  0.45    0.17
+DDGbind(lig_jmc_28, lig_ejm_46) RBFE    lig_ejm_46  lig_jmc_28  -0.12   0.044
+DDGbind(lig_ejm_46, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_46  -0.73   0.097
+DDGbind(lig_ejm_50, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_50  0.94    0.072
+DDGbind(lig_ejm_42, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_42  0.49    0.09
+DDGbind(lig_jmc_23, lig_ejm_46) RBFE    lig_ejm_46  lig_jmc_23  -0.39   0.046
+DDGbind(lig_ejm_43, lig_ejm_42) RBFE    lig_ejm_42  lig_ejm_43  1.2 0.14
+DDGbind(lig_jmc_27, lig_ejm_46) RBFE    lig_ejm_46  lig_jmc_27  -0.65   0.1
+DDGbind(lig_ejm_47, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_47  0.016   0.15
+DGsolvent(lig_ejm_31, lig_ejm_48)   solvent lig_ejm_31  lig_ejm_48  -20.0   0.043
+DGcomplex(lig_ejm_31, lig_ejm_48)   complex lig_ejm_31  lig_ejm_48  -19.0   0.17
+DGsolvent(lig_ejm_46, lig_jmc_28)   solvent lig_ejm_46  lig_jmc_28  14.0    0.043
+DGcomplex(lig_ejm_46, lig_jmc_28)   complex lig_ejm_46  lig_jmc_28  14.0    0.0069
 [continues]
 ```
