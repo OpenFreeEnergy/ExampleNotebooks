@@ -19,8 +19,9 @@ openfe fetch rbfe-tutorial
 ```
 
 Then when you run `ls`, you should see that your directory has this file,
-`cli_tutorial.md`, a notebook called `python_tutorial.ipynb`, and
-<!-- TODO --> 
+`cli_tutorial.md`, a notebook called `python_tutorial.ipynb`, and files with
+the molecules we'll use in this tutorial: `tyk2_ligands.sdf` and
+`tyk2_protein.pdb`.
 
 ## Setting up the campaign
 
@@ -34,45 +35,46 @@ except that the RHFE planner does not take a protein. In this tutorial, we'll
 do an RBFE calculation. The only difference for RBFE is in the setup stage --
 running the simulations and gathering the results are the same.
 
-<!-- TODO To run the setup, we'll tell it search for SDF/MOL2 files in the current
-directory using `-M `. --> 
-We'll tell it to output into a directory called `setup` with the we're working
-in with the `-o setup` option.
+To run the command, we'll tell it get all the ligands from the SDF by giving
+the option `-M tyk2_ligands.sdf`. You can also use `-M` with a directory, and
+it will load all molecules found in any SDF or MOL2 file in that directory.
+We'll tell the command to use the our PDB for the protein with `-p
+tyk2_protein.pdb`.  Finally, we'll tell it to output into a directory called
+`network_setup` with the `-o network_setup` option.
 
-<!-- TODO -->
 ```bash
+openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup
 ```
 
-Planning the campaign may a take a few minutes, as it tries to find the best
-network from all possible transformations. This will create a file for each
-leg that we will calculate, all within a directory called `transformations`.
-Now you're ready to run the simulations! Let's look at the structure of the
-`transformations` directory:
+Planning the campaign may take some time, as it tries to find the best
+network from all possible transformations. This will create directory called
+`network_setup`, which is structured like this:
 
-<!-- take the top lines from `tree transformations/` -->
+<!-- top lines from `tree network_setup` -->
 
 ```text
-setup
-├── ligand_network.graphml
-├── setup.json
-└── transformations
-    ├── easy_rhfe_lig_10_solvent_lig_15_solvent.json
-    ├── easy_rhfe_lig_10_vacuum_lig_15_vacuum.json
-    ├── easy_rhfe_lig_11_solvent_lig_14_solvent.json
-    ├── easy_rhfe_lig_11_vacuum_lig_14_vacuum.json
+[add this after #402 is merged in; could affect resulting network]
 [continues]
 ```
 
-There is a subdirectory for each edge, named according to the ligand pair.
-Within that, there are directories for the two "legs" associated with this
-ligand transformation: the ligand transformation in solvent and in vacuum.
-Each JSON file represents a single leg to run, and contains all the necessary
-information to run that leg.
+The `ligand_network.graphml` file describes the atom mappings between the
+ligands. We can visualize it with the `openfe ligand-network-viewer` command:
+
+```bash
+openfe ligand-network-viewer network_setup/ligand_network.graphml
+```
+
+This opens an interactive viewer. You can move the ligand names around to get a
+better view of the structure, and if you click on the edge, you'll see the
+mapping for that edge.
+
+The files that describe each individual process we will run are located in the
+`transformations` subdirectory. Each JSON file represents a single leg to run,
+and contains all the necessary information to run that leg.
 
 Note that this specific setup makes a number of choices for you. All of
-these choices can be customized in the Python API, and some can be customized
-using the CLI. To see additional CLI options, use `openfe plan-rhfe-network
---help`. Here are the specifics on how these simulation are set up:
+these choices can be customized in the Python API. Here are the specifics on
+how these simulation are set up:
 
 1. LOMAP is used to generate the atom mappings between ligands, with the
    parameters <!-- TODO -->
@@ -123,7 +125,7 @@ done
 To get example data, use the following commands:
 
 ```bash
-openfe fetch rhfe-tutorial-results
+openfe fetch rbfe-tutorial-results
 tar xzf results.tar.gz
 ```
 
@@ -137,18 +139,7 @@ like this:
 <!-- take the top lines from `tree results` -->
 
 ```text
-results
-├── easy_rhfe_lig_10_solvent_lig_15_solvent
-│   ├── shared_RelativeHybridTopologyProtocolUnit-333f0749f2554d6794c0dfb495c32bc3
-│   │   ├── checkpoint.nc
-│   │   └── simulation.nc
-│   ├── shared_RelativeHybridTopologyProtocolUnit-3a17c1c3a438403a88766e2ad4986d62
-│   │   ├── checkpoint.nc
-│   │   └── simulation.nc
-│   └── shared_RelativeHybridTopologyProtocolUnit-9aa9c8b808b64f6089ef22c9c83bc89d
-│       ├── checkpoint.nc
-│       └── simulation.nc
-├── easy_rhfe_lig_10_solvent_lig_15_solvent.json
+[add this after #402 is merged in; could affect resulting network]
 [continues]
 ```
 
@@ -167,29 +158,16 @@ openfe gather ./results/ -o final_results.tsv
 
 This will write out a tab-separated table of results, including both the
 $\Delta G$ for each leg and the $\Delta\Delta G$ computed from pairs of legs.
-The first column labels the data, e.g., `DGvacuum(ligandB,ligandA)` for the
+<!-- TODO The first column labels the data, e.g., `DGvacuum(ligandB,ligandA)` for the
 $\Delta G$ of the transformation of ligand A into ligand B in vacuum, or
 `DDGsolv(ligandB,ligandA)` for the $\Delta\Delta G$ of binding ligand A vs.
-ligand B: $\Delta G$<sub>solv, $B$</sub>$ - \Delta G$<sub>solv$A$</sub>.
+ligand B: $\Delta G$<sub>solv, $B$</sub>$ - \Delta G$<sub>solv$A$</sub>. -->
 
 The resulting file looks something like this:
 
-<!-- take top lines from `cat final_results.tsv`; make sure to add a [snip] and
-     get some of the DGs as well as the DDGs -->
+<!-- take top lines from `cat final_results.tsv` -->
 
 ```text
-measurement     estimate (kcal/mol)     uncertainty
-DDGhyd(lig_8, lig_6)    4.1     +-0.074
-DDGhyd(lig_6, lig_1)    -3.5    +-0.038
-DDGhyd(lig_15, lig_14)  3.3     +-0.056
-DDGhyd(lig_14, lig_13)  0.49    +-0.038
-[snip]
-DGvacuum(lig_6, lig_8)  -10.0   +-0.027
-DGsolvent(lig_6, lig_8) -6.1    +-0.069
-DGsolvent(lig_1, lig_6) 17.0    +-0.032
-DGvacuum(lig_1, lig_6)  20.0    +-0.022
-DGvacuum(lig_14, lig_15)        6.9     +-0.0028
-DGsolvent(lig_14, lig_15)       10.0    +-0.056
-DGsolvent(lig_13, lig_14)       15.0    +-0.037
+[add this after #402 is merged in; could affect resulting network]
 [continues]
 ```
