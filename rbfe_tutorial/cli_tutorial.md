@@ -76,8 +76,8 @@ Note that this specific setup makes a number of choices for you. All of
 these choices can be customized in the Python API. Here are the specifics on
 how these simulation are set up:
 
-1. LOMAP is used to generate the atom mappings between ligands, with the
-   parameters <!-- TODO -->
+1. LOMAP is used to generate the atom mappings between ligands, with a
+   20-second timeout, element changes disallowed, and max3d set to 1.
 2. The network is a minimal spanning tree, with the default LOMAP score used to
    score the mappings.
 3. Solvent is water with NaCl at an ionic strength of 0.15 M (neutralized).
@@ -158,10 +158,14 @@ openfe gather ./results/ -o final_results.tsv
 
 This will write out a tab-separated table of results, including both the
 $\Delta G$ for each leg and the $\Delta\Delta G$ computed from pairs of legs.
-<!-- TODO The first column labels the data, e.g., `DGvacuum(ligandB,ligandA)` for the
-$\Delta G$ of the transformation of ligand A into ligand B in vacuum, or
-`DDGsolv(ligandB,ligandA)` for the $\Delta\Delta G$ of binding ligand A vs.
-ligand B: $\Delta G$<sub>solv, $B$</sub>$ - \Delta G$<sub>solv$A$</sub>. -->
+The first column is a description of the data, e.g., `DGcomplex(ligandB,
+ligandA)` for the $\Delta G$ of the transformation of ligand
+A into ligand B in vacuum, or `DDGbind(ligeandB, ligandA)` for the
+$\Delta\Delta G$ of binding ligand A vs. ligand B: $\Delta G$<sub>bind,
+$B$</sub>$ - \Delta G$<sub>bind$A$</sub>. The second column tells the type of
+the result, either `RBFE` for a relative result or `solvent`/`complex` for an
+individual leg. The next two columns are the labels of the ligands, and then
+the computed result and its uncertainty.
 
 The resulting file looks something like this:
 
