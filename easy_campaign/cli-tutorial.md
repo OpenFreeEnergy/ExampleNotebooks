@@ -109,7 +109,7 @@ and submit a job script for the simplest SLURM use case:
 for file in setup/transformations/*.json; do
   relpath=${file:22}  # strip off "setup/transformations/"
   dirpath=${relpath%.*}  # strip off final ".json"
-  jobpath="transformations/${dirpath}.job"
+  jobpath="setup/transformations/${dirpath}.job"
   cmd="openfe quickrun $file -o results/$relpath -d results/$dirpath"
   echo -e "#!/usr/bin/env bash\n${cmd}" > $jobpath
   sbatch $jobpath
