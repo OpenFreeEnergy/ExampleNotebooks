@@ -7,7 +7,7 @@ may need to use the Python interface for more complicated setups.
 The entire process of running the campaign of simulations is split into 3
 stages; each of which corresponds to a CLI command:
 
-1. Setting up the campaign creating files that describe each of the individual
+1. Setting up the necessary files to describe each of the individual
    simulations to run.
 2. Running the simulations.
 3. Gathering the results of separate simulations into a single table.
@@ -35,19 +35,20 @@ except that the RHFE planner does not take a protein. In this tutorial, we'll
 do an RBFE calculation. The only difference for RBFE is in the setup stage --
 running the simulations and gathering the results are the same.
 
-To run the command, we'll tell it get all the ligands from the SDF by giving
-the option `-M tyk2_ligands.sdf`. You can also use `-M` with a directory, and
-it will load all molecules found in any SDF or MOL2 file in that directory.
-We'll tell the command to use the our PDB for the protein with `-p
-tyk2_protein.pdb`.  Finally, we'll tell it to output into a directory called
-`network_setup` with the `-o network_setup` option.
+To run the command, we do the following:
+  * Read all the ligands from the SDF by giving
+    the option `-M tyk2_ligands.sdf`. You can also use `-M` with a directory, and
+    it will load all molecules found in any SDF or MOL2 file in that directory.
+  * Pass a PDB of the protein target (TYK2) with `-p tyk2_protein.pdb`.
+  * Instruct `openfe` to ouput files into a directory called `network_setup`
+    with the `-o network_setup` option.
 
 ```bash
 openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup
 ```
 
 Planning the campaign may take some time, as it tries to find the best
-network from all possible transformations. This will create directory called
+network from all possible transformations. This will create a directory called
 `network_setup`, which is structured like this:
 
 <!-- top lines from `tree network_setup` -->
@@ -75,11 +76,11 @@ openfe view-ligand-network network_setup/ligand_network.graphml
 ```
 
 This opens an interactive viewer. You can move the ligand names around to get a
-better view of the structure, and if you click on the edge, you'll see the
+better view of the structure, and if you click on the edge, you will see the
 mapping for that edge.
 
-The files that describe each individual process we will run are located in the
-`transformations` subdirectory. Each JSON file represents a single leg to run,
+The files that describe each individual simulation we will run are located in the
+`transformations` subdirectory. Each JSON file represents a single alchemical leg to run,
 and contains all the necessary information to run that leg.
 
 Note that this specific setup makes a number of choices for you. All of
@@ -87,13 +88,12 @@ these choices can be customized in the Python API. Here are the specifics on
 how these simulation are set up:
 
 1. LOMAP is used to generate the atom mappings between ligands, with a
-   20-second timeout, element changes disallowed, and max3d set to 1.
+   20-second timeout, core-core element changes disallowed, and max3d set to 1.
 2. The network is a minimal spanning tree, with the default LOMAP score used to
    score the mappings.
-3. Solvent is water with NaCl at an ionic strength of 0.15 M (neutralized).
-4. The protocol used is OpenFE's OpenMM-based RFE protocol, with default settings.
-
-<!-- TODO there should be a link to the default settings here -->
+3. Solvent is water with NaCl at an ionic strength of 0.15 M (neutralized) with a
+   minimum distance of 1.2 nm from the solute to the edge of the box.
+5. The protocol used is OpenFE's OpenMM-based Hybrid Topology RFE protocol, with [default settings](https://docs.openfree.energy/en/stable/reference/api/openmm_rfe.html#protocol-settings).
 
 
 ## Running the simulations
@@ -139,7 +139,7 @@ openfe fetch rbfe-tutorial-results
 tar xzf rbfe_results.tar.gz
 ```
 
-This will create a directory called `results/` that contains files in the file
+This will create a directory called `results/` that contains files with the file
 structure you would get from running the calculations as above. The result JSON
 files are the actual results of a simulation. Other files that are generated
 during the simulation (such as detailed simulation information) have been
@@ -182,7 +182,7 @@ failures that occurred -- these errors will not cause the entire campaign to
 fail, and will be recorded so you can later analyze what went wrong.
 
 To gather all the $\Delta G$ estimates into a single file, use the `openfe
-gather` command from withing the working directory used above:
+gather` command from within the working directory used above:
 
 ```bash
 openfe gather ./results/ -o final_results.tsv
