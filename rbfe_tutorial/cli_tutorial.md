@@ -93,7 +93,7 @@ how these simulation are set up:
    score the mappings.
 3. Solvent is water with NaCl at an ionic strength of 0.15 M (neutralized) with a
    minimum distance of 1.2 nm from the solute to the edge of the box.
-5. The protocol used is OpenFE's OpenMM-based Hybrid Topology RFE protocol, with [default settings](https://docs.openfree.energy/en/stable/reference/api/openmm_rfe.html#protocol-settings).
+4. The protocol used is OpenFE's OpenMM-based Hybrid Topology RFE protocol, with [default settings](https://docs.openfree.energy/en/stable/reference/api/openmm_rfe.html#protocol-settings).
 
 
 ## Running the simulations
