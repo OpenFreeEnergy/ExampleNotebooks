@@ -71,7 +71,7 @@ The `ligand_network.graphml` file describes the atom mappings between the
 ligands. We can visualize it with the `openfe view-ligand-network` command:
 
 ```bash
-openfe ligand-network-viewer network_setup/ligand_network.graphml
+openfe view-ligand-network network_setup/ligand_network.graphml
 ```
 
 This opens an interactive viewer. You can move the ligand names around to get a
