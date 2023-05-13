@@ -68,7 +68,7 @@ network_setup
 ```
 
 The `ligand_network.graphml` file describes the atom mappings between the
-ligands. We can visualize it with the `openfe ligand-network-viewer` command:
+ligands. We can visualize it with the `openfe view-ligand-network` command:
 
 ```bash
 openfe ligand-network-viewer network_setup/ligand_network.graphml
