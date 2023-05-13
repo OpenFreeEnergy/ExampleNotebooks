@@ -68,7 +68,7 @@ network_setup
 ```
 
 The `ligand_network.graphml` file describes the atom mappings between the
-ligands. We can visualize it with the `openfe ligand-network-viewer` command:
+ligands. We can visualize it with the `openfe view-ligand-network` command:
 
 ```bash
 openfe ligand-network-viewer network_setup/ligand_network.graphml
@@ -104,8 +104,8 @@ run each simulation on your local machine with something like:
 
 ```bash
 # this will take a very long time! don't actually do it!
-for file in setup/transformations/*.json; do
-  relpath=${file:22}  # strip off "setup/transformations/"
+for file in network_setup/transformations/*.json; do
+  relpath=${file:30}  # strip off "network_setup/transformations/"
   dirpath=${relpath%.*}  # strip off final ".json"
   openfe quickrun $file -o results/$relpath -d results/$dirpath
 done
@@ -121,9 +121,9 @@ and submit a job script for the simplest SLURM use case:
 
 ```bash
 for file in setup/transformations/*.json; do
-  relpath=${file:22}  # strip off "setup/transformations/"
+  relpath=${file:30}  # strip off "network_setup/transformations/"
   dirpath=${relpath%.*}  # strip off final ".json"
-  jobpath="setup/transformations/${dirpath}.job"
+  jobpath="network_setup/transformations/${dirpath}.job"
   cmd="openfe quickrun $file -o results/$relpath -d results/$dirpath"
   echo -e "#!/usr/bin/env bash\n${cmd}" > $jobpath
   sbatch $jobpath
