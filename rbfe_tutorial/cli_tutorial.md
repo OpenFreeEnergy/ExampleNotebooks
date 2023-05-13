@@ -192,7 +192,7 @@ This will write out a tab-separated table of results, including both the
 $\Delta G$ for each leg and the $\Delta\Delta G$ computed from pairs of legs.
 The first column is a description of the data, e.g., `DGcomplex(ligandB,
 ligandA)` for the $\Delta G$ of the transformation of ligand
-A into ligand B complexed to a protein, or `DDGbind(ligeandB, ligandA)` for the binding
+A into ligand B complexed to a protein, or `DDGbind(ligandB, ligandA)` for the binding
 $\Delta\Delta G$ going from ligand A to ligand B. The second column tells the type of
 the result, either `RBFE` for a relative result or `solvent`/`complex` for an
 individual leg. The next two columns are the labels of the ligands, and then
