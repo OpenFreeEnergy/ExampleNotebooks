@@ -82,9 +82,9 @@ mapping for that edge.
 The files that describe each individual simulation we will run are located in the
 `transformations` subdirectory. Each JSON file represents a single alchemical
 leg to run, and contains all the necessary information to run that leg. A
-single RBFE between a pair of ligands requires running two legs (JSON files):
+single RBFE between a pair of ligands requires running two legs of an alchemical cycle (JSON files):
 one for the ligand in solvent, and one for the ligand complexed with the
-protein. Filenames indicate ligand names as taken from the SDF; for example,
+protein. The results from these two simulations can then be combined to obtained a single $\Delta\Delta G$ relative binding free energy value. Filenames indicate ligand names as taken from the SDF; for example,
 the file `easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json` is the leg
 associated with the tranformation of the ligand `lig_ejm_31` into `lig_ejm_42`
 while in complex with the protein.
