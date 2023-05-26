@@ -80,8 +80,14 @@ better view of the structure, and if you click on the edge, you will see the
 mapping for that edge.
 
 The files that describe each individual simulation we will run are located in the
-`transformations` subdirectory. Each JSON file represents a single alchemical leg to run,
-and contains all the necessary information to run that leg.
+`transformations` subdirectory. Each JSON file represents a single alchemical
+leg to run, and contains all the necessary information to run that leg. A
+single RBFE between a pair of ligands requires running two legs (JSON files):
+one for the ligand in solvent, and one for the ligand complexed with the
+protein. Filenames indicate ligand names as taken from the SDF; for example,
+the file `easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json` is the leg
+associated with the tranformation of the ligand `lig_ejm_31` into `lig_ejm_42`
+while in complex with the protein.
 
 Note that this specific setup makes a number of choices for you. All of
 these choices can be customized in the Python API. Here are the specifics on
@@ -119,7 +125,7 @@ different for each leg, otherwise you'll overwrite results. We recommend doing
 that with something like the following, which uses the fact that the JSON files
 in `network_setup/transformations/` have unique names, and creates directories
 and result JSON files based on those names. To run all legs sequentially (not
-recommended) you could something like:
+recommended) you could do something like:
 
 ```bash
 # this will take a very long time! don't actually do it!
