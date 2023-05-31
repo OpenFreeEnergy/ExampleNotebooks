@@ -80,8 +80,14 @@ better view of the structure, and if you click on the edge, you will see the
 mapping for that edge.
 
 The files that describe each individual simulation we will run are located in the
-`transformations` subdirectory. Each JSON file represents a single alchemical leg to run,
-and contains all the necessary information to run that leg.
+`transformations` subdirectory. Each JSON file represents a single alchemical
+leg to run, and contains all the necessary information to run that leg. A
+single RBFE between a pair of ligands requires running two legs of an alchemical cycle (JSON files):
+one for the ligand in solvent, and one for the ligand complexed with the
+protein. The results from these two simulations can then be combined to obtained a single $\Delta\Delta G$ relative binding free energy value. Filenames indicate ligand names as taken from the SDF; for example,
+the file `easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json` is the leg
+associated with the tranformation of the ligand `lig_ejm_31` into `lig_ejm_42`
+while in complex with the protein.
 
 Note that this specific setup makes a number of choices for you. All of
 these choices can be customized in the Python API. Here are the specifics on
@@ -100,7 +106,26 @@ how these simulation are set up:
 
 For this tutorial, we have precalculated data that you can load, since
 running the simulations can take a long time. However, you could, in principle,
-run each simulation on your local machine with something like:
+run each simulation on your local machine.
+
+You can run each leg individually by using the `openfe quickrun` command. It
+takes a transformation JSON as input, and the flags `-o` to give the final
+output JSON file and `-d` for the directory where simulation results should be
+stored. For example,
+
+```bash
+openfe quickrun path/to/transformation.json -o results.json -d working-directory
+```
+
+where `path/to/transformation.json` is the path to one of the files created above.
+
+When running a complete network of simulations, it is important to ensure that
+the file name for the result JSON and name of the working directory are
+different for each leg, otherwise you'll overwrite results. We recommend doing
+that with something like the following, which uses the fact that the JSON files
+in `network_setup/transformations/` have unique names, and creates directories
+and result JSON files based on those names. To run all legs sequentially (not
+recommended) you could do something like:
 
 ```bash
 # this will take a very long time! don't actually do it!
@@ -129,6 +154,11 @@ for file in setup/transformations/*.json; do
   sbatch $jobpath
 done
 ```
+
+Note that the exact structure of the results directory is not important, as
+long as all result JSON files are contained within a single directory tree. The
+approach listed here is what was used for the example results that we'll
+download in the next section.
 
 ## Gathering the results
 
