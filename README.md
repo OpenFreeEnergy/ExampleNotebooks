@@ -16,22 +16,13 @@ These can be ran in the browser via the Binder links.
 ## Running these notebooks locally
 
 To run these notebooks locally you will need to install the `openfe` package,
-this is best done using [miniconda](https://docs.conda.io/en/latest/miniconda.html)
-
-Once miniconda is installed, from a terminal run:
-
--  `conda create -n openfe -c conda-forge openfe jupyter MDAnalysis nglview`
--  `conda activate openfe`
+this is best done using [the instuctions here](https://docs.openfree.energy/en/stable/installation.html)
 
 Then you can download a copy of the notebooks:
 
-- https://github.com/OpenFreeEnergy/ExampleNotebooks/archive/refs/tags/nov-2022.tar.gz
-
-Or via the command line as:
-
-- `wget -O OpenFEExampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/master`
+- `wget -O OpenFEExampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/main`
 - or (depending on your platform)
-- `curl -L -k -o OpenFEEXampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/master`
+- `curl -L -k -o OpenFEEXampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/main`
 
 Unpack, then navigate to the downloaded notebooks:
 
