@@ -145,7 +145,7 @@ computing center. Here is an example of a very simple script that will create
 and submit a job script for the simplest SLURM use case:
 
 ```bash
-for file in setup/transformations/*.json; do
+for file in network_setup/transformations/*.json; do
   relpath=${file:30}  # strip off "network_setup/transformations/"
   dirpath=${relpath%.*}  # strip off final ".json"
   jobpath="network_setup/transformations/${dirpath}.job"
