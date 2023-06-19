@@ -1,7 +1,7 @@
 [![Logo](https://img.shields.io/badge/OSMF-OpenFreeEnergy-%23002f4a)](https://openfree.energy/)
 [![full_tests](https://github.com/OpenFreeEnergy/ExampleNotebooks/actions/workflows/CI.yml/badge.svg)](https://github.com/OpenFreeEnergy/ExampleNotebooks/actions/workflows/CI.yml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/OpenFreeEnergy/ExampleNotebooks/master.svg)](https://results.pre-commit.ci/latest/github/OpenFreeEnergy/ExampleNotebooks/main)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenFreeEnergy/ExampleNotebooks/HEAD)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/OpenFreeEnergy/ExampleNotebooks/blob/main/openmm_rbfe/OpenFE_showcase_1_RBFE_of_T4lysozyme.ipynb)
 
 # OpenFE Notebooks
 
@@ -10,8 +10,9 @@ These can be ran in the browser via the Binder links.
 
 | Binder link | Description |
 | --- | --- |
-| [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenFreeEnergy/ExampleNotebooks/HEAD?labpath=openmm-rbfe%2FOpenFE_showcase_1_RBFE_of_T4lysozyme.ipynb) | Start here.  This notebook demonstrates how a free energy calculation can be defined, executed and analyzed using the `openfe` package. |
-| [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenFreeEnergy/ExampleNotebooks/HEAD?labpath=openmm-rbfe%2FApplyingProtocolToNetworkQuickrunDemo.ipynb) | Demonstrating how to plan a free energy network and apply a protocol |
+| [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/OpenFreeEnergy/ExampleNotebooks/blob/main/openmm_rbfe/OpenFE_showcase_1_RBFE_of_T4lysozyme.ipynb)
+ | Start here.  This notebook demonstrates how a free energy calculation can be defined, executed and analyzed using the `openfe` package. |
+| [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OpenFreeEnergy/ExampleNotebooks/HEAD?labpath=openmm-rbfe%2FApplyingProtocolToNetworkQuickrunDemo.ipynb) | Demonstrating how to plan a free energy network and apply a protocol Note: This notebook might not load if Binder is experiencing heavy usage. |
 
 ## Running these notebooks locally
 
