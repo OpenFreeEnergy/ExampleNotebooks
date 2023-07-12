@@ -179,30 +179,349 @@ like this:
 <!-- take the top lines from `tree results` -->
 
 ```text
-results
+results/
 ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex
-│   ├── shared_RelativeHybridTopologyProtocolUnit-3ea82011-75f0-4bb6-b415-e7d05bd012f6
+│   ├── shared_RelativeHybridTopologyProtocolUnit-79c279f04ec84218b7935bc0447539a9_attempt_0
 │   │   ├── checkpoint.nc
-│   │   └── simulation.nc
-│   ├── shared_RelativeHybridTopologyProtocolUnit-5262feb6-cb50-4bb2-90a2-359810c2bb9c
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-a3cef34132aa4e9cbb824fcbcd043b0e_attempt_0
 │   │   ├── checkpoint.nc
-│   │   └── simulation.nc
-│   └── shared_RelativeHybridTopologyProtocolUnit-7a6def34-2967-4452-8d47-483bc7219c06
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-abb2b104151c45fc8b0993fa0a7ee0af_attempt_0
 │       ├── checkpoint.nc
-│       └── simulation.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
 ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
 ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_46_complex
-│   ├── shared_RelativeHybridTopologyProtocolUnit-ad113e55-5636-474e-9be3-ee77fe887e77
+│   ├── shared_RelativeHybridTopologyProtocolUnit-361500fe831c431aa830efd207db0955_attempt_0
 │   │   ├── checkpoint.nc
-│   │   └── simulation.nc
-│   ├── shared_RelativeHybridTopologyProtocolUnit-ca74ad3c-2ac8-4961-be7c-fa802a1ec76b
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-5a6176cfbf074f92bc76caac91b1c1bf_attempt_0
 │   │   ├── checkpoint.nc
-│   │   └── simulation.nc
-│   └── shared_RelativeHybridTopologyProtocolUnit-f848e671-fdd3-4b8d-8bd2-6eb5140e3ed3
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-e16de73f07964e9096f34611e0c874ca_attempt_0
 │       ├── checkpoint.nc
-│       └── simulation.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
 ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
-[continues]
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_47_complex
+│   ├── shared_RelativeHybridTopologyProtocolUnit-98d2dbe13d77422d918e3d69146f492f_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-e30b3256ac5d4582b842b7abb20dafdd_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-f1892688746a4279b862b024fcbad1b1_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_47_complex.json
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_48_complex
+│   ├── shared_RelativeHybridTopologyProtocolUnit-5e71ee600e1d4991b9b0a5572bd25aab_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-b27bfd7141894e868b3657733b4c2c43_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-ec6d52ba2769435ab98c5bc48e88afad_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── nan-error-logs
+│   │   │   ├── iteration0-replica4-state4-integrator.xml
+│   │   │   ├── iteration0-replica4-state4-move.json
+│   │   │   ├── iteration0-replica4-state4-state.xml
+│   │   │   └── iteration0-replica4-state4-system.xml
+│   │   └── simulation.nc
+│   └── shared_RelativeHybridTopologyProtocolUnit-ec6d52ba2769435ab98c5bc48e88afad_attempt_1
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_48_complex.json
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_50_complex
+│   ├── shared_RelativeHybridTopologyProtocolUnit-16c84d712bce424b80b607cd2b5b69c5_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-b071ec9b5b04478d995144e9cc3d4370_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-e0d41b9e7a8b41b5aee845beebdc7be5_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_50_complex.json
+├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent
+│   ├── shared_RelativeHybridTopologyProtocolUnit-2955a31793c0462e96bbc9ac7fdf9d5c_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-62ecdfe2aaa2411ea3b79b68001061c4_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-64e65ac639c242f293784482ca0183d5_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json
+├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_46_solvent
+│   ├── shared_RelativeHybridTopologyProtocolUnit-91a47d662aa943608a37d8be94455218_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-c683e0b16bb14a3d93b8c14d965ad12e_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-e350fa7b5fe149bdb97411343c9abe05_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_46_solvent.json
+├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_47_solvent
+│   ├── shared_RelativeHybridTopologyProtocolUnit-962ca809a03e4098965ffbd598350693_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-af88efbfc2044211af65d3e13ac1c3fd_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-de29f887e4504d83a5e1f9b11190753b_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_47_solvent.json
+├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_48_solvent
+│   ├── shared_RelativeHybridTopologyProtocolUnit-50f509db4d414e1e8f705e3d11c15bb8_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-5103f758a5804ae389acc3610b4f9fcb_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-edf6329e8639476eb03ad2388f1d5fd3_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_48_solvent.json
+├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_50_solvent
+│   ├── shared_RelativeHybridTopologyProtocolUnit-04add6486b1d45ecaeaf080a755e9adc_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-8ed001eb1c994ee794d07d8656d2d759_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── nan-error-logs
+│   │   │   ├── iteration0-replica6-state6-integrator.xml
+│   │   │   ├── iteration0-replica6-state6-move.json
+│   │   │   ├── iteration0-replica6-state6-state.xml
+│   │   │   └── iteration0-replica6-state6-system.xml
+│   │   └── simulation.nc
+│   ├── shared_RelativeHybridTopologyProtocolUnit-8ed001eb1c994ee794d07d8656d2d759_attempt_1
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-944bf8f60e9545ada837b5fd370e7afc_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_50_solvent.json
+├── easy_rbfe_lig_ejm_42_complex_lig_ejm_43_complex
+│   ├── shared_RelativeHybridTopologyProtocolUnit-35fdb1172f9e4158b75a17e6d227000a_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-436f4e31a6624441a5cb13fcecabbf95_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-e9ebcb03a29446839bfbc8707d457a09_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_42_complex_lig_ejm_43_complex.json
+├── easy_rbfe_lig_ejm_42_solvent_lig_ejm_43_solvent
+│   ├── shared_RelativeHybridTopologyProtocolUnit-2e826890deb24b7c811f4c19d58ac06e_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-33ab8a39e317441eb698504a9b2ac9fa_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-4eb19a89aba3424194a9b5a91a9b9f5b_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_42_solvent_lig_ejm_43_solvent.json
+├── easy_rbfe_lig_ejm_46_complex_lig_jmc_23_complex
+│   ├── shared_RelativeHybridTopologyProtocolUnit-0b4187b6cbc449d38d6f86eb16e4cc8e_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-5d8a4c4cedfc4f25be6f79291aabd8f2_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-d1609591a3df4bae8cabd1f3fb13666d_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_46_complex_lig_jmc_23_complex.json
+├── easy_rbfe_lig_ejm_46_complex_lig_jmc_27_complex
+│   ├── shared_RelativeHybridTopologyProtocolUnit-c6a62dbb56ad47c980cb8c31eebaf86d_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-d19e3720aa8b444c91891dd73b1dfb28_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-e04de566fd2e4736ab55e7211ef56150_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_46_complex_lig_jmc_27_complex.json
+├── easy_rbfe_lig_ejm_46_complex_lig_jmc_28_complex
+│   ├── shared_RelativeHybridTopologyProtocolUnit-53142c3b31a6425caa3696590e91955e_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-b6910c47aabe4abd91f5d4dee3434bfd_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-cc9155666425432bb137c2de6ee4ac05_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_46_complex_lig_jmc_28_complex.json
+├── easy_rbfe_lig_ejm_46_solvent_lig_jmc_23_solvent
+│   ├── shared_RelativeHybridTopologyProtocolUnit-13f850b796b747febbdddf1d5053961f_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-7852489b28a041f4afc325c620fff0a9_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-f19951263162439e8c96b19037d86f1c_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── nan-error-logs
+│   │   │   ├── iteration0-replica3-state3-integrator.xml
+│   │   │   ├── iteration0-replica3-state3-move.json
+│   │   │   ├── iteration0-replica3-state3-state.xml
+│   │   │   └── iteration0-replica3-state3-system.xml
+│   │   └── simulation.nc
+│   └── shared_RelativeHybridTopologyProtocolUnit-f19951263162439e8c96b19037d86f1c_attempt_1
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_46_solvent_lig_jmc_23_solvent.json
+├── easy_rbfe_lig_ejm_46_solvent_lig_jmc_27_solvent
+│   ├── shared_RelativeHybridTopologyProtocolUnit-04bc53fa4e4a4398910307cd354f8179_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-3319d7e202354cba98f344a3c4c2a5e9_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-4e61c716d7b4414a8f8b16599da3d335_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+├── easy_rbfe_lig_ejm_46_solvent_lig_jmc_27_solvent.json
+├── easy_rbfe_lig_ejm_46_solvent_lig_jmc_28_solvent
+│   ├── shared_RelativeHybridTopologyProtocolUnit-302a5fe948b14083a359b7e91aaad876_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   ├── shared_RelativeHybridTopologyProtocolUnit-60df96a488094f63978880d19487d299_attempt_0
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── nan-error-logs
+│   │   │   ├── iteration0-replica1-state1-integrator.xml
+│   │   │   ├── iteration0-replica1-state1-move.json
+│   │   │   ├── iteration0-replica1-state1-state.xml
+│   │   │   └── iteration0-replica1-state1-system.xml
+│   │   └── simulation.nc
+│   ├── shared_RelativeHybridTopologyProtocolUnit-60df96a488094f63978880d19487d299_attempt_1
+│   │   ├── checkpoint.nc
+│   │   ├── db.json
+│   │   ├── simulation.nc
+│   │   └── simulation_real_time_analysis.yaml
+│   └── shared_RelativeHybridTopologyProtocolUnit-fada12bc48b748a987a25375b31ac8c7_attempt_0
+│       ├── checkpoint.nc
+│       ├── db.json
+│       ├── simulation.nc
+│       └── simulation_real_time_analysis.yaml
+└── easy_rbfe_lig_ejm_46_solvent_lig_jmc_28_solvent.json
 ```
 
 The JSON results file contains not only the calculated $\Delta G$, and
