@@ -1,0 +1,14 @@
+ligand	estimate (kcal/mol)	uncertainty (kcal/mol)
+lig_ejm_31	-9.57	0.18
+lig_ejm_42	-9.81	0.18
+lig_ejm_43	-8.29	0.18
+lig_ejm_45	-9.59	0.18
+lig_ejm_46	-11.35	0.17
+lig_ejm_47	-9.73	0.18
+lig_ejm_48	-9.03	0.18
+lig_ejm_50	-9.01	0.18
+lig_ejm_54	-10.57	0.18
+lig_ejm_55	-9.24	0.18
+lig_jmc_23	-11.74	0.18
+lig_jmc_27	-11.31	0.17
+lig_jmc_28	-11.01	0.18
