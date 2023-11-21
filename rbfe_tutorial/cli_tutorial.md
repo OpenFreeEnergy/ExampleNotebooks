@@ -116,6 +116,23 @@ this you can simply loop in to your CLI command with the `-s` option and a e.g.
 openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup -s settings.yaml
 ```
 
+you will be able to check your set Settings in the stdout of your shell:
+```text
+RBFE-NETWORK PLANNER
+______________________
+
+Parsing in Files: 
+        Got input: 
+                Small Molecules: SmallMoleculeComponent(name=lig_ejm_54) SmallMoleculeComponent(name=lig_jmc_23) SmallMoleculeComponent(name=lig_ejm_47) SmallMoleculeComponent(name=lig_jmc_27) SmallMoleculeComponent(name=lig_ejm_46) SmallMoleculeComponent(name=lig_ejm_31) SmallMoleculeComponent(name=lig_ejm_42) SmallMoleculeComponent(name=lig_ejm_50) SmallMoleculeComponent(name=lig_ejm_45) SmallMoleculeComponent(name=lig_jmc_28) SmallMoleculeComponent(name=lig_ejm_55) SmallMoleculeComponent(name=lig_ejm_43) SmallMoleculeComponent(name=lig_ejm_48)
+                Protein: ProteinComponent(name=)
+                Cofactors: []
+                Solvent: SolventComponent(name=O, Na+, Cl-)
+
+Using Options:
+        Mapper: <kartograf.atom_mapper.KartografAtomMapper object at 0x7fea079de790>
+        Mapping Scorer: <function default_lomap_score at 0x7fea1b423d80>
+        Networker: functools.partial(<function generate_maximal_network at 0x7fea18371260>)
+```
 
 ## Running the simulations
 
