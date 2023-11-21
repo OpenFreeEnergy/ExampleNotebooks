@@ -101,6 +101,21 @@ how these simulation are set up:
    minimum distance of 1.2 nm from the solute to the edge of the box.
 4. The protocol used is OpenFE's OpenMM-based Hybrid Topology RFE protocol, with [default settings](https://docs.openfree.energy/en/stable/reference/api/openmm_rfe.html#protocol-settings).
 
+### Customize you Networkplanning with Settings - MORE HERE
+You can exchange settings in for the network planning using a `.yaml` file.
+```yaml
+mapper:
+  method: kartograf
+
+network:
+  method: generate_maximal_network
+```
+this you can simply loop in to your CLI command with the `-s` option and a e.g. 
+`settings.yaml` file:
+```bash
+openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup -s settings.yaml
+```
+
 
 ## Running the simulations
 
