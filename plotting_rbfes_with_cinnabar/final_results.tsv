@@ -1,0 +1,10 @@
+ligand_i	ligand_j	DDG(i->j) (kcal/mol)	uncertainty (kcal/mol)
+lig_ejm_31	lig_ejm_42	0.49	0.09
+lig_ejm_31	lig_ejm_46	-0.73	0.10
+lig_ejm_31	lig_ejm_47	0.0	0.2
+lig_ejm_31	lig_ejm_48	0.5	0.2
+lig_ejm_31	lig_ejm_50	0.94	0.07
+lig_ejm_42	lig_ejm_43	1.2	0.1
+lig_ejm_46	lig_jmc_23	-0.39	0.05
+lig_ejm_46	lig_jmc_27	-0.6	0.1
+lig_ejm_46	lig_jmc_28	-0.12	0.04

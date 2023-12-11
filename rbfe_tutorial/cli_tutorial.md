@@ -145,7 +145,7 @@ computing center. Here is an example of a very simple script that will create
 and submit a job script for the simplest SLURM use case:
 
 ```bash
-for file in setup/transformations/*.json; do
+for file in network_setup/transformations/*.json; do
   relpath=${file:30}  # strip off "network_setup/transformations/"
   dirpath=${relpath%.*}  # strip off final ".json"
   jobpath="network_setup/transformations/${dirpath}.job"
@@ -215,37 +215,34 @@ To gather all the $\Delta G$ estimates into a single file, use the `openfe
 gather` command from within the working directory used above:
 
 ```bash
-openfe gather ./results/ -o final_results.tsv
+openfe gather results/ --report dg -o final_results.tsv
 ```
 
-This will write out a tab-separated table of results, including both the
-$\Delta G$ for each leg and the $\Delta\Delta G$ computed from pairs of legs.
-The first column is a description of the data, e.g., `DGcomplex(ligandB,
-ligandA)` for the $\Delta G$ of the transformation of ligand
-A into ligand B complexed to a protein, or `DDGbind(ligandB, ligandA)` for the binding
-$\Delta\Delta G$ going from ligand A to ligand B. The second column tells the type of
-the result, either `RBFE` for a relative result or `solvent`/`complex` for an
-individual leg. The next two columns are the labels of the ligands, and then
-the computed result and its uncertainty.
+This will write out a tab-separated table of results where the results 
+reported are controlled by the `--report` option:
+
+  * `dg` (default) reports the ligand and the results are the maximum
+    likelihood estimate of its absolute free, and the associated 
+    uncertainty from DDG replica averages and standard deviations.
+  * `ddg` reports pairs of `ligand_i` and `ligand_j`, the calculated
+    relative free energy `DDG(i->j) = DG(j) - DG(i)` and its uncertainty.
+  * `dg-raw` reports the raw results, giving the leg (`vacuum`, `solvent`, or
+    `complex`), `ligand_i`, `ligand_j`, the raw `DG(i->j)` associated with it.
+
 
 The resulting file looks something like this:
 
 <!-- take top lines from `cat final_results.tsv` -->
 
 ```text
-measurement  type    ligand_i    ligand_j    estimate (kcal/mol) uncertainty (kcal/mol)
-DDGbind(lig_ejm_48, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_48  0.45    0.17
-DDGbind(lig_jmc_28, lig_ejm_46) RBFE    lig_ejm_46  lig_jmc_28  -0.12   0.044
-DDGbind(lig_ejm_46, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_46  -0.73   0.097
-DDGbind(lig_ejm_50, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_50  0.94    0.072
-DDGbind(lig_ejm_42, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_42  0.49    0.09
-DDGbind(lig_jmc_23, lig_ejm_46) RBFE    lig_ejm_46  lig_jmc_23  -0.39   0.046
-DDGbind(lig_ejm_43, lig_ejm_42) RBFE    lig_ejm_42  lig_ejm_43  1.2 0.14
-DDGbind(lig_jmc_27, lig_ejm_46) RBFE    lig_ejm_46  lig_jmc_27  -0.65   0.1
-DDGbind(lig_ejm_47, lig_ejm_31) RBFE    lig_ejm_31  lig_ejm_47  0.016   0.15
-DGsolvent(lig_ejm_31, lig_ejm_48)   solvent lig_ejm_31  lig_ejm_48  -20.0   0.043
-DGcomplex(lig_ejm_31, lig_ejm_48)   complex lig_ejm_31  lig_ejm_48  -19.0   0.17
-DGsolvent(lig_ejm_46, lig_jmc_28)   solvent lig_ejm_46  lig_jmc_28  14.0    0.043
-DGcomplex(lig_ejm_46, lig_jmc_28)   complex lig_ejm_46  lig_jmc_28  14.0    0.0069
-[continues]
+lig_ejm_31	-0.21	0.06
+lig_ejm_42	0.63	0.08
+lig_ejm_46	-0.80	0.07
+lig_ejm_47	-0.1	0.2
+lig_ejm_48	0.6	0.3
+lig_ejm_50	1.0	0.1
+lig_ejm_43	1.9	0.1
+lig_jmc_23	-0.94	0.09
+lig_jmc_27	-0.91	0.09
+lig_jmc_28	-1.2	0.1
 ```
