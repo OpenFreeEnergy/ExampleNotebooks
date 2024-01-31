@@ -101,6 +101,67 @@ how these simulation are set up:
    minimum distance of 1.2 nm from the solute to the edge of the box.
 4. The protocol used is OpenFE's OpenMM-based Hybrid Topology RFE protocol, with [default settings](https://docs.openfree.energy/en/stable/reference/api/openmm_rfe.html#protocol-settings).
 
+## Customize you Campaign Setup
+
+OpenFE contains many different options and methods for setting up a calculation campaign. 
+The options can be easily accessed and modified with providing a settings 
+file in the `.yaml` format.
+Let's assume you want to exchange the LOMAP atom mapper with the Kartograf 
+atom mapper and the Minimal Spanning Tree
+Network Planner with the Maximal Network Planner, then you could do the following:
+1. provide a file like `settings.yaml` with the desired changes:
+```yaml
+mapper:
+  method: kartograf
+
+network:
+  method: generate_maximal_network
+```
+
+2. Plan your rbfe network with an additional `-s` flag for passing the settings:
+```bash
+openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup -s settings.yaml
+```
+
+3. The output of the CLI program will now  reflect the made changes:
+
+```text
+RBFE-NETWORK PLANNER
+______________________
+
+Parsing in Files: 
+        Got input: 
+                Small Molecules: SmallMoleculeComponent(name=lig_ejm_54) SmallMoleculeComponent(name=lig_jmc_23) SmallMoleculeComponent(name=lig_ejm_47) SmallMoleculeComponent(name=lig_jmc_27) SmallMoleculeComponent(name=lig_ejm_46) SmallMoleculeComponent(name=lig_ejm_31) SmallMoleculeComponent(name=lig_ejm_42) SmallMoleculeComponent(name=lig_ejm_50) SmallMoleculeComponent(name=lig_ejm_45) SmallMoleculeComponent(name=lig_jmc_28) SmallMoleculeComponent(name=lig_ejm_55) SmallMoleculeComponent(name=lig_ejm_43) SmallMoleculeComponent(name=lig_ejm_48)
+                Protein: ProteinComponent(name=)
+                Cofactors: []
+                Solvent: SolventComponent(name=O, Na+, Cl-)
+
+Using Options:
+        Mapper: <kartograf.atom_mapper.KartografAtomMapper object at 0x7fea079de790>
+        Mapping Scorer: <function default_lomap_score at 0x7fea1b423d80>
+        Networker: functools.partial(<function generate_maximal_network at 0x7fea18371260>)
+```
+
+That concludes the straightforward process of tailoring your OpenFE setup to your specifications. 
+Additionally, we've provided a snippet for generating YAML files with 
+various of the current options for your convenience. 
+
+Option Examples:
+
+```yaml
+mapper:
+  method: lomap
+  # method: kartograf
+
+network:
+  method: generate_minimal_spanning_network
+  # method: generate_radial_network
+  # method: generate_maximal_network
+  # method: generate_minimal_redundant_network
+```
+
+
+**Customize away!**
 
 ## Running the simulations
 
