@@ -29,7 +29,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        # Note: we temporarily pin to macos-12 to avoid compatibility issues
+        # between AT22+ and macos-13+ runners
+        os: [ubuntu-latest, macos-12]
         python-version: ["3.11",]
 
     steps:
