@@ -1,16 +1,16 @@
 # Relative Free Energies with the OpenFE CLI
 
 This tutorial will show how to use the OpenFE command line interface to get
-free energies -- with no Python at all! This will work for simple setups, you
+free energies -- with no Python at all! This will work for simple setups, but you
 may need to use the Python interface for more complicated setups.
 
 The entire process of running the campaign of simulations is split into 3
-stages; each of which corresponds to a CLI command:
+stages, each of which corresponds to a CLI command:
 
 1. Setting up the necessary files to describe each of the individual
-   simulations to run.
-2. Running the simulations.
-3. Gathering the results of separate simulations into a single table.
+   simulations to run
+2. Running the simulations
+3. Gathering the results of separate simulations into a single table
 
 To work through this tutorial, start out with a fresh directory. You can download the tutorial materials (including this file) using the command:
 
@@ -40,7 +40,7 @@ To run the command, we do the following:
     the option `-M tyk2_ligands.sdf`. You can also use `-M` with a directory, and
     it will load all molecules found in any SDF or MOL2 file in that directory.
   * Pass a PDB of the protein target (TYK2) with `-p tyk2_protein.pdb`.
-  * Instruct `openfe` to ouput files into a directory called `network_setup`
+  * Instruct `openfe` to output files into a directory called `network_setup`
     with the `-o network_setup` option.
 
 ```bash
@@ -101,10 +101,10 @@ how these simulation are set up:
    minimum distance of 1.2 nm from the solute to the edge of the box.
 4. The protocol used is OpenFE's OpenMM-based Hybrid Topology RFE protocol, with [default settings](https://docs.openfree.energy/en/stable/reference/api/openmm_rfe.html#protocol-settings).
 
-## Customize you Campaign Setup
+## Customize your campaign setup
 
-OpenFE contains many different options and methods for setting up a calculation campaign. 
-The options can be easily accessed and modified with providing a settings 
+OpenFE contains many different options and methods for setting up a simulation campaign. 
+The options can be easily accessed and modified by providing a settings 
 file in the `.yaml` format.
 Let's assume you want to exchange the LOMAP atom mapper with the Kartograf 
 atom mapper and the Minimal Spanning Tree
@@ -123,7 +123,7 @@ network:
 openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup -s settings.yaml
 ```
 
-3. The output of the CLI program will now  reflect the made changes:
+3. The output of the CLI program will now reflect the changes made:
 
 ```text
 RBFE-NETWORK PLANNER
@@ -236,7 +236,7 @@ files are the actual results of a simulation. Other files that are generated
 during the simulation (such as detailed simulation information) have been
 replaced by empty files to keep the size smaller. The structure looks something
 like this:
-
+openfe
 <!-- take the top lines from `tree results` -->
 
 ```text
