@@ -60,8 +60,8 @@ jobs:
 
     - name: Environment Information
       run: |
-        conda info
-        conda list
+        micromamba info
+        micromamba list
 
     - name: Run example notebooks
       run: |
