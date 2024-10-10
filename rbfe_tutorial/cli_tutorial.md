@@ -287,7 +287,7 @@ reported are controlled by the `--report` option:
     uncertainty from DDG replica averages and standard deviations.
   * `ddg` reports pairs of `ligand_i` and `ligand_j`, the calculated
     relative free energy `DDG(i->j) = DG(j) - DG(i)` and its uncertainty.
-  * `dg-raw` reports the raw results, giving the leg (`vacuum`, `solvent`, or
+  * `raw` reports the raw results, giving the leg (`vacuum`, `solvent`, or
     `complex`), `ligand_i`, `ligand_j`, the raw `DG(i->j)` associated with it.
 
 
