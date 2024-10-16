@@ -286,31 +286,31 @@ gather` command from within the working directory used above:
 openfe gather results/ --report dg -o final_results.tsv
 ```
 
-This will write out a tab-separated table of results where the results 
+This will write out a tab-separated table of results where the results
 reported are controlled by the `--report` option:
 
-  * `dg` (default) reports the ligand and the results are the maximum
-    likelihood estimate of its absolute free, and the associated 
-    uncertainty from DDG replica averages and standard deviations.
-  * `ddg` reports pairs of `ligand_i` and `ligand_j`, the calculated
-    relative free energy `DDG(i->j) = DG(j) - DG(i)` and its uncertainty.
-  * `raw` reports the raw results, giving the leg (`vacuum`, `solvent`, or
-    `complex`), `ligand_i`, `ligand_j`, the raw `DG(i->j)` associated with it.
+- `dg` (default) reports the ligand and the results are the maximum
+ likelihood estimate of its absolute free, and the associated
+ uncertainty from DDG replica averages and standard deviations.
+- `ddg` reports pairs of `ligand_i` and `ligand_j`, the calculated
+ relative free energy `DDG(i->j) = DG(j) - DG(i)` and its uncertainty.
+- `raw` reports the raw results, giving the leg (`vacuum`, `solvent`, or
+ `complex`), `ligand_i`, `ligand_j`, the raw `DG(i->j)` associated with it.
 
-
-The resulting file looks something like this:
+The resulting file (`final_results.tsv`) will look something like this:
 
 <!-- take top lines from `cat final_results.tsv` -->
 
 ```text
-lig_ejm_31	-0.21	0.06
-lig_ejm_42	0.63	0.08
-lig_ejm_46	-0.80	0.07
-lig_ejm_47	-0.1	0.2
-lig_ejm_48	0.6	0.3
-lig_ejm_50	1.0	0.1
-lig_ejm_43	1.9	0.1
-lig_jmc_23	-0.94	0.09
-lig_jmc_27	-0.91	0.09
-lig_jmc_28	-1.2	0.1
+ligand  DG(MLE) (kcal/mol)  uncertainty (kcal/mol)
+lig_ejm_31  -0.09 0.05
+lig_ejm_42  0.7 0.1
+lig_ejm_46  -0.98 0.05
+lig_ejm_47  -0.1  0.1
+lig_ejm_48  0.53  0.09
+lig_ejm_50  0.91  0.06
+lig_ejm_43  2.0 0.2
+lig_jmc_23  -0.68 0.09
+lig_jmc_27  -1.1  0.1
+lig_jmc_28  -1.25 0.08
 ```
