@@ -1,55 +1,58 @@
 # Relative Free Energies with the OpenFE CLI
 
-This tutorial will show how to use the OpenFE command line interface to get
-free energies -- with no Python at all! This will work for simple setups, but you
-may need to use the Python interface for more complicated setups.
+This tutorial will show how to use the OpenFE CLI (Command Line Interface) to calculate
+free energies - with no Python at all! This CLI works for simple setups, but you
+may need to use the Python API for more complicated setups.
 
 The entire process of running the campaign of simulations is split into 3
 stages, each of which corresponds to a CLI command:
 
-1. Setting up the necessary files to describe each of the individual
-   simulations to run
+1. Setting up the files necessary to run each of the simulations
 2. Running the simulations
-3. Gathering the results of separate simulations into a single table
+3. Gathering the results of the simulations into a single table
 
-To work through this tutorial, start out with a fresh directory. You can download the tutorial materials (including this file) using the command:
+To work through this tutorial, start out with a fresh directory. You can download the tutorial materials (including these instructions) using the command:
 
 ```bash
 openfe fetch rbfe-tutorial
 ```
 
-Then when you run `ls`, you should see that your directory has this file,
-`cli_tutorial.md`, a notebook called `python_tutorial.ipynb`, and files with
-the molecules we'll use in this tutorial: `tyk2_ligands.sdf` and
-`tyk2_protein.pdb`.
+Then when you run `ls`, you should see that your directory has:
+
+- `cli_tutorial.md`: the file containing these instructions
+- `python_tutorial.ipynb`: a notebook detailing how to do this analysis using the Python API, instead of the CLI shown here.
+- `tyk2_ligands.sdf` and `tyk2_protein.pdb` : files containing the molecules we'll use in this tutorial.
 
 ## Setting up the campaign
 
-The CLI makes setting up the simulation very easy -- it's just a single CLI
+The CLI makes setting up the simulation very easy - it's just a single CLI
 command. There are separate commands for relative binding free energy (RBFE)
 and relative hydration free energy setups (RHFE).
 
 For RBFE campaigns, the relevant command is `openfe plan-rbfe-network`. For
 RHFE, the command is `openfe plan-rhfe-network`. They work mostly the same,
 except that the RHFE planner does not take a protein. In this tutorial, we'll
-do an RBFE calculation. The only difference for RBFE is in the setup stage --
+do an RBFE calculation. The only difference for RHFE is in the setup stage -
 running the simulations and gathering the results are the same.
 
-To run the command, we do the following:
-  * Read all the ligands from the SDF by giving
-    the option `-M tyk2_ligands.sdf`. You can also use `-M` with a directory, and
-    it will load all molecules found in any SDF or MOL2 file in that directory.
-  * Pass a PDB of the protein target (TYK2) with `-p tyk2_protein.pdb`.
-  * Instruct `openfe` to output files into a directory called `network_setup`
-    with the `-o network_setup` option.
+With the single command:
 
 ```bash
 openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup
 ```
 
+we do the following:
+
+- Read all the ligands from the SDF by giving
+    the option `-M tyk2_ligands.sdf`. You can also use `-M` with a directory, and
+    it will load all molecules found in any SDF or MOL2 file in that directory.
+- Pass a PDB of the protein target (TYK2) with `-p tyk2_protein.pdb`.
+- Instruct `openfe` to output files into a directory called `network_setup`
+    with the `-o network_setup` option.
+
 Planning the campaign may take some time, as it tries to find the best
 network from all possible transformations. This will create a directory called
-`network_setup`, which is structured like this:
+`network_setup/`, which is structured like this:
 
 <!-- top lines from `tree network_setup` -->
 
@@ -57,7 +60,7 @@ network from all possible transformations. This will create a directory called
 network_setup
 ├── ligand_network.graphml
 ├── network_setup.json
-└── transformations
+└── transformations/
     ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
     ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
     ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_47_complex.json
@@ -79,15 +82,17 @@ This opens an interactive viewer. You can move the ligand names around to get a
 better view of the structure, and if you click on the edge, you will see the
 mapping for that edge.
 
-The files that describe each individual simulation we will run are located in the
-`transformations` subdirectory. Each JSON file represents a single alchemical
-leg to run, and contains all the necessary information to run that leg. A
-single RBFE between a pair of ligands requires running two legs of an alchemical cycle (JSON files):
-one for the ligand in solvent, and one for the ligand complexed with the
-protein. The results from these two simulations can then be combined to obtained a single $\Delta\Delta G$ relative binding free energy value. Filenames indicate ligand names as taken from the SDF; for example,
-the file `easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json` is the leg
+The files that describe each individual simulation we will run are located within
+`network_setup/transformations/`. Each JSON file represents a single alchemical
+leg to run and contains all the necessary information to run that leg.
+Filenames indicate ligand names as taken from the SDF; for example, the file
+`easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json` is the leg
 associated with the tranformation of the ligand `lig_ejm_31` into `lig_ejm_42`
 while in complex with the protein.
+
+A single RBFE between a pair of ligands requires running two legs of an alchemical cycle (JSON files):
+one for the ligand in solvent, and one for the ligand complexed with the
+protein. The results from these two simulations can then be combined to obtained a single $\Delta\Delta G$ relative binding free energy value.
 
 Note that this specific setup makes a number of choices for you. All of
 these choices can be customized in the Python API. Here are the specifics on
@@ -103,13 +108,15 @@ how these simulation are set up:
 
 ## Customize your campaign setup
 
-OpenFE contains many different options and methods for setting up a simulation campaign. 
-The options can be easily accessed and modified by providing a settings 
+OpenFE contains many different options and methods for setting up a simulation campaign.
+The options can be easily accessed and modified by providing a settings
 file in the `.yaml` format.
-Let's assume you want to exchange the LOMAP atom mapper with the Kartograf 
+Let's assume you want to exchange the LOMAP atom mapper with the Kartograf
 atom mapper and the Minimal Spanning Tree
 Network Planner with the Maximal Network Planner, then you could do the following:
+
 1. provide a file like `settings.yaml` with the desired changes:
+
 ```yaml
 mapper:
   method: kartograf
@@ -119,6 +126,7 @@ network:
 ```
 
 2. Plan your rbfe network with an additional `-s` flag for passing the settings:
+
 ```bash
 openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup -s settings.yaml
 ```
@@ -142,9 +150,9 @@ Using Options:
         Networker: functools.partial(<function generate_maximal_network at 0x7fea18371260>)
 ```
 
-That concludes the straightforward process of tailoring your OpenFE setup to your specifications. 
-Additionally, we've provided a snippet for generating YAML files with 
-various of the current options for your convenience. 
+That concludes the straightforward process of tailoring your OpenFE setup to your specifications.
+Additionally, we've provided a snippet for generating YAML files with
+various of the current options for your convenience.
 
 Option Examples:
 
@@ -159,7 +167,6 @@ network:
   # method: generate_maximal_network
   # method: generate_minimal_redundant_network
 ```
-
 
 **Customize away!**
 
