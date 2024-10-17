@@ -302,15 +302,15 @@ The resulting file (`final_results.tsv`) will look something like this:
 <!-- take top lines from `cat final_results.tsv` -->
 
 ```text
-ligand  DG(MLE) (kcal/mol)  uncertainty (kcal/mol)
-lig_ejm_31  -0.09 0.05
-lig_ejm_42  0.7 0.1
-lig_ejm_46  -0.98 0.05
-lig_ejm_47  -0.1  0.1
-lig_ejm_48  0.53  0.09
-lig_ejm_50  0.91  0.06
-lig_ejm_43  2.0 0.2
-lig_jmc_23  -0.68 0.09
-lig_jmc_27  -1.1  0.1
-lig_jmc_28  -1.25 0.08
+ligand	DG(MLE) (kcal/mol)	uncertainty (kcal/mol)
+lig_ejm_31	-0.09	0.05
+lig_ejm_42	0.7	0.1
+lig_ejm_46	-0.98	0.05
+lig_ejm_47	-0.1	0.1
+lig_ejm_48	0.53	0.09
+lig_ejm_50	0.91	0.06
+lig_ejm_43	2.0	0.2
+lig_jmc_23	-0.68	0.09
+lig_jmc_27	-1.1	0.1
+lig_jmc_28	-1.25	0.08
 ```
