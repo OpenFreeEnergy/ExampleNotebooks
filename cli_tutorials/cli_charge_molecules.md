@@ -1,12 +1,13 @@
 # Generating Partial Charges with the OpenFE CLI
 
-This tutorial will show you how to use the OpenFE CLI to generate and store partial charges for a series of ligands 
-which can be used with OpenFE protocols. It is recommended to use a single set of charges for each ligand to ensure reproducibility
-between repeats or consistent charges between different legs of a calculation involving the same ligand, like a relative binding
-affinity calculation for example. As such both the `plan-rbfe-network` and `plan-rhfe-network` commands will calculate 
-partial charges for ligands making it expensive to run multiple network mappings while finding the optimal one for the resources 
-available. Hence, the `charge-molecules` command offers a way to generate and store the charges into an SDF file which 
-can be used with the rest of the OpenFE CLI and python API. 
+It is recommended to use a single set of charges for each ligand to ensure reproducibility between repeats or consistent 
+charges between different legs of a calculation involving the same ligand, like a relative binding affinity calculation for example. 
+As such both the `plan-rbfe-network` and `plan-rhfe-network` commands will calculate partial charges for ligands making it expensive 
+to run multiple network mappings while finding the optimal one for the resources available. 
+
+Here we present a CLI tool to allow you to do this ahead of time, reducing overheads and further improving reproducibility.
+This tutorial will show you how to use the OpenFE CLI command `charge-molecules` to generate and store partial charges for a series of ligands 
+into an SDF file which can be used with OpenFE protocols. 
 
 ## Charging Molecules
 
@@ -42,7 +43,8 @@ lig_ejm_42
 
 Generating partial charges with the `am1bcc` method can be slow as they require a semi-empirical quantum chemical calculation, 
 we can however take advantage of multiprocessing to calculate the charges in parallel for each ligand which offers a 
-significant speed-up. The number of processors available for the workflow can be specified using the `-n` flag:
+significant speed-up. The number of processors available for the workflow can be specified using the `-n` flag. For 
+example to spread out the calculation over 4 cores:
 
 ```bash
 openfe charge-molecules -M tyk2_ligands.sdf -o charged_tyk2_ligands.sdf -n 4
@@ -82,7 +84,7 @@ Using Options:
 	Partial Charge Generation: am1bcc
 ```
 
-The full range of partial charge settings can be found in the snipit bellow, note that some may require installing extra packages.
+The full range of partial charge settings can be found in the snippet bellow, note that some may require installing extra packages.
 
 ```yaml
 partial_charge:
