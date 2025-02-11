@@ -73,13 +73,13 @@ network_setup
 ├── ligand_network.graphml
 ├── network_setup.json
 └── transformations/
-    ├── rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
-    ├── rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
-    ├── rbfe_lig_ejm_31_complex_lig_ejm_47_complex.json
-    ├── rbfe_lig_ejm_31_complex_lig_ejm_48_complex.json
-    ├── rbfe_lig_ejm_31_complex_lig_ejm_50_complex.json
-    ├── rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json
-    ├── rbfe_lig_ejm_31_solvent_lig_ejm_46_solvent.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_47_complex.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_48_complex.json
+    ├── easy_rbfe_lig_ejm_31_complex_lig_ejm_50_complex.json
+    ├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json
+    ├── easy_rbfe_lig_ejm_31_solvent_lig_ejm_46_solvent.json
 [continues]
 ```
 
@@ -98,7 +98,7 @@ The files that describe each individual simulation we will run are located withi
 `network_setup/transformations/`. Each JSON file represents a single alchemical
 leg to run and contains all the necessary information to run that leg.
 Filenames indicate ligand names as taken from the SDF; for example, the file
-`rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json` is the leg
+`easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json` is the leg
 associated with the transformation of the ligand `lig_ejm_31` into `lig_ejm_42`
 while in complex with the protein.
 
@@ -273,7 +273,7 @@ openfe
 
 ```text
 results
-├── rbfe_lig_ejm_31_complex_lig_ejm_42_complex
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex
 │   ├── shared_RelativeHybridTopologyProtocolUnit-3ea82011-75f0-4bb6-b415-e7d05bd012f6
 │   │   ├── checkpoint.nc
 │   │   └── simulation.nc
@@ -283,8 +283,8 @@ results
 │   └── shared_RelativeHybridTopologyProtocolUnit-7a6def34-2967-4452-8d47-483bc7219c06
 │       ├── checkpoint.nc
 │       └── simulation.nc
-├── rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
-├── rbfe_lig_ejm_31_complex_lig_ejm_46_complex
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_46_complex
 │   ├── shared_RelativeHybridTopologyProtocolUnit-ad113e55-5636-474e-9be3-ee77fe887e77
 │   │   ├── checkpoint.nc
 │   │   └── simulation.nc
@@ -294,7 +294,7 @@ results
 │   └── shared_RelativeHybridTopologyProtocolUnit-f848e671-fdd3-4b8d-8bd2-6eb5140e3ed3
 │       ├── checkpoint.nc
 │       └── simulation.nc
-├── rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
+├── easy_rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
 [continues]
 ```
 
