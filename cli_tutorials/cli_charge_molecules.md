@@ -1,11 +1,11 @@
 # Generating Partial Charges with the OpenFE CLI
 
 It is recommended to use a single set of charges for each ligand to ensure reproducibility between repeats or consistent 
-charges between different legs of a calculation involving the same ligand, like a relative binding affinity calculation for example. 
-As such both the `plan-rbfe-network` and `plan-rhfe-network` commands will calculate partial charges for ligands making it expensive 
+charges between different legs of a calculation involving the same ligand, like a relative binding affinity calculation for example (see [Osato et al.](https://chemrxiv.org/engage/chemrxiv/article-details/67579833085116a133e39d86)). 
+ As such both the `plan-rbfe-network` and `plan-rhfe-network` commands will calculate partial charges for ligands making it expensive 
 to run multiple network mappings while finding the optimal one for the resources available. 
 
-Here we present a CLI tool to allow you to do this ahead of time, reducing overheads and further improving reproducibility.
+Here we present a CLI tool to do this ahead of time, reducing overheads and further improving reproducibility.
 This tutorial will show you how to use the OpenFE CLI command `charge-molecules` to generate and store partial charges for a series of ligands 
 into an SDF file which can be used with OpenFE protocols. 
 
