@@ -50,9 +50,21 @@ we do the following:
 - Instruct `openfe` to output files into a directory called `network_setup`
     with the `-o network_setup` option.
 
-Planning the campaign may take some time, as it tries to find the best
-network from all possible transformations. This will create a directory called
-`network_setup/`, which is structured like this:
+Planning the campaign may take some time due to the complex series of tasks involved:
+
+- partial charges are generated for each of the ligands to ensure reproducibility, by default this requires a semi-empirical quantum
+chemical calculation to calculate `am1bcc` charges
+- atom mappings are created and scored based on the perceived difficulty for all possible ligand pairs 
+- an optimal network is extracted from all possible pairwise transformations which balances edge redundancy and the total difficulty score of the network
+
+The partial charge generation can take advantage of multiprocessing which offers a significant speed-up, you can specify 
+the number of processors available using the `-n` flag:
+
+```bash
+openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup -n 4
+```
+
+This will result in a directory called `network_setup/`, which is structured like this:
 
 <!-- top lines from `tree network_setup` -->
 
@@ -87,7 +99,7 @@ The files that describe each individual simulation we will run are located withi
 leg to run and contains all the necessary information to run that leg.
 Filenames indicate ligand names as taken from the SDF; for example, the file
 `easy_rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json` is the leg
-associated with the tranformation of the ligand `lig_ejm_31` into `lig_ejm_42`
+associated with the transformation of the ligand `lig_ejm_31` into `lig_ejm_42`
 while in complex with the protein.
 
 A single RBFE between a pair of ligands requires running two legs of an alchemical cycle (JSON files):
@@ -112,8 +124,9 @@ OpenFE contains many different options and methods for setting up a simulation c
 The options can be easily accessed and modified by providing a settings
 file in the `.yaml` format.
 Let's assume you want to exchange the LOMAP atom mapper with the Kartograf
-atom mapper and the Minimal Spanning Tree
-Network Planner with the Maximal Network Planner, then you could do the following:
+atom mapper, the Minimal Spanning Tree
+Network Planner with the Maximal Network Planner and the am1bcc charge method with the am1bccelf10 version from openeye, 
+then you could do the following:
 
 1. provide a file like `settings.yaml` with the desired changes:
 
@@ -123,6 +136,11 @@ mapper:
 
 network:
   method: generate_maximal_network
+
+partial_charge:
+  method: am1bccelf10
+  settings:
+    off_toolkit_backend: openeye
 ```
 
 2. Plan your rbfe network with an additional `-s` flag for passing the settings:
@@ -148,6 +166,7 @@ Using Options:
         Mapper: <kartograf.atom_mapper.KartografAtomMapper object at 0x7fea079de790>
         Mapping Scorer: <function default_lomap_score at 0x7fea1b423d80>
         Networker: functools.partial(<function generate_maximal_network at 0x7fea18371260>)
+        Partial Charge Generation: am1bccelf10
 ```
 
 That concludes the straightforward process of tailoring your OpenFE setup to your specifications.
@@ -166,6 +185,12 @@ network:
   # method: generate_radial_network
   # method: generate_maximal_network
   # method: generate_minimal_redundant_network
+
+partial_charge:
+  method: am1bcc
+  # method: am1bccelf10
+  # settings:
+    # off_toolkit_backend: openeye  # required for the am1bccelf10 method
 ```
 
 **Customize away!**
