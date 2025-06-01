@@ -38,7 +38,7 @@ running the simulations and gathering the results are the same.
 With the single command:
 
 ```bash
-openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup
+openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup --n-protocol-repeats 1
 ```
 
 we do the following:
@@ -49,6 +49,12 @@ we do the following:
 - Pass a PDB of the protein target (TYK2) with `-p tyk2_protein.pdb`.
 - Instruct `openfe` to output files into a directory called `network_setup`
     with the `-o network_setup` option.
+- Instruct `openfe` to only run one full repeat of the alchemical simulation per
+  `quickrun` call using `--n-protocol-repeats 1`.
+  **Note:** `openfe`'s default behaviour is that it needs three
+  repeats to calculate the uncertainty (i.e. standard deviation) in an estimate. By
+  settings `--n-protocol-repeats` to 1, you must execute the transformation a minimum
+  of 3 times.
 
 Planning the campaign may take some time due to the complex series of tasks involved:
 
@@ -61,7 +67,7 @@ The partial charge generation can take advantage of multiprocessing which offers
 the number of processors available using the `-n` flag:
 
 ```bash
-openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup -n 4
+openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup --n-protocol-repeats 1 -n 4
 ```
 
 This will result in a directory called `network_setup/`, which is structured like this:
@@ -146,7 +152,7 @@ partial_charge:
 2. Plan your rbfe network with an additional `-s` flag for passing the settings:
 
 ```bash
-openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup -s settings.yaml
+openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup --n-protocol-repeats 1 -s settings.yaml
 ```
 
 3. The output of the CLI program will now reflect the changes made:
@@ -214,7 +220,7 @@ where `path/to/transformation.json` is the path to one of the files created abov
 
 When running a complete network of simulations, it is important to ensure that
 the file name for the result JSON and name of the working directory are
-different for each leg, otherwise you'll overwrite results. We recommend doing
+different for each leg and each repeat, otherwise you'll overwrite results. We recommend doing
 that with something like the following, which uses the fact that the JSON files
 in `network_setup/transformations/` have unique names, and creates directories
 and result JSON files based on those names. To run all legs sequentially (not
@@ -225,7 +231,10 @@ recommended) you could do something like:
 for file in network_setup/transformations/*.json; do
   relpath=${file:30}  # strip off "network_setup/transformations/"
   dirpath=${relpath%.*}  # strip off final ".json"
-  openfe quickrun $file -o results/$relpath -d results/$dirpath
+  # loop over three repeats
+  for repeat in {1..3}; do
+      openfe quickrun $file -o results/repeat${repeat}/$relpath -d results/repeat${repeat}/$dirpath
+  done
 done
 ```
 
@@ -241,10 +250,12 @@ and submit a job script for the simplest SLURM use case:
 for file in network_setup/transformations/*.json; do
   relpath=${file:30}  # strip off "network_setup/transformations/"
   dirpath=${relpath%.*}  # strip off final ".json"
-  jobpath="network_setup/transformations/${dirpath}.job"
-  cmd="openfe quickrun $file -o results/$relpath -d results/$dirpath"
-  echo -e "#!/usr/bin/env bash\n${cmd}" > $jobpath
-  sbatch $jobpath
+  for repeat in {1..3}; do
+      jobpath="network_setup/transformations/${dirpath}_${repeat}.job"
+      cmd="openfe quickrun $file -o results/repeat${repeat}/$relpath -d results/repeat${repeat}/$dirpath"
+      echo -e "#!/usr/bin/env bash\n${cmd}" > $jobpath
+      sbatch $jobpath
+  done
 done
 ```
 
