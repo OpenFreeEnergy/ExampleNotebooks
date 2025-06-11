@@ -49,7 +49,7 @@ we do the following:
 - Pass a PDB of the protein target (TYK2) with `-p tyk2_protein.pdb`.
 - Instruct `openfe` to output files into a directory called `network_setup`
     with the `-o network_setup` option.
-- Instruct `openfe` to only run one full repeat of the alchemical simulation per
+- Instruct `openfe` to only run one repeat of the alchemical simulation per
   `quickrun` call using `--n-protocol-repeats 1`.
   **Note:** `openfe`'s default behaviour is that it needs three
   repeats to calculate the uncertainty (i.e. standard deviation) in an estimate. By
