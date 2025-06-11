@@ -50,7 +50,7 @@ we do the following:
 - Instruct `openfe` to output files into a directory called `network_setup`
     with the `-o network_setup` option.
 - Instruct `openfe` to only run one repeat of the alchemical simulation per
-  `quickrun` call using `--n-protocol-repeats 1`.
+  `quickrun` call using `--n-protocol-repeats=1`.
   **Note:** `openfe`'s default behaviour is that it needs three
   repeats to calculate the uncertainty (i.e. standard deviation) in an estimate. By
   settings `--n-protocol-repeats` to 1, you must execute the transformation a minimum
