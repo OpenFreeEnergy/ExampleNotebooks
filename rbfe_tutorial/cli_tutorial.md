@@ -86,7 +86,7 @@ network_setup
     ├── rbfe_lig_ejm_31_complex_lig_ejm_50_complex.json
     ├── rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json
     ├── rbfe_lig_ejm_31_solvent_lig_ejm_46_solvent.json
-[continues]
+    ...
 ```
 
 The `ligand_network.graphml` file describes the atom mappings between the
@@ -284,29 +284,42 @@ openfe
 
 ```text
 results
-├── rbfe_lig_ejm_31_complex_lig_ejm_42_complex
-│   ├── shared_RelativeHybridTopologyProtocolUnit-3ea82011-75f0-4bb6-b415-e7d05bd012f6
-│   │   ├── checkpoint.nc
-│   │   └── simulation.nc
-│   ├── shared_RelativeHybridTopologyProtocolUnit-5262feb6-cb50-4bb2-90a2-359810c2bb9c
-│   │   ├── checkpoint.nc
-│   │   └── simulation.nc
-│   └── shared_RelativeHybridTopologyProtocolUnit-7a6def34-2967-4452-8d47-483bc7219c06
-│       ├── checkpoint.nc
-│       └── simulation.nc
-├── rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
-├── rbfe_lig_ejm_31_complex_lig_ejm_46_complex
-│   ├── shared_RelativeHybridTopologyProtocolUnit-ad113e55-5636-474e-9be3-ee77fe887e77
-│   │   ├── checkpoint.nc
-│   │   └── simulation.nc
-│   ├── shared_RelativeHybridTopologyProtocolUnit-ca74ad3c-2ac8-4961-be7c-fa802a1ec76b
-│   │   ├── checkpoint.nc
-│   │   └── simulation.nc
-│   └── shared_RelativeHybridTopologyProtocolUnit-f848e671-fdd3-4b8d-8bd2-6eb5140e3ed3
-│       ├── checkpoint.nc
-│       └── simulation.nc
-├── rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
-[continues]
+├── replicate_0
+│   ├── rbfe_lig_ejm_31_complex_lig_ejm_42_complex
+│   │   ├── shared_RelativeHybridTopologyProtocolUnit-79c279f04ec84218b7935bc0447539a9_attempt_0
+│   │   │   ├── checkpoint.nc
+│   │   │   ├── db.json
+│   │   │   ├── simulation_real_time_analysis.yaml
+│   │   │   └── simulation.nc
+│   │   ├── shared_RelativeHybridTopologyProtocolUnit-a3cef34132aa4e9cbb824fcbcd043b0e_attempt_0
+│   │   │   ├── checkpoint.nc
+│   │   │   ├── db.json
+│   │   │   ├── simulation_real_time_analysis.yaml
+│   │   │   └── simulation.nc
+│   │   └── shared_RelativeHybridTopologyProtocolUnit-abb2b104151c45fc8b0993fa0a7ee0af_attempt_0
+│   │       ├── checkpoint.nc
+│   │       ├── db.json
+│   │       ├── simulation_real_time_analysis.yaml
+│   │       └── simulation.nc
+│   ├── rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
+│   ├── rbfe_lig_ejm_31_complex_lig_ejm_46_complex
+│   │   ├── shared_RelativeHybridTopologyProtocolUnit-361500fe831c431aa830efd207db0955_attempt_0
+│   │   │   ├── checkpoint.nc
+│   │   │   ├── db.json
+│   │   │   ├── simulation_real_time_analysis.yaml
+│   │   │   └── simulation.nc
+│   │   ├── shared_RelativeHybridTopologyProtocolUnit-5a6176cfbf074f92bc76caac91b1c1bf_attempt_0
+│   │   │   ├── checkpoint.nc
+│   │   │   ├── db.json
+│   │   │   ├── simulation_real_time_analysis.yaml
+│   │   │   └── simulation.nc
+│   │   └── shared_RelativeHybridTopologyProtocolUnit-e16de73f07964e9096f34611e0c874ca_attempt_0
+│   │       ├── checkpoint.nc
+│   │       ├── db.json
+│   │       ├── simulation_real_time_analysis.yaml
+│   │       └── simulation.nc
+│   ├── rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
+...
 ```
 
 The JSON results file contains not only the calculated $\Delta G$, and
