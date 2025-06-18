@@ -51,10 +51,9 @@ we do the following:
     with the `-o network_setup` option.
 - Instruct `openfe` to only run one repeat of the alchemical simulation per
   `quickrun` call using `--n-protocol-repeats=1`.
-  **Note:** `openfe`'s default behaviour is that it needs three
-  repeats to calculate the uncertainty (i.e. standard deviation) in an estimate. By
-  setting `--n-protocol-repeats` to 1, you must execute the transformation a minimum
-  of 3 times.
+  **Note:** `openfe`'s default behaviour is to use three
+  repeats to calculate the uncertainty (i.e. standard deviation) in an estimate. When
+  setting `--n-protocol-repeats=1`, you must execute the transformation multiple times - at minimum 2, but best practie is 3 independent repeats.
 
 Planning the campaign may take some time due to the complex series of tasks involved:
 
