@@ -161,17 +161,19 @@ RBFE-NETWORK PLANNER
 ______________________
 
 Parsing in Files: 
-        Got input: 
-                Small Molecules: SmallMoleculeComponent(name=lig_ejm_54) SmallMoleculeComponent(name=lig_jmc_23) SmallMoleculeComponent(name=lig_ejm_47) SmallMoleculeComponent(name=lig_jmc_27) SmallMoleculeComponent(name=lig_ejm_46) SmallMoleculeComponent(name=lig_ejm_31) SmallMoleculeComponent(name=lig_ejm_42) SmallMoleculeComponent(name=lig_ejm_50) SmallMoleculeComponent(name=lig_ejm_45) SmallMoleculeComponent(name=lig_jmc_28) SmallMoleculeComponent(name=lig_ejm_55) SmallMoleculeComponent(name=lig_ejm_43) SmallMoleculeComponent(name=lig_ejm_48)
-                Protein: ProteinComponent(name=)
-                Cofactors: []
-                Solvent: SolventComponent(name=O, Na+, Cl-)
+	Got input:
+		Small Molecules: SmallMoleculeComponent(name=lig_ejm_31) SmallMoleculeComponent(name=lig_ejm_42) SmallMoleculeComponent(name=lig_ejm_43) SmallMoleculeComponent(name=lig_ejm_46) SmallMoleculeComponent(name=lig_ejm_47) SmallMoleculeComponent(name=lig_ejm_48) SmallMoleculeComponent(name=lig_ejm_50) SmallMoleculeComponent(name=lig_jmc_23) SmallMoleculeComponent(name=lig_jmc_27) SmallMoleculeComponent(name=lig_jmc_28)
+		Protein: ProteinComponent(name=)
+		Cofactors: []
+		Solvent: SolventComponent(name=O, Na+, Cl-)
 
 Using Options:
-        Mapper: <kartograf.atom_mapper.KartografAtomMapper object at 0x7fea079de790>
-        Mapping Scorer: <function default_lomap_score at 0x7fea1b423d80>
-        Networker: functools.partial(<function generate_maximal_network at 0x7fea18371260>)
-        Partial Charge Generation: am1bccelf10
+	Mapper: <LomapAtomMapper (time=20, threed=True, max3d=1.0, element_change=True, seed='', shift=False)>
+	Mapping Scorer: <function default_lomap_score at 0x166bc5300>
+	Network Generation: <function generate_minimal_spanning_network at 0x16a413e20>
+	Partial Charge Generation: am1bcc
+
+	n_protocol_repeats=1 (1 simulation repeat(s) per transformation)
 ```
 
 That concludes the straightforward process of tailoring your OpenFE setup to your specifications.
