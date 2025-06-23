@@ -38,7 +38,7 @@ running the simulations and gathering the results are the same.
 With the single command:
 
 ```bash
-openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup --n-protocol-repeats=1
+openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup --n-protocol-repeats 1
 ```
 
 we do the following:
@@ -50,10 +50,10 @@ we do the following:
 - Instruct `openfe` to output files into a directory called `network_setup`
     with the `-o network_setup` option.
 - Instruct `openfe` to only run one repeat of the alchemical simulation per
-  `quickrun` call using `--n-protocol-repeats=1`.
+  `quickrun` call using `--n-protocol-repeats 1`.
   **Note:** `openfe`'s default behaviour is to use three
   repeats to calculate the uncertainty (i.e. standard deviation) in an estimate. When
-  setting `--n-protocol-repeats=1`, you must execute the transformation multiple times - at minimum 2, but best practie is 3 independent repeats.
+  setting `--n-protocol-repeats 1`, you must execute the transformation multiple times - at minimum 2, but best practie is 3 independent repeats.
 
 Planning the campaign may take some time due to the complex series of tasks involved:
 
@@ -66,7 +66,7 @@ The partial charge generation can take advantage of multiprocessing which offers
 the number of processors available using the `-n` flag:
 
 ```bash
-openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup --n-protocol-repeats=1 -n 4
+openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup --n-protocol-repeats 1 -n 4
 ```
 
 This will result in a directory called `network_setup/`, which is structured like this:
@@ -151,7 +151,7 @@ partial_charge:
 2. Plan your rbfe network with an additional `-s` flag for passing the settings:
 
 ```bash
-openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup --n-protocol-repeats=1 -s settings.yaml
+openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup --n-protocol-repeats 1 -s settings.yaml
 ```
 
 3. The output of the CLI program will now reflect the changes made:
