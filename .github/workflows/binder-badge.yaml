@@ -1,17 +1,17 @@
-#./.github/workflows/binder-badge.yaml
-name: Binder Badge
+#./.github/workflows/colab-badge.yaml
+name: Colab Badge
 on: 
   pull_request_target:
     types: [opened]
 
 jobs:
-  binder:
+  colab:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
     steps:
-    - name: comment on PR with Binder link
-      uses: actions/github-script@v3
+    - name: comment on PR with Colab link
+      uses: actions/github-script@v8
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
@@ -21,7 +21,7 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: `[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/${PR_HEAD_USERREPO}/${PR_HEAD_REF}) :point_left: Launch a binder notebook on branch _${PR_HEAD_USERREPO}/${PR_HEAD_REF}_`
+            body: `[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/OpenFreeEnergy/ExampleNotebooks/blob/${PR_HEAD_REF}/showcase)) :point_left: Launch a Colab session on branch ``${PR_HEAD_REF}``.
           })
       env:
         PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
