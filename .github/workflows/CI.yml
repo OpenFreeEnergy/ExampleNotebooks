@@ -29,10 +29,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Note: we temporarily pin to macos-12 to avoid compatibility issues
-        # between AT22+ and macos-13+ runners
         os: ["ubuntu-latest", "macos-latest"]
-        python-version: ["3.10"]
+        python-version: ["3.12"]
 
     steps:
     - uses: actions/checkout@v2.4.0
