@@ -2,6 +2,15 @@ name: Test openfe doc build
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    # nightly tests, 2 am
+    - cron: "0 2 * * *"
 
 concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"
