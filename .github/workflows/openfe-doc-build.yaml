@@ -46,5 +46,5 @@ jobs:
           cd openfe
           # install so that we can get a version metadata we use in docs
           pip install . --no-deps
-          cd openfe/docs
+          cd docs
           make html
