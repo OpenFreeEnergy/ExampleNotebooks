@@ -21,7 +21,7 @@ Then you can download a copy of the notebooks:
 
 - `wget -O OpenFEExampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/main`
 - or (depending on your platform)
-- `curl -L -k -o OpenFEEXampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/main`
+- `curl -L -k -o OpenFEExampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/main`
 
 Unpack, then navigate to the downloaded notebooks:
 
