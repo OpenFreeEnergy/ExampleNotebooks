@@ -8,17 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout ExampleNotebooks repository
-        uses: actions/checkout@v4
-        with:
-          path: openfe/docs/ExampleNotebooks
-      
       - name: Checkout conda-forge feedstock
         uses: actions/checkout@v4
         with:
           repository: OpenFreeEnergy/openfe
           path: openfe
 
+      - name: Checkout ExampleNotebooks repository
+        uses: actions/checkout@v4
+        with:
+          path: openfe/docs/ExampleNotebooks
+      
       - name: Test file layout
         run: |
           pwd
