@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout conda-forge feedstock
+      - name: Checkout openfe
         uses: actions/checkout@v4
         with:
           repository: OpenFreeEnergy/openfe
