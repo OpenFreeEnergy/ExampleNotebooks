@@ -11,7 +11,7 @@ jobs:
       - name: Checkout ExampleNotebooks repository
         uses: actions/checkout@v4
         with:
-          path: openfe/docs/
+          path: openfe/docs/ExampleNotebooks
       
       - name: Checkout conda-forge feedstock
         uses: actions/checkout@v4
