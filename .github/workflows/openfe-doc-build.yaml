@@ -1,0 +1,27 @@
+name: Test openfe doc build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-conda-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout ExampleNotebooks repository
+        uses: actions/checkout@v4
+        with:
+          path: openfe/docs/
+      
+      - name: Checkout conda-forge feedstock
+        uses: actions/checkout@v4
+        with:
+          repository: OpenFreeEnergy/openfe
+          path: openfe
+
+      - name: Test file layout
+        run: |
+          pwd
+          ls -l
+          ls -l *
+          ls -l openfe/docs
