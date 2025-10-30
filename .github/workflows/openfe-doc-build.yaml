@@ -18,10 +18,23 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: openfe/docs/ExampleNotebooks
+
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +%Y-%m-%d)" >> "${GITHUB_OUTPUT}"
       
-      - name: Test file layout
+      - name: Install doc environment
+        uses: mamba-org/setup-micromamba@v2
+        with:
+          environment-file: openfe/docs/environment.yaml
+          cache-environment: true
+          cache-downloads: true
+          cache-environment-key: environment-${{ steps.date.outputs.date }}
+          cache-downloads-key: downloads-${{ steps.date.outputs.date }}
+          init-shell: bash
+
+      - name: Build the docs
         run: |
-          pwd
-          ls -l
-          ls -l *
-          ls -l openfe/docs
+          cd openfe/docs
+          make
+
