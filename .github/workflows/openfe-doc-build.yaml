@@ -44,4 +44,4 @@ jobs:
       - name: Build the docs
         run: |
           cd openfe/docs
-          make
+          make html
