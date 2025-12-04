@@ -1,6 +1,5 @@
 name: openfe-notebooks
 channels:
-  - jaimergp/label/unsupported-cudatoolkit-shim
   - conda-forge
 dependencies:
   - MDAnalysis
@@ -24,9 +23,9 @@ dependencies:
   - pytest-cov
   - pytest-xdist
   - pydantic
-  - python==3.11.*
+  - python
   - rdkit
   - typing_extensions
-  - gufe>=0.9.4
-  - openfe>=0.13.0
+  - gufe>=1.7.0
+  - openfe>=1.7.0
   - py3dmol
