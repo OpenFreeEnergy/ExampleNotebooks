@@ -1,8 +1,0 @@
-{
-  "@jupyterlab/docmanager-extension:plugin": {
-    "defaultViewers": {
-      "markdown": "Markdown Preview"
-    }
-  }
-}
-
