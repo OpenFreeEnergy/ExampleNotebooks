@@ -41,7 +41,7 @@ jobs:
 
     - uses: mamba-org/setup-micromamba@v2
       with:
-        environment-file: environment.yml
+        environment-file: environment.yaml
         cache-environment: true
         cache-downloads: true
         cache-environment-key: environment-${{ steps.date.outputs.date }}
