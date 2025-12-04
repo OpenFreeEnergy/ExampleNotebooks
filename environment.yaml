@@ -3,7 +3,6 @@ channels:
   - conda-forge
 dependencies:
   - MDAnalysis
-  - click
   - coverage
   - ipywidgets
   - lomap2
@@ -17,12 +16,10 @@ dependencies:
   - openmm
   - openmmtools>=0.23.0
   - pip
-  - plugcli
   - pymbar
   - pytest
   - pytest-cov
   - pytest-xdist
-  - pydantic
   - python
   - rdkit
   - typing_extensions
