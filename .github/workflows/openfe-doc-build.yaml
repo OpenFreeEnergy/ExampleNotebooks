@@ -29,6 +29,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: OpenFreeEnergy/openfe
+          ref: docs/fix_example_notebook_sync
           path: openfe
 
       - name: Checkout ExampleNotebooks repository
