@@ -1,4 +1,4 @@
-name: Test openfe doc build
+name: OpenFE Docs
 
 on:
   workflow_dispatch:
