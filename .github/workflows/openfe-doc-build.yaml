@@ -21,7 +21,7 @@ defaults:
     shell: bash -leo pipefail {0} 
 
 jobs:
-  test-conda-build:
+  test-openfe-docs-build:
     runs-on: ubuntu-latest
     
     steps:
