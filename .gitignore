@@ -237,7 +237,8 @@ $RECYCLE.BIN/
 abfe_tutorial/abfe_results/
 abfe_tutorial/abfe_json/
 ahfe_tutorial/ahfe_json/
-cookbook/assets/of3_output/
+cookbook/assets/of3_output/temp_ligands/
+cookbook/assets/of3_output/p_aligned/
 cookbook/dg.png
 cookbook/queries.json
 networks/transformations/
