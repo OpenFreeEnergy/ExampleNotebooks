@@ -1,14 +1,15 @@
 [![Logo](https://img.shields.io/badge/OSMF-OpenFreeEnergy-%23002f4a)](https://openfree.energy/)
-[![full_tests](https://github.com/OpenFreeEnergy/ExampleNotebooks/actions/workflows/CI.yml/badge.svg)](https://github.com/OpenFreeEnergy/ExampleNotebooks/actions/workflows/CI.yml)
+[![CI](https://github.com/OpenFreeEnergy/ExampleNotebooks/actions/workflows/ci.yaml/badge.svg)](https://github.com/OpenFreeEnergy/ExampleNotebooks/actions/workflows/CI.yml)
+[![Docs](https://github.com/OpenFreeEnergy/ExampleNotebooks/actions/workflows/openfe-doc-build.yaml/badge.svg)](https://docs.openfree.energy/en/stable/?badge=stable)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/OpenFreeEnergy/ExampleNotebooks/master.svg)](https://results.pre-commit.ci/latest/github/OpenFreeEnergy/ExampleNotebooks/main)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/OpenFreeEnergy/ExampleNotebooks/blob/main/showcase/openfe_showcase.ipynb)
 
 # OpenFE Notebooks
 
 Collection of notebooks for the Open FreeEnergy project.
-These can be ran in the browser via the Binder links.
+These can be run in the browser via the Colab links.
 
-| Binder link | Description |
+| Colab link | Description |
 | --- | --- |
 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/OpenFreeEnergy/ExampleNotebooks/blob/main/showcase/openfe_showcase.ipynb) | Start here.  This notebook demonstrates how a free energy calculation can be defined, executed and analyzed using the `openfe` package. |
 
@@ -21,7 +22,7 @@ Then you can download a copy of the notebooks:
 
 - `wget -O OpenFEExampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/main`
 - or (depending on your platform)
-- `curl -L -k -o OpenFEEXampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/main`
+- `curl -L -k -o OpenFEExampleNotebooks.tar.gz https://github.com/OpenFreeEnergy/ExampleNotebooks/tarball/main`
 
 Unpack, then navigate to the downloaded notebooks:
 
