@@ -196,10 +196,10 @@ To see all settings customizable by YAML input, run `openfe plan-rbfe-network -h
 
 ## 2. Run the simulations
 
-For this tutorial, we have precalculated data that you can load, since running the simulations can take a long time.
+For this tutorial, we have precalculated data you can load, since running the simulations can take a long time.
 However, you could, in principle, run each simulation on your local machine.
 
-You can run each leg individually by using the `openfe quickrun` command:
+You can run each leg individually by using the ``openfe quickrun`` command:
 
 ```bash
 openfe quickrun path/to/transformation.json -o results.json -d working-directory
@@ -207,20 +207,33 @@ openfe quickrun path/to/transformation.json -o results.json -d working-directory
 
 where
 
-- `path/to/transformation.json` is the path to one of the transformation files created by ``openfe plan-rbfe-network`` in the prior step
+- `path/to/transformation.json` is the path to one of the transformation files created by ``openfe plan-rbfe-network`` in the prior step.
 -  `-o results.json` to give the final output JSON file and `-d` for the directory where simulation results should be stored.
 
-to run one simulation from the tutorial data, a command might look like:
+To run one simulation from the tutorial data, a command might look like:
 
 ```bash
 openfe quickrun transformations/rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json -o results/rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json -d results/rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent/
 ```
 
 When running a complete network of simulations, it is important to ensure that the file name for the result JSON and name of the working directory are different for each leg and each repeat, otherwise you'll overwrite results.
-We recommend doing this programmatically, such as the example below, which uses the fact that the JSON files in `network_setup/transformations/` have unique names, and creates directories
-and result JSON files based on those names.
+We recommend doing this programmatically, such as the example below, which uses the fact that the JSON files in ``network_setup/transformations/`` have unique names, and creates directories and result JSON files based on those names.
 
-In practice, you probably want to submit these to an HPC queue.
+To run all legs sequentially (not recommended!!) you could do something like:
+
+```bash
+# this will take a very long time! don't actually do it!
+for file in network_setup/transformations/*.json; do
+  relpath=${file:30}  # strip off "network_setup/transformations/"
+  dirpath=${relpath%.*}  # strip off final ".json"
+  # loop over three repeats
+  for repeat in {1..3}; do
+      openfe quickrun $file -o results/repeat${repeat}/$relpath -d results/repeat${repeat}/$dirpath
+  done
+done
+```
+
+In practice, you probably want to submit the simulations to an HPC queue.
 In that case, you'll want to create a new job script for each simulation JSON file, and the core of that job script will be to run the `openfe quickrun` command above.
 
 Details of what information is needed in that job script will depend on your computing center, but below is an example of a very simple script that will create
