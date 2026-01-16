@@ -90,13 +90,13 @@ network_setup
 
 The `ligand_network.graphml` file describes the network of ligands connected by atom mappings.
 
-We can visualize this network with the `openfe view-ligand-network` command:
+We can visualize this network with the `openfe view-ligand-network` command 
+to open an interactive viewer.:
 
 ```bash
 openfe view-ligand-network network_setup/ligand_network.graphml
 ```
 
-to open an interactive viewer.
 You can move the ligand names around to get a better view of the structure, and if you click on the edge, you will see the
 mapping for that edge.
 
@@ -149,7 +149,7 @@ partial_charge:
 Let's assume you want to exchange the kartograf atom mapper with the LOMAP atom mapper, the Minimal Spanning Tree
 Network Planner with the Maximal Network Planner and the am1bcc charge method with [OpenFF NAGL](https://docs.openforcefield.org/projects/nagl/):
 
-1. provide a file like `settings.yaml` with the desired changes:
+Provide a file like `settings.yaml` with the desired changes:
 
 ```yaml
 mapper:
@@ -164,13 +164,13 @@ partial_charge:
     nagl_model: null  # null specifies the use of the latest nagl model
 ```
 
-2. Plan your rbfe network with an additional `-s` flag for passing the settings:
+Plan your rbfe network with an additional `-s` flag for passing the settings:
 
 ```bash
 openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup --n-protocol-repeats 1 -s settings.yaml
 ```
 
-3. The output of the CLI program will now reflect the changes made:
+The output of the CLI program will now reflect the changes made:
 
 ```text
 RBFE-NETWORK PLANNER
