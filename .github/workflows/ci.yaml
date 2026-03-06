@@ -10,6 +10,7 @@ on:
   schedule:
     # nightly tests, 2 am
     - cron: "0 2 * * *"
+  workflow_dispatch:
 
 concurrency:
   # Probably overly cautious group naming.
