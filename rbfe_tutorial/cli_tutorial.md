@@ -213,7 +213,7 @@ where
 To run one simulation from the tutorial data, a command might look like:
 
 ```bash
-openfe quickrun transformations/rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json -o results/rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json -d results/rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent/
+openfe quickrun network_setup/transformations/rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json -o results/rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json -d results/rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent/
 ```
 
 When running a complete network of simulations, it is important to ensure that the file name for the result JSON and name of the working directory are different for each leg and each repeat, otherwise you'll overwrite results.
