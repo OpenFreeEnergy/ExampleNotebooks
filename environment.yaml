@@ -13,6 +13,5 @@ dependencies:
   - pytest-cov
   - pytest-xdist
   - python
-  - gufe >=1.7.0, <1.8.0
-  - openfe==1.8.0
+  - openfe==1.10.0
   - openff-interchange-base != 0.5.1  # https://github.com/openforcefield/openff-interchange/issues/1450
