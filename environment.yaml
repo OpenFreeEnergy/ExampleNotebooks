@@ -8,6 +8,7 @@ dependencies:
   - nbval
   - nglview
   - notebook
+  - numpy <2.4.0  # https://github.com/OpenFreeEnergy/cinnabar/issues/198
   - pip
   - pytest
   - pytest-cov
