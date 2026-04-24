@@ -28,8 +28,7 @@ Then when you run `ls`, you should see that your directory has:
 
 ## 1. Set up the campaign
 
-The CLI makes setting up the simulation very easy - it's just a single CLI
-command.
+The CLI makes setting up the simulation very easy - it's just a single CLI command.
 There are separate commands for relative binding free energy (RBFE) and relative hydration free energy setups (RHFE).
 
 For RBFE campaigns, the relevant command is `openfe plan-rbfe-network`.
@@ -69,7 +68,13 @@ the number of processors available using the `-n` flag:
 openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup --n-protocol-repeats 1 -n 4
 ```
 
-This will result in a directory called `network_setup/`, which is structured like this:
+
+If you are looking to run an RBFE campaign on a system that contains a membrane, you will need to use ``--protein-membrane`` instead of `-p` or ``--protein``.
+Membrane-containing protein systems must be provided as fully built, solvated, and pre-equilibrated systems, including correctly defined box vectors.
+See the [RBFE calculations of a Protein-Membrane System tutorial](https://docs.openfree.energy/en/latest/tutorials/rbfe_membrane_protein.html) for details on how to prepare the input system.
+
+
+The `openfe plan-rbfe-network` command will result in a directory called `network_setup/`, which is structured like this:
 
 <!-- top lines from `tree network_setup` -->
 
