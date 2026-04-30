@@ -1,0 +1,144 @@
+{
+    "queries": {
+        "lig_ejm_31": {
+            "chains": [
+                {
+                    "molecule_type": "protein",
+                    "chain_ids": "A",
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH"
+                },
+                {
+                    "molecule_type": "ligand",
+                    "chain_ids": "Z",
+                    "smiles": "CC(=O)Nc1cc(NC(=O)c2c(Cl)cccc2Cl)ccn1"
+                }
+            ]
+        },
+        "lig_ejm_42": {
+            "chains": [
+                {
+                    "molecule_type": "protein",
+                    "chain_ids": "A",
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH"
+                },
+                {
+                    "molecule_type": "ligand",
+                    "chain_ids": "Z",
+                    "smiles": "CCC(=O)Nc1cc(NC(=O)c2c(Cl)cccc2Cl)ccn1"
+                }
+            ]
+        },
+        "lig_ejm_43": {
+            "chains": [
+                {
+                    "molecule_type": "protein",
+                    "chain_ids": "A",
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH"
+                },
+                {
+                    "molecule_type": "ligand",
+                    "chain_ids": "Z",
+                    "smiles": "CC(C)C(=O)Nc1cc(NC(=O)c2c(Cl)cccc2Cl)ccn1"
+                }
+            ]
+        },
+        "lig_ejm_46": {
+            "chains": [
+                {
+                    "molecule_type": "protein",
+                    "chain_ids": "A",
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH"
+                },
+                {
+                    "molecule_type": "ligand",
+                    "chain_ids": "Z",
+                    "smiles": "O=C(Nc1ccnc(NC(=O)C2CC2)c1)c1c(Cl)cccc1Cl"
+                }
+            ]
+        },
+        "lig_ejm_47": {
+            "chains": [
+                {
+                    "molecule_type": "protein",
+                    "chain_ids": "A",
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH"
+                },
+                {
+                    "molecule_type": "ligand",
+                    "chain_ids": "Z",
+                    "smiles": "O=C(Nc1ccnc(NC(=O)C2CCC2)c1)c1c(Cl)cccc1Cl"
+                }
+            ]
+        },
+        "lig_ejm_48": {
+            "chains": [
+                {
+                    "molecule_type": "protein",
+                    "chain_ids": "A",
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH"
+                },
+                {
+                    "molecule_type": "ligand",
+                    "chain_ids": "Z",
+                    "smiles": "O=C(Nc1ccnc(NC(=O)C2CCCC2)c1)c1c(Cl)cccc1Cl"
+                }
+            ]
+        },
+        "lig_ejm_50": {
+            "chains": [
+                {
+                    "molecule_type": "protein",
+                    "chain_ids": "A",
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH"
+                },
+                {
+                    "molecule_type": "ligand",
+                    "chain_ids": "Z",
+                    "smiles": "O=C(CO)Nc1cc(NC(=O)c2c(Cl)cccc2Cl)ccn1"
+                }
+            ]
+        },
+        "lig_jmc_23": {
+            "chains": [
+                {
+                    "molecule_type": "protein",
+                    "chain_ids": "A",
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH"
+                },
+                {
+                    "molecule_type": "ligand",
+                    "chain_ids": "Z",
+                    "smiles": "O=C(Nc1ccnc(NC(=O)[C@H]2C[C@H]2F)c1)c1c(Cl)cccc1Cl"
+                }
+            ]
+        },
+        "lig_jmc_27": {
+            "chains": [
+                {
+                    "molecule_type": "protein",
+                    "chain_ids": "A",
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH"
+                },
+                {
+                    "molecule_type": "ligand",
+                    "chain_ids": "Z",
+                    "smiles": "O=C(Nc1ccnc(NC(=O)[C@H]2C[C@H]2Cl)c1)c1c(Cl)cccc1Cl"
+                }
+            ]
+        },
+        "lig_jmc_28": {
+            "chains": [
+                {
+                    "molecule_type": "protein",
+                    "chain_ids": "A",
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH"
+                },
+                {
+                    "molecule_type": "ligand",
+                    "chain_ids": "Z",
+                    "smiles": "C[C@@H]1C[C@@H]1C(=O)Nc1cc(NC(=O)c2c(Cl)cccc2Cl)ccn1"
+                }
+            ]
+        }
+    }
+}
