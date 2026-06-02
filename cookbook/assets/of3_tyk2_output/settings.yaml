@@ -1,0 +1,14 @@
+output_writer_settings:
+  # change output format to pdb (default: mmcif):
+  structure_format: pdb
+model_update:
+  presets:
+      - predict
+      - low_mem
+  custom:
+      settings:
+          memory:
+               eval:
+                   use_cueq_triangle_kernels: true
+                   use_deepspeed_evo_attention: false
+

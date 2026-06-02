@@ -241,6 +241,8 @@ cookbook/assets/of3_output/temp_ligands/
 cookbook/assets/of3_output/p_aligned/
 cookbook/dg.png
 cookbook/queries.json
+membranes/a2a/a2a_complex.pdb
+membranes/transformations/
 networks/transformations/
 openmm_md/md_input/
 openmm_md/shared*

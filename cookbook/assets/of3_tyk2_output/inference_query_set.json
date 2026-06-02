@@ -1,0 +1,647 @@
+{
+    "seeds": [
+        42
+    ],
+    "queries": {
+        "lig_ejm_31": {
+            "query_name": "lig_ejm_31",
+            "chains": [
+                {
+                    "molecule_type": "PROTEIN",
+                    "chain_ids": [
+                        "A"
+                    ],
+                    "description": null,
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH",
+                    "non_canonical_residues": null,
+                    "smiles": null,
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": [
+                        "/tmp/atravitz/51262788/of3-of-atravitz/colabfold_msas/main/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz"
+                    ],
+                    "template_alignment_file_path": "/tmp/atravitz/51262788/of3-of-atravitz/template_data/template_cache/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz",
+                    "template_entry_chain_ids": [
+                        "4gvj_A",
+                        "6x8f_B",
+                        "4gj3_A",
+                        "3lxn_A",
+                        "6vny_A",
+                        "3nz0_A",
+                        "6x8f_A",
+                        "5wal_A",
+                        "3lxp_A",
+                        "3nyx_A",
+                        "7uyr_A",
+                        "5f1z_A",
+                        "4e1z_A",
+                        "6x8g_A",
+                        "7uys_A",
+                        "4gfo_A",
+                        "4e20_A",
+                        "4oli_A",
+                        "7uyt_A",
+                        "5f20_A"
+                    ],
+                    "sdf_file_path": null
+                },
+                {
+                    "molecule_type": "LIGAND",
+                    "chain_ids": [
+                        "Z"
+                    ],
+                    "description": null,
+                    "sequence": null,
+                    "non_canonical_residues": null,
+                    "smiles": "CC(=O)Nc1cc(NC(=O)c2c(Cl)cccc2Cl)ccn1",
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": null,
+                    "template_alignment_file_path": null,
+                    "template_entry_chain_ids": null,
+                    "sdf_file_path": null
+                }
+            ],
+            "use_msas": true,
+            "use_paired_msas": true,
+            "use_main_msas": true,
+            "covalent_bonds": null
+        },
+        "lig_ejm_42": {
+            "query_name": "lig_ejm_42",
+            "chains": [
+                {
+                    "molecule_type": "PROTEIN",
+                    "chain_ids": [
+                        "A"
+                    ],
+                    "description": null,
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH",
+                    "non_canonical_residues": null,
+                    "smiles": null,
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": [
+                        "/tmp/atravitz/51262788/of3-of-atravitz/colabfold_msas/main/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz"
+                    ],
+                    "template_alignment_file_path": "/tmp/atravitz/51262788/of3-of-atravitz/template_data/template_cache/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz",
+                    "template_entry_chain_ids": [
+                        "4gvj_A",
+                        "6x8f_B",
+                        "4gj3_A",
+                        "3lxn_A",
+                        "6vny_A",
+                        "3nz0_A",
+                        "6x8f_A",
+                        "5wal_A",
+                        "3lxp_A",
+                        "3nyx_A",
+                        "7uyr_A",
+                        "5f1z_A",
+                        "4e1z_A",
+                        "6x8g_A",
+                        "7uys_A",
+                        "4gfo_A",
+                        "4e20_A",
+                        "4oli_A",
+                        "7uyt_A",
+                        "5f20_A"
+                    ],
+                    "sdf_file_path": null
+                },
+                {
+                    "molecule_type": "LIGAND",
+                    "chain_ids": [
+                        "Z"
+                    ],
+                    "description": null,
+                    "sequence": null,
+                    "non_canonical_residues": null,
+                    "smiles": "CCC(=O)Nc1cc(NC(=O)c2c(Cl)cccc2Cl)ccn1",
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": null,
+                    "template_alignment_file_path": null,
+                    "template_entry_chain_ids": null,
+                    "sdf_file_path": null
+                }
+            ],
+            "use_msas": true,
+            "use_paired_msas": true,
+            "use_main_msas": true,
+            "covalent_bonds": null
+        },
+        "lig_ejm_43": {
+            "query_name": "lig_ejm_43",
+            "chains": [
+                {
+                    "molecule_type": "PROTEIN",
+                    "chain_ids": [
+                        "A"
+                    ],
+                    "description": null,
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH",
+                    "non_canonical_residues": null,
+                    "smiles": null,
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": [
+                        "/tmp/atravitz/51262788/of3-of-atravitz/colabfold_msas/main/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz"
+                    ],
+                    "template_alignment_file_path": "/tmp/atravitz/51262788/of3-of-atravitz/template_data/template_cache/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz",
+                    "template_entry_chain_ids": [
+                        "4gvj_A",
+                        "6x8f_B",
+                        "4gj3_A",
+                        "3lxn_A",
+                        "6vny_A",
+                        "3nz0_A",
+                        "6x8f_A",
+                        "5wal_A",
+                        "3lxp_A",
+                        "3nyx_A",
+                        "7uyr_A",
+                        "5f1z_A",
+                        "4e1z_A",
+                        "6x8g_A",
+                        "7uys_A",
+                        "4gfo_A",
+                        "4e20_A",
+                        "4oli_A",
+                        "7uyt_A",
+                        "5f20_A"
+                    ],
+                    "sdf_file_path": null
+                },
+                {
+                    "molecule_type": "LIGAND",
+                    "chain_ids": [
+                        "Z"
+                    ],
+                    "description": null,
+                    "sequence": null,
+                    "non_canonical_residues": null,
+                    "smiles": "CC(C)C(=O)Nc1cc(NC(=O)c2c(Cl)cccc2Cl)ccn1",
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": null,
+                    "template_alignment_file_path": null,
+                    "template_entry_chain_ids": null,
+                    "sdf_file_path": null
+                }
+            ],
+            "use_msas": true,
+            "use_paired_msas": true,
+            "use_main_msas": true,
+            "covalent_bonds": null
+        },
+        "lig_ejm_46": {
+            "query_name": "lig_ejm_46",
+            "chains": [
+                {
+                    "molecule_type": "PROTEIN",
+                    "chain_ids": [
+                        "A"
+                    ],
+                    "description": null,
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH",
+                    "non_canonical_residues": null,
+                    "smiles": null,
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": [
+                        "/tmp/atravitz/51262788/of3-of-atravitz/colabfold_msas/main/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz"
+                    ],
+                    "template_alignment_file_path": "/tmp/atravitz/51262788/of3-of-atravitz/template_data/template_cache/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz",
+                    "template_entry_chain_ids": [
+                        "4gvj_A",
+                        "6x8f_B",
+                        "4gj3_A",
+                        "3lxn_A",
+                        "6vny_A",
+                        "3nz0_A",
+                        "6x8f_A",
+                        "5wal_A",
+                        "3lxp_A",
+                        "3nyx_A",
+                        "7uyr_A",
+                        "5f1z_A",
+                        "4e1z_A",
+                        "6x8g_A",
+                        "7uys_A",
+                        "4gfo_A",
+                        "4e20_A",
+                        "4oli_A",
+                        "7uyt_A",
+                        "5f20_A"
+                    ],
+                    "sdf_file_path": null
+                },
+                {
+                    "molecule_type": "LIGAND",
+                    "chain_ids": [
+                        "Z"
+                    ],
+                    "description": null,
+                    "sequence": null,
+                    "non_canonical_residues": null,
+                    "smiles": "O=C(Nc1ccnc(NC(=O)C2CC2)c1)c1c(Cl)cccc1Cl",
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": null,
+                    "template_alignment_file_path": null,
+                    "template_entry_chain_ids": null,
+                    "sdf_file_path": null
+                }
+            ],
+            "use_msas": true,
+            "use_paired_msas": true,
+            "use_main_msas": true,
+            "covalent_bonds": null
+        },
+        "lig_ejm_47": {
+            "query_name": "lig_ejm_47",
+            "chains": [
+                {
+                    "molecule_type": "PROTEIN",
+                    "chain_ids": [
+                        "A"
+                    ],
+                    "description": null,
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH",
+                    "non_canonical_residues": null,
+                    "smiles": null,
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": [
+                        "/tmp/atravitz/51262788/of3-of-atravitz/colabfold_msas/main/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz"
+                    ],
+                    "template_alignment_file_path": "/tmp/atravitz/51262788/of3-of-atravitz/template_data/template_cache/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz",
+                    "template_entry_chain_ids": [
+                        "4gvj_A",
+                        "6x8f_B",
+                        "4gj3_A",
+                        "3lxn_A",
+                        "6vny_A",
+                        "3nz0_A",
+                        "6x8f_A",
+                        "5wal_A",
+                        "3lxp_A",
+                        "3nyx_A",
+                        "7uyr_A",
+                        "5f1z_A",
+                        "4e1z_A",
+                        "6x8g_A",
+                        "7uys_A",
+                        "4gfo_A",
+                        "4e20_A",
+                        "4oli_A",
+                        "7uyt_A",
+                        "5f20_A"
+                    ],
+                    "sdf_file_path": null
+                },
+                {
+                    "molecule_type": "LIGAND",
+                    "chain_ids": [
+                        "Z"
+                    ],
+                    "description": null,
+                    "sequence": null,
+                    "non_canonical_residues": null,
+                    "smiles": "O=C(Nc1ccnc(NC(=O)C2CCC2)c1)c1c(Cl)cccc1Cl",
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": null,
+                    "template_alignment_file_path": null,
+                    "template_entry_chain_ids": null,
+                    "sdf_file_path": null
+                }
+            ],
+            "use_msas": true,
+            "use_paired_msas": true,
+            "use_main_msas": true,
+            "covalent_bonds": null
+        },
+        "lig_ejm_48": {
+            "query_name": "lig_ejm_48",
+            "chains": [
+                {
+                    "molecule_type": "PROTEIN",
+                    "chain_ids": [
+                        "A"
+                    ],
+                    "description": null,
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH",
+                    "non_canonical_residues": null,
+                    "smiles": null,
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": [
+                        "/tmp/atravitz/51262788/of3-of-atravitz/colabfold_msas/main/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz"
+                    ],
+                    "template_alignment_file_path": "/tmp/atravitz/51262788/of3-of-atravitz/template_data/template_cache/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz",
+                    "template_entry_chain_ids": [
+                        "4gvj_A",
+                        "6x8f_B",
+                        "4gj3_A",
+                        "3lxn_A",
+                        "6vny_A",
+                        "3nz0_A",
+                        "6x8f_A",
+                        "5wal_A",
+                        "3lxp_A",
+                        "3nyx_A",
+                        "7uyr_A",
+                        "5f1z_A",
+                        "4e1z_A",
+                        "6x8g_A",
+                        "7uys_A",
+                        "4gfo_A",
+                        "4e20_A",
+                        "4oli_A",
+                        "7uyt_A",
+                        "5f20_A"
+                    ],
+                    "sdf_file_path": null
+                },
+                {
+                    "molecule_type": "LIGAND",
+                    "chain_ids": [
+                        "Z"
+                    ],
+                    "description": null,
+                    "sequence": null,
+                    "non_canonical_residues": null,
+                    "smiles": "O=C(Nc1ccnc(NC(=O)C2CCCC2)c1)c1c(Cl)cccc1Cl",
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": null,
+                    "template_alignment_file_path": null,
+                    "template_entry_chain_ids": null,
+                    "sdf_file_path": null
+                }
+            ],
+            "use_msas": true,
+            "use_paired_msas": true,
+            "use_main_msas": true,
+            "covalent_bonds": null
+        },
+        "lig_ejm_50": {
+            "query_name": "lig_ejm_50",
+            "chains": [
+                {
+                    "molecule_type": "PROTEIN",
+                    "chain_ids": [
+                        "A"
+                    ],
+                    "description": null,
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH",
+                    "non_canonical_residues": null,
+                    "smiles": null,
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": [
+                        "/tmp/atravitz/51262788/of3-of-atravitz/colabfold_msas/main/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz"
+                    ],
+                    "template_alignment_file_path": "/tmp/atravitz/51262788/of3-of-atravitz/template_data/template_cache/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz",
+                    "template_entry_chain_ids": [
+                        "4gvj_A",
+                        "6x8f_B",
+                        "4gj3_A",
+                        "3lxn_A",
+                        "6vny_A",
+                        "3nz0_A",
+                        "6x8f_A",
+                        "5wal_A",
+                        "3lxp_A",
+                        "3nyx_A",
+                        "7uyr_A",
+                        "5f1z_A",
+                        "4e1z_A",
+                        "6x8g_A",
+                        "7uys_A",
+                        "4gfo_A",
+                        "4e20_A",
+                        "4oli_A",
+                        "7uyt_A",
+                        "5f20_A"
+                    ],
+                    "sdf_file_path": null
+                },
+                {
+                    "molecule_type": "LIGAND",
+                    "chain_ids": [
+                        "Z"
+                    ],
+                    "description": null,
+                    "sequence": null,
+                    "non_canonical_residues": null,
+                    "smiles": "O=C(CO)Nc1cc(NC(=O)c2c(Cl)cccc2Cl)ccn1",
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": null,
+                    "template_alignment_file_path": null,
+                    "template_entry_chain_ids": null,
+                    "sdf_file_path": null
+                }
+            ],
+            "use_msas": true,
+            "use_paired_msas": true,
+            "use_main_msas": true,
+            "covalent_bonds": null
+        },
+        "lig_jmc_23": {
+            "query_name": "lig_jmc_23",
+            "chains": [
+                {
+                    "molecule_type": "PROTEIN",
+                    "chain_ids": [
+                        "A"
+                    ],
+                    "description": null,
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH",
+                    "non_canonical_residues": null,
+                    "smiles": null,
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": [
+                        "/tmp/atravitz/51262788/of3-of-atravitz/colabfold_msas/main/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz"
+                    ],
+                    "template_alignment_file_path": "/tmp/atravitz/51262788/of3-of-atravitz/template_data/template_cache/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz",
+                    "template_entry_chain_ids": [
+                        "4gvj_A",
+                        "6x8f_B",
+                        "4gj3_A",
+                        "3lxn_A",
+                        "6vny_A",
+                        "3nz0_A",
+                        "6x8f_A",
+                        "5wal_A",
+                        "3lxp_A",
+                        "3nyx_A",
+                        "7uyr_A",
+                        "5f1z_A",
+                        "4e1z_A",
+                        "6x8g_A",
+                        "7uys_A",
+                        "4gfo_A",
+                        "4e20_A",
+                        "4oli_A",
+                        "7uyt_A",
+                        "5f20_A"
+                    ],
+                    "sdf_file_path": null
+                },
+                {
+                    "molecule_type": "LIGAND",
+                    "chain_ids": [
+                        "Z"
+                    ],
+                    "description": null,
+                    "sequence": null,
+                    "non_canonical_residues": null,
+                    "smiles": "O=C(Nc1ccnc(NC(=O)[C@H]2C[C@H]2F)c1)c1c(Cl)cccc1Cl",
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": null,
+                    "template_alignment_file_path": null,
+                    "template_entry_chain_ids": null,
+                    "sdf_file_path": null
+                }
+            ],
+            "use_msas": true,
+            "use_paired_msas": true,
+            "use_main_msas": true,
+            "covalent_bonds": null
+        },
+        "lig_jmc_27": {
+            "query_name": "lig_jmc_27",
+            "chains": [
+                {
+                    "molecule_type": "PROTEIN",
+                    "chain_ids": [
+                        "A"
+                    ],
+                    "description": null,
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH",
+                    "non_canonical_residues": null,
+                    "smiles": null,
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": [
+                        "/tmp/atravitz/51262788/of3-of-atravitz/colabfold_msas/main/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz"
+                    ],
+                    "template_alignment_file_path": "/tmp/atravitz/51262788/of3-of-atravitz/template_data/template_cache/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz",
+                    "template_entry_chain_ids": [
+                        "4gvj_A",
+                        "6x8f_B",
+                        "4gj3_A",
+                        "3lxn_A",
+                        "6vny_A",
+                        "3nz0_A",
+                        "6x8f_A",
+                        "5wal_A",
+                        "3lxp_A",
+                        "3nyx_A",
+                        "7uyr_A",
+                        "5f1z_A",
+                        "4e1z_A",
+                        "6x8g_A",
+                        "7uys_A",
+                        "4gfo_A",
+                        "4e20_A",
+                        "4oli_A",
+                        "7uyt_A",
+                        "5f20_A"
+                    ],
+                    "sdf_file_path": null
+                },
+                {
+                    "molecule_type": "LIGAND",
+                    "chain_ids": [
+                        "Z"
+                    ],
+                    "description": null,
+                    "sequence": null,
+                    "non_canonical_residues": null,
+                    "smiles": "O=C(Nc1ccnc(NC(=O)[C@H]2C[C@H]2Cl)c1)c1c(Cl)cccc1Cl",
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": null,
+                    "template_alignment_file_path": null,
+                    "template_entry_chain_ids": null,
+                    "sdf_file_path": null
+                }
+            ],
+            "use_msas": true,
+            "use_paired_msas": true,
+            "use_main_msas": true,
+            "covalent_bonds": null
+        },
+        "lig_jmc_28": {
+            "query_name": "lig_jmc_28",
+            "chains": [
+                {
+                    "molecule_type": "PROTEIN",
+                    "chain_ids": [
+                        "A"
+                    ],
+                    "description": null,
+                    "sequence": "MGSPASDPTVFHKRYLKKIRDLGEGHFGKVSLYCYDPTNDGTGEMVAVKALKADAGPQHRSGWKQEIDILRTLYHEHIIKYKGCCEDAGAASLQLVMEYVPLGSLRDYLPRHSIGLAQLLLFAQQICEGMAYLHAQHYIHRNLAARNVLLDNDRLVKIGDFGLAKAVPEGHEYYRVREDGDSPVFWYAPECLKEYKFYYASDVWSFGVTLYELLTHCDSSQSPPTKFLELIGIAQGQMTVLRLTELLERGERLPRPDKCPAEVYHLMKNCWETEASFRPTFENLIPILKTVHEKYRHHHHHH",
+                    "non_canonical_residues": null,
+                    "smiles": null,
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": [
+                        "/tmp/atravitz/51262788/of3-of-atravitz/colabfold_msas/main/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz"
+                    ],
+                    "template_alignment_file_path": "/tmp/atravitz/51262788/of3-of-atravitz/template_data/template_cache/fde3dd5f4ad7b1fcc1fadf72e5cdb486bb4669a52bf3c07b70d4c5b012fd9e2f.npz",
+                    "template_entry_chain_ids": [
+                        "4gvj_A",
+                        "6x8f_B",
+                        "4gj3_A",
+                        "3lxn_A",
+                        "6vny_A",
+                        "3nz0_A",
+                        "6x8f_A",
+                        "5wal_A",
+                        "3lxp_A",
+                        "3nyx_A",
+                        "7uyr_A",
+                        "5f1z_A",
+                        "4e1z_A",
+                        "6x8g_A",
+                        "7uys_A",
+                        "4gfo_A",
+                        "4e20_A",
+                        "4oli_A",
+                        "7uyt_A",
+                        "5f20_A"
+                    ],
+                    "sdf_file_path": null
+                },
+                {
+                    "molecule_type": "LIGAND",
+                    "chain_ids": [
+                        "Z"
+                    ],
+                    "description": null,
+                    "sequence": null,
+                    "non_canonical_residues": null,
+                    "smiles": "C[C@@H]1C[C@@H]1C(=O)Nc1cc(NC(=O)c2c(Cl)cccc2Cl)ccn1",
+                    "ccd_codes": null,
+                    "paired_msa_file_paths": null,
+                    "main_msa_file_paths": null,
+                    "template_alignment_file_path": null,
+                    "template_entry_chain_ids": null,
+                    "sdf_file_path": null
+                }
+            ],
+            "use_msas": true,
+            "use_paired_msas": true,
+            "use_main_msas": true,
+            "covalent_bonds": null
+        }
+    }
+}
