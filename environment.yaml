@@ -8,7 +8,7 @@ dependencies:
   - nbval
   - nglview
   - notebook
-  - numpy <2.4.0  # https://github.com/OpenFreeEnergy/cinnabar/issues/198
+  - numpy
   - pip
   - pytest
   - pytest-cov
@@ -16,3 +16,5 @@ dependencies:
   - python
   - openfe==1.11.0
   - openff-interchange-base != 0.5.1  # https://github.com/openforcefield/openff-interchange/issues/1450
+  - pip:
+    - git+https://github.com/OpenFreeEnergy/cinnabar@main
