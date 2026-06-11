@@ -17,4 +17,5 @@ dependencies:
   - openfe==1.11.0
   - openff-interchange-base != 0.5.1  # https://github.com/openforcefield/openff-interchange/issues/1450
   - pip:
-    - git+https://github.com/OpenFreeEnergy/cinnabar@main
+    - git+https://github.com/OpenFreeEnergy/openfe_analysis@main # Use conda-forge v0.5 after new openfe release updates pins on openfe-analysis
+    - git+https://github.com/OpenFreeEnergy/cinnabar@main # Use conda-forge v0.6.0 after new openfe release updates pins on cinnabar
