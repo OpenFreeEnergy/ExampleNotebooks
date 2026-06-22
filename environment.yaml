@@ -19,3 +19,4 @@ dependencies:
   - pip:
     - git+https://github.com/OpenFreeEnergy/openfe_analysis@main # Use conda-forge v0.5 after new openfe release updates pins on openfe-analysis
     - git+https://github.com/OpenFreeEnergy/cinnabar@main # Use conda-forge v0.6.0 after new openfe release updates pins on cinnabar
+    - git+https://github.com/OpenFreeEnergy/kartograf@main # Use conda-forge v2.0 after new openfe release updates pins on kartograf
