@@ -21,4 +21,4 @@ dependencies:
     - git+https://github.com/OpenFreeEnergy/cinnabar@0.6.0 # Use conda-forge v0.6.0 after new openfe release updates pins on cinnabar
     - git+https://github.com/OpenFreeEnergy/kartograf@v2.0.0  # Use conda-forge v2.0 after new openfe release updates pins on kartogra
     - git+https://github.com/OpenFreeEnergy/konnektor@v0.4.0  # use conda-forge v0.4.0 after openfe conda-forge release
-    - git+https://github.com/OpenFreeEnergy/Lomap@v3.3.0  # use conda-forge v0.4.0 after openfe conda-forge release
+    - git+https://github.com/OpenFreeEnergy/Lomap@v3.3.0  # use conda-forge v3.3.0 after openfe conda-forge release
