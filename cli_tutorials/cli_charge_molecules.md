@@ -88,15 +88,19 @@ The full range of partial charge settings can be found in the snippet bellow, no
 
 ```yaml
 partial_charge:
+  # Choose one method:
   method: am1bcc
   # method: am1bccelf10
   # method: espaloma
   # method: nagl
+  # method: forcefield  # use a SMIRNOFF force field to assign charges; requires `forcefields` to be set below
+  
   settings:
     off_toolkit_backend: ambertools
     # off_toolkit_backend: openeye  # required for the am1bccelf10 method
-    number_of_conformers: null  # null specifies the use of the input conformer, a value requests that a new conformer be generated
+    number_of_conformers: null  # null specifies the use of the input conformer, a value requests that a new conformer be generated. Recommended to use a value of 500 for am1bccelf10.
     # nagl_model: null  # null specifies the use of the latest nagl model
+    # forcefields: [openff-2.3.0.offxml]  # list the SMIRNOFF force field(s) used by `method: forcefield`
 ```
 
 ## Overwriting Charges
