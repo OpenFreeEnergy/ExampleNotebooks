@@ -92,11 +92,13 @@ partial_charge:
   # method: am1bccelf10
   # method: espaloma
   # method: nagl
+  # method: forcefield  # assigns the charges from the specified SMIRNOFF forcefield, see the `forcefields` setting below
   settings:
     off_toolkit_backend: ambertools
     # off_toolkit_backend: openeye  # required for the am1bccelf10 method
     number_of_conformers: null  # null specifies the use of the input conformer, a value requests that a new conformer be generated
     # nagl_model: null  # null specifies the use of the latest nagl model
+    # forcefields: [openff-2.3.0.offxml]  # specifies the SMIRNOFF forcefields to use for the `forcefield` method
 ```
 
 ## Overwriting Charges
