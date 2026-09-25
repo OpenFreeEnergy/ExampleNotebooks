@@ -130,7 +130,8 @@ While less flexible than using the API, some options can be modified by providin
 The default settings represented in YAML settings format is as follows:
 
 ``` yaml
-mapper: kartograf
+mapper:
+    method: kartograf
     settings:
         atom_max_distance: 0.95
         atom_map_hydrogens: true
@@ -148,7 +149,7 @@ partial_charge:
         off_toolkit_backend: ambertools
         number_of_conformers: None
         nagl_model: None
-
+        forcefields: None
 ```
 
 Let's assume you want to exchange the kartograf atom mapper with the LOMAP atom mapper, the Minimal Spanning Tree
@@ -191,8 +192,8 @@ Parsing in Files:
 Using Options:
 	Mapper: <LomapAtomMapper (time=20, threed=True, max3d=1.0, element_change=True, seed='', shift=False)>
 	Mapping Scorer: <function default_lomap_score at 0x166bc5300>
-	Network Generation: <function generate_minimal_spanning_network at 0x16a413e20>
-	Partial Charge Generation: am1bcc
+	Network Generation: <function generate_maximal_network at 0x16a413e20>
+	Partial Charge Generation: nagl
 
 	n_protocol_repeats=1 (1 simulation repeat(s) per transformation)
 ```
@@ -232,8 +233,8 @@ for file in network_setup/transformations/*.json; do
   relpath=${file:30}  # strip off "network_setup/transformations/"
   dirpath=${relpath%.*}  # strip off final ".json"
   # loop over three repeats
-  for repeat in {1..3}; do
-      openfe quickrun $file -o results/repeat${repeat}/$relpath -d results/repeat${repeat}/$dirpath
+  for repeat in {0..2}; do
+      openfe quickrun $file -o results_$repeat/$relpath -d results_$repeat/$dirpath
   done
 done
 ```
@@ -248,9 +249,9 @@ and submit a job script for the simplest SLURM use case:
 for file in network_setup/transformations/*.json; do
   relpath=${file:30}  # strip off "network_setup/transformations/"
   dirpath=${relpath%.*}  # strip off final ".json"
-  for repeat in {1..3}; do
+  for repeat in {0..2}; do
       jobpath="network_setup/transformations/${dirpath}_${repeat}.job"
-      cmd="openfe quickrun $file -o results/repeat${repeat}/$relpath -d results/repeat${repeat}/$dirpath"
+      cmd="openfe quickrun $file -o results_${repeat}/$relpath -d results_${repeat}/$dirpath"
       echo -e "#!/usr/bin/env bash\n${cmd}" > $jobpath
       sbatch $jobpath
   done
@@ -276,7 +277,7 @@ The structure should look something like this:
 <!-- take the top lines from `tree results` -->
 ```text
 results
-├── replicate_0
+├── results_0
 │   ├── rbfe_lig_ejm_31_complex_lig_ejm_42_complex
 │   │   ├── shared_RelativeHybridTopologyProtocolUnit-79c279f04ec84218b7935bc0447539a9_attempt_0
 │   │   │   ├── checkpoint.nc
