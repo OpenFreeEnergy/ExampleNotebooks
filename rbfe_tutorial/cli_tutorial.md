@@ -148,7 +148,7 @@ partial_charge:
         off_toolkit_backend: ambertools
         number_of_conformers: None
         nagl_model: None
-
+        forcefields: None
 ```
 
 Let's assume you want to exchange the kartograf atom mapper with the LOMAP atom mapper, the Minimal Spanning Tree
@@ -192,7 +192,7 @@ Using Options:
 	Mapper: <LomapAtomMapper (time=20, threed=True, max3d=1.0, element_change=True, seed='', shift=False)>
 	Mapping Scorer: <function default_lomap_score at 0x166bc5300>
 	Network Generation: <function generate_minimal_spanning_network at 0x16a413e20>
-	Partial Charge Generation: am1bcc
+	Partial Charge Generation: nagl
 
 	n_protocol_repeats=1 (1 simulation repeat(s) per transformation)
 ```
