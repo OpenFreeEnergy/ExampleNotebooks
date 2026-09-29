@@ -25,6 +25,7 @@ dependencies:
   - lomap2>=3.2.1
   - openmmforcefields >=0.15.1  # min needed for https://github.com/openmm/openmmforcefields/pull/414
   - openmmtools >=0.26  # fix to support membrane barostat: https://github.com/choderalab/openmmtools/pull/798
+  - plugcli
 
   - pip:
     - git+https://github.com/OpenFreeEnergy/openfe@main # use conda-forge v1.13.0 after release
