@@ -256,3 +256,6 @@ showcase/hybrid_system.pdb
 showcase/results/
 showcase/tyk2_edge.png
 showcase/tyk2_json/
+
+execution/task*.db
+execution/warehouse*
