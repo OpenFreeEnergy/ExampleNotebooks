@@ -23,6 +23,8 @@ dependencies:
   - konnektor ~=0.5.0
   - openfe-analysis>=0.5.0
   - lomap2>=3.2.1
+  - py3dmol
+  - pygraphviz
   - openmmforcefields >=0.15.1  # min needed for https://github.com/openmm/openmmforcefields/pull/414
   - openmmtools >=0.26  # fix to support membrane barostat: https://github.com/choderalab/openmmtools/pull/798
   - plugcli
