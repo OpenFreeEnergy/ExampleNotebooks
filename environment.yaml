@@ -29,4 +29,4 @@ dependencies:
   - plugcli
 
   - pip:
-    - git+https://github.com/OpenFreeEnergy/openfe@epic/execution_improvements # use conda-forge v1.13.0 after release
+    - git+https://github.com/OpenFreeEnergy/openfe@main # use conda-forge v1.13.0 after release
