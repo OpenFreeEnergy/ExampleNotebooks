@@ -13,8 +13,22 @@ dependencies:
   - pytest
   - pytest-cov
   - pytest-xdist
-  - python
-  - openfe==1.12.0
-  - openff-interchange-base != 0.5.1  # https://github.com/openforcefield/openff-interchange/issues/1450
+  - python=3.13
+  # - openfe==1.12.0
+  
+  # tmp for dev build until openfe 1.13 is released
+  - exorcist
+  - gufe == 1.13.0
+  - cinnabar >=0.6.0
+  - kartograf ~=2.0
+  - konnektor ~=0.5.0
+  - openfe-analysis>=0.5.0
+  - lomap2>=3.2.1
+  - py3dmol
+  - pygraphviz
+  - openmmforcefields >=0.15.1  # min needed for https://github.com/openmm/openmmforcefields/pull/414
+  - openmmtools >=0.26  # fix to support membrane barostat: https://github.com/choderalab/openmmtools/pull/798
+  - plugcli
+
   - pip:
-    - git+https://github.com/OpenFreeEnergy/konnektor@v0.5.0  # use conda-forge v0.5.0 after openfe conda-forge release
+    - git+https://github.com/OpenFreeEnergy/openfe@main # use conda-forge v1.13.0 after release
