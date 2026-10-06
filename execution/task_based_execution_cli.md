@@ -15,7 +15,7 @@ Three resources make up a task-based campaign:
 - the **Warehouse** stores the campaign data needed for execution, including the
   `AlchemicalNetwork`, tasks, and results;
 - the **TaskStatusDB** tracks task status and dependencies;
-- one or more `Worker`s claim available tasks,d execute them, and store the results.
+- one or more **Workers** claim available tasks, execute them, and store the results.
 
 This tutorial walks through a task-based campaign using the OpenFE command-line
 interface. For the equivalent workflow using the Python API, see the
@@ -42,7 +42,7 @@ If you are setting up your own campaign with `openfe plan-rbfe-network` or
 `AlchemicalNetwork` for task-based execution. For example:
 
 ```bash
-openfe plan-rbfe-network -M ligands.sdf -p protein.pdb --networks-only -o alchemicalNetwork_mc1_small
+openfe plan-rbfe-network -M ligands.sdf -p protein.pdb --networks-only -o alchemicalNetwork_mc1_small --n-protocol-repeats=1
 ```
 
 This creates an `AlchemicalNetwork` JSON file that can be used as input to
@@ -56,11 +56,11 @@ This creates an `AlchemicalNetwork` JSON file that can be used as input to
 ## 2. Set up the campaign
 
 Use `openfe setup-task-campaign` to create the resources needed for task-based
-execution. By default, the `TaskDB` and `Warehouse` will be created using the input file basename, 
-but you can pass in the `--name` parameter to define the identifier for the `Warehouse` and `TaskDB` file names.
+execution. By default, the `TaskStatusDB` and `Warehouse` will be created using the input file basename, 
+but you can pass in the `--name` parameter to define the identifier for the `Warehouse` and `TaskStatusDB` file names.
 
 ```bash
-openfe setup-task-campaign --alchemical-network alchemicalNetwork_mc1_small.json -name mcl1
+openfe setup-task-campaign --alchemical-network alchemicalNetwork_mc1_small/alchemicalNetwork_mc1_small.json --name mcl1
 ```
 
 You should see a `Warehouse` (`warehouse_tyk2/`) in the form of a directory and a `TaskStatusDB` (`tasks_tyk2.db`) file as output.
@@ -142,8 +142,7 @@ COMPLETED      0
 ```
 
 As execution proceeds, tasks move through states such as `AVAILABLE`,
-`IN_PROGRESS`, and `COMPLETED`. Failed execution may also result in `ERROR` or
-`TOO_MANY_RETRIES`.
+`IN_PROGRESS`, and `COMPLETED`. Failed tasks are retried up to `max_tries`, then marked `TOO_MANY_RETRIES`.
 
 ## 4. Execute one task
 
@@ -151,10 +150,7 @@ A worker uses the `Warehouse` and the `TaskStatusDB` to execute tasks from the c
 To execute one available task, run:
 
 ```bash
-openfe run-task \
-    --warehouse warehouse_mcl1/ \
-    --task-db tasks_mcl1.db \
-    --scratch scratch/
+openfe run-task --warehouse warehouse_mcl1/ --task-db tasks_mcl1.db --scratch scratch/
 ```
 
 You do not choose which specific task is executed. `openfe run-task` claims an
@@ -200,13 +196,17 @@ For example, a simple SLURM worker script could contain:
 #!/bin/bash
 
 #SBATCH --job-name="openfe-worker"
+#SBATCH --gres=gpu:1
 #SBATCH --mem-per-cpu=2G
 
 # Activate the environment containing OpenFE
 conda activate openfe_env
 
+# continue submitting run-task in serial until the wall time is hit
+# you may submit this *script* multiple times to have workers execute tasks in parallel
+ 
 while true; do
-    openfe run-task --warehouse warehouse_mcl1/ --task-db tasks_mcl1.db --scratch workdir/
+    openfe run-task --warehouse warehouse_mcl1/ --task-db tasks_mcl1.db --scratch scratch/
 done
 ```
 
@@ -215,7 +215,7 @@ system, all operating on the same campaign to execute tasks in parallel.
 For example, using a SLURM job array:
 
 ```bash
-sbatch --array=1-50 run_tasks.sh
+sbatch --array=1-4 run_tasks.sh
 ```
 
 All workers use the same `Warehouse` and `TaskStatusDB`. The task database
@@ -225,6 +225,16 @@ coordinates which tasks are available for each worker to claim.
 
 Running the complete simulations would take too long for this tutorial, so for
 this section we use a completed `Warehouse` from the same example network.
+
+Download and extract the completed Warehouse:
+
+```bash
+curl -fLO https://zenodo.org/records/23072369/files/warehouse_mcl1_small.gz
+tar -xzf warehouse_mcl1_small.gz
+```
+
+This creates the warehouse_mcl1_small/ directory containing the results of the
+completed campaign.
 
 The `Warehouse` contains the `ProtocolUnitResult`s produced during execution.
 
@@ -237,7 +247,7 @@ convert these results into the JSON format accepted by the existing
 openfe to-legacy-json warehouse_mcl1_small/ -o mcl1_result_jsons
 ```
 
-The resulting directory can then be passed to `openfe gather`(and `openfe gather-septop`, `openfe gather-abfe`).
+The resulting directory can then be passed to `openfe gather` (and `openfe gather-septop`, `openfe gather-abfe`).
 
 ```bash
 openfe gather mcl1_result_jsons/ --report=raw
