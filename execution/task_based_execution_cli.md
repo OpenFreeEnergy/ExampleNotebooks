@@ -135,10 +135,16 @@ openfe status --task-db tasks_mcl1.db --summary
 ```
 
 ```text
-BLOCKED        8
-AVAILABLE      4
-IN_PROGRESS    0
-COMPLETED      0
+┏━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┓
+┃ status           ┃ n_tasks ┃
+┡━━━━━━━━━━━━━━━━━━╇━━━━━━━━━┩
+│ BLOCKED          │       8 │
+│ AVAILABLE        │       4 │
+│ IN_PROGRESS      │       0 │
+│ COMPLETED        │       0 │
+│ TOO_MANY_RETRIES │       0 │
+│ ERROR            │       0 │
+└──────────────────┴─────────┘
 ```
 
 As execution proceeds, tasks move through states such as `AVAILABLE`,
