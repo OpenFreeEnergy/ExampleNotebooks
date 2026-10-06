@@ -259,3 +259,4 @@ showcase/tyk2_json/
 
 execution/task*.db
 execution/warehouse*
+execution/tmp_results_mcl1/

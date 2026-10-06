@@ -42,7 +42,7 @@ If you are setting up your own campaign with `openfe plan-rbfe-network` or
 `AlchemicalNetwork` for task-based execution. For example:
 
 ```bash
-openfe plan-rbfe-network -M ligands.sdf -p protein.pdb --networks-only -o alchemicalNetwork_mc1_small --n-protocol-repeats=1
+openfe plan-rbfe-network -M ligands.sdf -p protein.pdb --networks-only -o alchemicalNetwork_mcl1_small --n-protocol-repeats=1
 ```
 
 This creates an `AlchemicalNetwork` JSON file that can be used as input to
@@ -60,7 +60,7 @@ execution. By default, the `TaskStatusDB` and `Warehouse` will be created using 
 but you can pass in the `--name` parameter to define the identifier for the `Warehouse` and `TaskStatusDB` file names.
 
 ```bash
-openfe setup-task-campaign --alchemical-network alchemicalNetwork_mc1_small/alchemicalNetwork_mc1_small.json --name mcl1
+openfe setup-task-campaign --alchemical-network alchemicalNetwork_mcl1_small/alchemicalNetwork_mcl1_small.json --name mcl1
 ```
 
 You should see a `Warehouse` (`warehouse_tyk2/`) in the form of a directory and a `TaskStatusDB` (`tasks_tyk2.db`) file as output.
