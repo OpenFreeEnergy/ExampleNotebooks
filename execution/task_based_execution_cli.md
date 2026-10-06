@@ -1,345 +1,260 @@
-# Task-based execution with the OpenFE CLI
+# Task-Based Execution with the OpenFE CLI
 
-This tutorial demonstrates how to use the OpenFE CLI (Command Line Interface) to run an OpenFE campaign using task-based execution.
+When using `openfe quickrun`, you orchestrate the campaign. You choose which
+`Transformation` to run and when to run it.
 
-Task-based execution is an alternative to using ``openfe quickrun``.
-See the Execution User Guide for a more detailed explanation of execution options, and see the Task-based Execution Python API tutorial for how to do all the same steps shown below, but with the Python API.
+With task-based execution, **openfe** handles that orchestration for you. You provide
+an entire `AlchemicalNetwork`, **openfe** breaks it into dependent tasks, and one or
+more `Worker`s claim tasks as soon as they are ready to run.
 
-.. TODO: add links
+A **task** is a single `ProtocolUnit`, for example the setup, simulation, or
+analysis step of one repeat of one `Transformation`.
 
-## 0. Collect input files
+Three resources make up a task-based campaign:
 
-To work through this tutorial, start out with a fresh directory.
+- the **Warehouse** stores the campaign data needed for execution, including the
+  `AlchemicalNetwork`, tasks, and results;
+- the **TaskStatusDB** tracks task status and dependencies;
+- one or more `Worker`s claim available tasks,d execute them, and store the results.
 
-You can download the tutorial materials (including these instructions) using the command:
+This tutorial walks through a task-based campaign using the OpenFE command-line
+interface. For the equivalent workflow using the Python API, see the
+[Task-Based Execution with the Python API tutorial](...).
 
-```bash
-openfe fetch rbfe-tutorial
-```
-<!-- 
-## 1. Set up the campaign
+> **Note:** To run this tutorial, clone the OpenFE ExampleNotebooks repository
+> and run these commands from the tutorial directory. The example input files
+> used below are included in the repository.
 
-The CLI makes setting up the simulation very easy - it's just a single CLI command.
-There are separate commands for relative binding free energy (RBFE) and relative hydration free energy setups (RHFE).
+## 1. Start from an `AlchemicalNetwork`
 
-For RBFE campaigns, the relevant command is `openfe plan-rbfe-network`.
-For RHFE, the command is `openfe plan-rhfe-network`.
-They work mostly the same, except that the RHFE planner does not take a protein.
-In this tutorial, we'll perform an RBFE calculation.
-The only difference for RHFE is in the setup stage - running the simulations and gathering the results are the same.
+The input to a task-based campaign is an `AlchemicalNetwork`.
 
-The single command:
+Here we use a small MCL-1 network with pre-charged ligands and two edges,
+`ligand_1 → ligand_2` and `ligand_2 → ligand_3`. Each edge has a complex and a
+solvent leg, giving four `Transformation`s.
 
-```bash
-openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup/ --n-protocol-repeats 1
-```
+For this example, each `Transformation` has one repeat, and each repeat of the
+hybrid-topology protocol consists of setup, simulation, and analysis units.
+The campaign therefore contains 12 tasks in total.
 
-performs the following steps:
-
-- Read all the ligands from the SDF by giving the option `-M tyk2_ligands.sdf`.
-  You can also use `-M` with a directory, and it will load all molecules found in any SDF or MOL2 file in that directory.
-- Pass a PDB of the protein target (TYK2) with `-p tyk2_protein.pdb`.
-- Create transformation JSONs, stored in the directory `network_setup/`, that contain all information needed to run simulations with `openfe quickrun`.
-- Instruct `openfe` to only run one repeat of the alchemical simulation per `quickrun` call using `--n-protocol-repeats 1`.
-
-  **Note:** `openfe`'s default behaviour is to use three repeats to calculate the uncertainty (i.e. standard deviation) in an estimate.
-  When setting `--n-protocol-repeats 1`, you must execute the transformation multiple times - at minimum 2, but best practice is 3 independent repeats.
-
-Planning the campaign may take some time due to the complex series of tasks involved:
-
-- partial charges are generated for each of the ligands to ensure reproducibility, by default this requires a semi-empirical quantum
-chemical calculation to calculate `am1bcc` charges
-- atom mappings are created and scored based on the perceived difficulty for all possible ligand pairs
-- an optimal network is extracted from all possible pairwise transformations which balances edge redundancy and the total difficulty score of the network
-
-The partial charge generation can take advantage of multiprocessing which offers a significant speed-up, you can specify
-the number of processors available using the `-n` flag:
+If you are setting up your own campaign with `openfe plan-rbfe-network` or
+`openfe plan-rhfe-network`, use `--networks-only` to generate an
+`AlchemicalNetwork` for task-based execution. For example:
 
 ```bash
-openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup --n-protocol-repeats 1 -n 4
+openfe plan-rbfe-network -M ligands.sdf -p protein.pdb --networks-only -o alchemicalNetwork_mc1_small
 ```
 
+This creates an `AlchemicalNetwork` JSON file that can be used as input to
+`openfe setup-task-campaign`.
 
-If you are looking to run an RBFE campaign on a system that contains a membrane, you will need to use ``--protein-membrane`` instead of `-p` or ``--protein``.
-Membrane-containing protein systems must be provided as fully built, solvated, and pre-equilibrated systems, including correctly defined box vectors.
-See the [RBFE calculations of a Protein-Membrane System tutorial](https://docs.openfree.energy/en/latest/tutorials/rbfe_membrane_protein.html) for details on how to prepare the input system.
+> **Note:** Unlike `quickrun` execution, task-based execution creates a separate set of tasks for each repeat, 
+> so different repeats can be executed in parallel by different workers. 
+> For production calculations, we recommend keeping the default of `--n-protocol-repeats=3`. 
+> To keep this tutorial small, however, we use a single repeat.
 
+## 2. Set up the campaign
 
-The `openfe plan-rbfe-network` command will result in a directory called `network_setup/`, which is structured like this:
+Use `openfe setup-task-campaign` to create the resources needed for task-based
+execution. By default, the `TaskDB` and `Warehouse` will be created using the input file basename, 
+but you can pass in the `--name` parameter to define the identifier for the `Warehouse` and `TaskDB` file names.
 
-<!-- top lines from `tree network_setup` -->
+```bash
+openfe setup-task-campaign --alchemical-network alchemicalNetwork_mc1_small.json -name mcl1
+```
+
+You should see a `Warehouse` (`warehouse_tyk2/`) in the form of a directory and a `TaskStatusDB` (`tasks_tyk2.db`) file as output.
 
 ```text
-network_setup
-├── ligand_network.graphml
-├── network_setup.json
-└── transformations/
-    ├── rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
-    ├── rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
-    ├── rbfe_lig_ejm_31_complex_lig_ejm_47_complex.json
-    ├── rbfe_lig_ejm_31_complex_lig_ejm_48_complex.json
-    ├── rbfe_lig_ejm_31_complex_lig_ejm_50_complex.json
-    ├── rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json
-    ├── rbfe_lig_ejm_31_solvent_lig_ejm_46_solvent.json
-    ...
+warehouse_mcl1/
+tasks_mcl1.db
 ```
 
-The `ligand_network.graphml` file describes the network of ligands connected by atom mappings.
+The `Warehouse` contains the campaign data and results, while the
+`TaskStatusDB` contains the orchestration state of the campaign.
 
-We can visualize this network with the `openfe view-ligand-network` command 
-to open an interactive viewer.:
+> **Warning:** The `Warehouse` has a specific directory structure and should not
+> be edited manually.
 
-```bash
-openfe view-ligand-network network_setup/ligand_network.graphml
-```
-
-You can move the ligand names around to get a better view of the structure, and if you click on the edge, you will see the
-mapping for that edge.
-
-The files that describe each individual simulation we will run are located within `network_setup/transformations/`.
-Each JSON file represents a single alchemical leg to run and contains all the necessary information to run that leg.
-Filenames indicate ligand names as taken from the SDF; for example, the file `rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json` is the leg associated with the transformation of the ligand `lig_ejm_31` into `lig_ejm_42` while in complex with the protein.
-
-A single RBFE between a pair of ligands requires running two legs of an alchemical cycle (JSON files) - one for the ligand in solvent, and one for the ligand complexed with the
-protein.
-The results from these two simulations can then be combined in the next step (``openfe gather``) to obtain a single $\Delta\Delta G$ relative binding free energy value.
-
-Note that this specific setup makes a number of choices for you, from filenames to default values.
-All of these choices can be customized in the Python API.
-Here are the specifics on how these simulation are set up:
-
-1. **kartograf** is used to generate the atom mappings between ligands.
-2. The ligand network is a minimal spanning tree, with the default LOMAP scorer used to score the mappings.
-3. Solvent is water with NaCl at an ionic strength of 0.15 M (neutralized) with a minimum distance of 1.2 nm from the solute to the edge of the box.
-4. The protocol used is OpenFE's OpenMM-based Hybrid Topology RFE protocol, with [default settings](https://docs.openfree.energy/en/stable/reference/api/openmm_rfe.html#protocol-settings).
-
-### Optional step: Customize your campaign setup
-
-OpenFE contains many different options and methods for setting up a simulation campaign.
-While less flexible than using the API, some options can be modified by providing a settings file in the `.yaml` format.
-
-The default settings represented in YAML settings format is as follows:
-
-``` yaml
-mapper: kartograf
-    settings:
-        atom_max_distance: 0.95
-        atom_map_hydrogens: true
-        map_hydrogens_on_hydrogens_only: true
-        map_exact_ring_matches_only: true
-        allow_partial_fused_rings: true
-        allow_bond_breaks: false
-
-network:
-    method: generate_minimal_spanning_network
-
-partial_charge:
-    method: am1bcc
-    settings:
-        off_toolkit_backend: ambertools
-        number_of_conformers: None
-        nagl_model: None
-
-```
-
-Let's assume you want to exchange the kartograf atom mapper with the LOMAP atom mapper, the Minimal Spanning Tree
-Network Planner with the Maximal Network Planner and the am1bcc charge method with [OpenFF NAGL](https://docs.openforcefield.org/projects/nagl/):
-
-Provide a file like `settings.yaml` with the desired changes:
-
-```yaml
-mapper:
-  method: lomap
-
-network:
-  method: generate_maximal_network
-
-partial_charge:
-  method: nagl
-  settings:
-    nagl_model: null  # null specifies the use of the latest nagl model
-```
-
-Plan your rbfe network with an additional `-s` flag for passing the settings:
-
-```bash
-openfe plan-rbfe-network -M tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup --n-protocol-repeats 1 -s settings.yaml
-```
-
-The output of the CLI program will now reflect the changes made:
+At this point, the `Warehouse` contains the information needed to describe and
+execute the campaign:
 
 ```text
-RBFE-NETWORK PLANNER
-______________________
-
-Parsing in Files:
-	Got input:
-		Small Molecules: SmallMoleculeComponent(name=lig_ejm_31) SmallMoleculeComponent(name=lig_ejm_42) SmallMoleculeComponent(name=lig_ejm_43) SmallMoleculeComponent(name=lig_ejm_46) SmallMoleculeComponent(name=lig_ejm_47) SmallMoleculeComponent(name=lig_ejm_48) SmallMoleculeComponent(name=lig_ejm_50) SmallMoleculeComponent(name=lig_jmc_23) SmallMoleculeComponent(name=lig_jmc_27) SmallMoleculeComponent(name=lig_jmc_28)
-		Protein: ProteinComponent(name=)
-		Cofactors: []
-		Solvent: SolventComponent(name=O, Na+, Cl-)
-
-Using Options:
-	Mapper: <LomapAtomMapper (time=20, threed=True, max3d=1.0, element_change=True, seed='', shift=False)>
-	Mapping Scorer: <function default_lomap_score at 0x166bc5300>
-	Network Generation: <function generate_minimal_spanning_network at 0x16a413e20>
-	Partial Charge Generation: am1bcc
-
-	n_protocol_repeats=1 (1 simulation repeat(s) per transformation)
+warehouse_mcl1/
+├── protocol_dags/
+├── results/
+├── setup/
+├── shared/
+└── tasks/
 ```
 
-To see all settings customizable by YAML input, run `openfe plan-rbfe-network -h`.
+The `setup`, `tasks`, and `protocol_dags` stores are populated when the campaign
+is created. `results` and `shared` are populated during execution.
 
-## 2. Run the simulations
+> **Note:** If you're migrating from `quickrun`-based execution, the `Warehouse` directory contains the information that would 
+> otherwise be stored across a directory of `transformation.json` files, organized in a different structure for 
+> task-based execution.
 
-For this tutorial, we have precalculated data you can load, since running the simulations can take a long time.
-However, you could, in principle, run each simulation on your local machine.
+## 3. Inspect task status
 
-You can run each leg individually by using the ``openfe quickrun`` command:
+The `TaskStatusDB` is the source of truth for the execution state of the
+campaign.
+
+You can inspect it at any time with:
 
 ```bash
-openfe quickrun path/to/transformation.json -o results.json -d working-directory
+openfe status --task-db tasks_mcl1.db
 ```
 
-where
+For this network, there are initially:
 
-- `path/to/transformation.json` is the path to one of the transformation files created by ``openfe plan-rbfe-network`` in the prior step.
--  `-o results.json` to give the final output JSON file and `-d` for the directory where simulation results should be stored.
-
-To run one simulation from the tutorial data, a command might look like:
-
-```bash
-openfe quickrun network_setup/transformations/rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json -o results/rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent.json -d results/rbfe_lig_ejm_31_solvent_lig_ejm_42_solvent/
+```text
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┓
+┃ taskid                                                                  ┃ status    ┃ last_modified ┃ tries ┃ max_tries ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━┩
+│ HybridTopologySetupUnit-31fdc6a...                                      │ AVAILABLE │ NaT           │ 0     │ 1         │
+│ HybridTopologySetupUnit-15899f7...                                      │ AVAILABLE │ NaT           │ 0     │ 1         │
+│ HybridTopologySetupUnit-9212216...                                      │ AVAILABLE │ NaT           │ 0     │ 1         │
+│ HybridTopologySetupUnit-d5d714f...                                      │ AVAILABLE │ NaT           │ 0     │ 1         │
+│ HybridTopologyMultiStateSimulationUnit-415456a...                       │ BLOCKED   │ NaT           │ 0     │ 1         │
+│ HybridTopologyMultiStateSimulationUnit-23aea7d...                       │ BLOCKED   │ NaT           │ 0     │ 1         │
+│ ...                                                                     │ ...       │ ...           │ ...   │ ...       │
+│ HybridTopologyMultiStateAnalysisUnit-9354cb2...                         │ BLOCKED   │ NaT           │ 0     │ 1         │
+└─────────────────────────────────────────────────────────────────────────┴───────────┴───────────────┴───────┴───────────┘
 ```
 
-When running a complete network of simulations, it is important to ensure that the file name for the result JSON and name of the working directory are different for each leg and each repeat, otherwise you'll overwrite results.
-We recommend doing this programmatically, such as the example below, which uses the fact that the JSON files in ``network_setup/transformations/`` have unique names, and creates directories and result JSON files based on those names.
+Initially, the four setup tasks are `AVAILABLE`. The simulation and analysis
+tasks are `BLOCKED` because their dependencies have not completed yet.
+The `tries` column records how many times a task has been attempted, while
+`max_tries` gives the maximum number of attempts allowed.
 
-To run all legs sequentially (not recommended!!) you could do something like:
+To display only the number of tasks in each state, use:
 
 ```bash
-# this will take a very long time! don't actually do it!
-for file in network_setup/transformations/*.json; do
-  relpath=${file:30}  # strip off "network_setup/transformations/"
-  dirpath=${relpath%.*}  # strip off final ".json"
-  # loop over three repeats
-  for repeat in {1..3}; do
-      openfe quickrun $file -o results/repeat${repeat}/$relpath -d results/repeat${repeat}/$dirpath
-  done
+openfe status --task-db tasks_mcl1.db --summary
+```
+
+```text
+BLOCKED        8
+AVAILABLE      4
+IN_PROGRESS    0
+COMPLETED      0
+```
+
+As execution proceeds, tasks move through states such as `AVAILABLE`,
+`IN_PROGRESS`, and `COMPLETED`. Failed execution may also result in `ERROR` or
+`TOO_MANY_RETRIES`.
+
+## 4. Execute one task
+
+A worker uses the `Warehouse` and the `TaskStatusDB` to execute tasks from the campaign.
+To execute one available task, run:
+
+```bash
+openfe run-task \
+    --warehouse warehouse_mcl1/ \
+    --task-db tasks_mcl1.db \
+    --scratch scratch/
+```
+
+You do not choose which specific task is executed. `openfe run-task` claims an
+`AVAILABLE` task from the `TaskStatusDB`, retrieves the corresponding
+`ProtocolUnit` and any required upstream data from the `Warehouse`, and executes
+it.
+
+Now, you will see that a `scratch/` directory has been created locally, which is needed for quick read/write 
+operations during execution. Use the `--scratch` argument to specify where to create this directory; 
+by default, it will be created in the current directory and named `scratch/`.
+
+You'll now see that one task has been completed, and a new task has been unblocked:
+
+```bash
+openfe status --task-db tasks_mcl1.db
+```
+
+```text
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┓
+┃ taskid                                                                  ┃ status    ┃ last_modified       ┃ tries ┃ max_tries ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━┩
+│ HybridTopologySetupUnit-31fdc6a...                                      │ COMPLETED │ 2026-10-06 13:10:00 │ 1     │ 1         │
+│ HybridTopologySetupUnit-15899f7...                                      │ AVAILABLE │ NaT                 │ 0     │ 1         │
+│ HybridTopologySetupUnit-9212216...                                      │ AVAILABLE │ NaT                 │ 0     │ 1         │
+│ HybridTopologyMultiStateSimulationUnit-415456a...                       │ AVAILABLE │ 2026-10-06 13:10:00 │ 0     │ 1         │
+│ HybridTopologyMultiStateSimulationUnit-23aea7d...                       │ BLOCKED   │ NaT                 │ 0     │ 1         │
+│ ...                                                                     │ ...       │ ...                 │ ...   │ ...       │
+│ HybridTopologyMultiStateAnalysisUnit-9354cb2...                         │ BLOCKED   │ NaT                 │ 0     │ 1         │
+└─────────────────────────────────────────────────────────────────────────┴───────────┴─────────────────────┴───────┴───────────┘
+```
+
+One setup task is now `COMPLETED`, and the simulation task that depended on it is now `AVAILABLE`. 
+The remaining downstream tasks stay `BLOCKED` until their dependencies are satisfied.
+
+## 5. Run the rest of the campaign
+
+Running `openfe run-task` once executes one task. A worker can repeatedly
+execute tasks by calling it in a loop.
+
+For example, a simple SLURM worker script could contain:
+
+```bash
+#!/bin/bash
+
+#SBATCH --job-name="openfe-worker"
+#SBATCH --mem-per-cpu=2G
+
+# Activate the environment containing OpenFE
+conda activate openfe_env
+
+while true; do
+    openfe run-task --warehouse warehouse_mcl1/ --task-db tasks_mcl1.db --scratch workdir/
 done
 ```
 
-In practice, you probably want to submit the simulations to an HPC queue.
-In that case, you'll want to create a new job script for each simulation JSON file, and the core of that job script will be to run the `openfe quickrun` command above.
-
-Details of what information is needed in that job script will depend on your computing center, but below is an example of a very simple script that will create
-and submit a job script for the simplest SLURM use case:
+In production, several independent workers can run in separate jobs on an HPC
+system, all operating on the same campaign to execute tasks in parallel.
+For example, using a SLURM job array:
 
 ```bash
-for file in network_setup/transformations/*.json; do
-  relpath=${file:30}  # strip off "network_setup/transformations/"
-  dirpath=${relpath%.*}  # strip off final ".json"
-  for repeat in {1..3}; do
-      jobpath="network_setup/transformations/${dirpath}_${repeat}.job"
-      cmd="openfe quickrun $file -o results/repeat${repeat}/$relpath -d results/repeat${repeat}/$dirpath"
-      echo -e "#!/usr/bin/env bash\n${cmd}" > $jobpath
-      sbatch $jobpath
-  done
-done
+sbatch --array=1-50 run_tasks.sh
 ```
 
-The approach listed here is what was used for the example results that we'll download in the next section.
+All workers use the same `Warehouse` and `TaskStatusDB`. The task database
+coordinates which tasks are available for each worker to claim.
 
-## 3. Gather the results
+## 6. Gather results
 
-To get example simulation output data, use the following commands:
+Running the complete simulations would take too long for this tutorial, so for
+this section we use a completed `Warehouse` from the same example network.
+
+The `Warehouse` contains the `ProtocolUnitResult`s produced during execution.
+
+Because task-based execution is currently under development, there is not yet a direct command to output the results. 
+To enable complete workflows in the meantime, we provide the `openfe to-legacy-json` command to
+convert these results into the JSON format accepted by the existing
+`openfe gather` command:
 
 ```bash
-openfe fetch rbfe-tutorial-results
-tar xzf rbfe_results.tar.gz
+openfe to-legacy-json warehouse_mcl1_small/ -o mcl1_result_jsons
 ```
 
-This will create a directory called `results/` that contains files with the file structure you would get from running the calculations as above.
-The result JSON files are the actual results of a simulation.
-To keep this example data a reasonable size, files typically generated during the simulation (such as detailed simulation information) have been replaced by empty files to keep the size smaller.
-The structure should look something like this:
-
-<!-- take the top lines from `tree results` -->
-```text
-results
-├── replicate_0
-│   ├── rbfe_lig_ejm_31_complex_lig_ejm_42_complex
-│   │   ├── shared_RelativeHybridTopologyProtocolUnit-79c279f04ec84218b7935bc0447539a9_attempt_0
-│   │   │   ├── checkpoint.nc
-│   │   │   ├── db.json
-│   │   │   ├── simulation_real_time_analysis.yaml
-│   │   │   └── simulation.nc
-│   │   ├── shared_RelativeHybridTopologyProtocolUnit-a3cef34132aa4e9cbb824fcbcd043b0e_attempt_0
-│   │   │   ├── checkpoint.nc
-│   │   │   ├── db.json
-│   │   │   ├── simulation_real_time_analysis.yaml
-│   │   │   └── simulation.nc
-│   │   └── shared_RelativeHybridTopologyProtocolUnit-abb2b104151c45fc8b0993fa0a7ee0af_attempt_0
-│   │       ├── checkpoint.nc
-│   │       ├── db.json
-│   │       ├── simulation_real_time_analysis.yaml
-│   │       └── simulation.nc
-│   ├── rbfe_lig_ejm_31_complex_lig_ejm_42_complex.json
-│   ├── rbfe_lig_ejm_31_complex_lig_ejm_46_complex
-│   │   ├── shared_RelativeHybridTopologyProtocolUnit-361500fe831c431aa830efd207db0955_attempt_0
-│   │   │   ├── checkpoint.nc
-│   │   │   ├── db.json
-│   │   │   ├── simulation_real_time_analysis.yaml
-│   │   │   └── simulation.nc
-│   │   ├── shared_RelativeHybridTopologyProtocolUnit-5a6176cfbf074f92bc76caac91b1c1bf_attempt_0
-│   │   │   ├── checkpoint.nc
-│   │   │   ├── db.json
-│   │   │   ├── simulation_real_time_analysis.yaml
-│   │   │   └── simulation.nc
-│   │   └── shared_RelativeHybridTopologyProtocolUnit-e16de73f07964e9096f34611e0c874ca_attempt_0
-│   │       ├── checkpoint.nc
-│   │       ├── db.json
-│   │       ├── simulation_real_time_analysis.yaml
-│   │       └── simulation.nc
-│   ├── rbfe_lig_ejm_31_complex_lig_ejm_46_complex.json
-...
-```
-
-The JSON results file contains not only the calculated $\Delta G$, and uncertainty estimate, but also important metadata about what happened during the simulation.
-In particular, it will contain information about any errors or failures that occurred -- these errors will not cause the entire campaign to fail, and will be recorded so you can later analyze what went wrong.
-
-To gather all the $\Delta G$ estimates into a single file, use the `openfe gather` command from within the working directory used above:
+The resulting directory can then be passed to `openfe gather`(and `openfe gather-septop`, `openfe gather-abfe`).
 
 ```bash
-openfe gather results/ --report dg -o final_results.tsv
+openfe gather mcl1_result_jsons/ --report=raw
 ```
 
-Note that if you have multiple results directories, you can pass multiple directories, e.g. ``openfe gather results_0/ results_1/``.
+For an RBFE campaign, `--report=raw` shows the individual complex and solvent
+leg results. Other `openfe gather` report types can be used to obtain
+edge-level relative free energies or network-level estimates.
 
-This will write out a tab-separated table of results where the results reported are controlled by the `--report` option:
+## Summary
 
-- `dg` (default) reports the ligand and the results are the maximum
- likelihood estimate of its absolute free, and the associated
- uncertainty from DDG replica averages and standard deviations.
-- `ddg` reports pairs of `ligand_i` and `ligand_j`, the calculated
- relative free energy `DDG(i->j) = DG(j) - DG(i)` and its uncertainty.
-- `raw` reports the raw results, giving the leg (`vacuum`, `solvent`, or
- `complex`), `ligand_i`, `ligand_j`, the raw `DG(i->j)` associated with it.
+In this tutorial, we:
 
-The resulting file (`final_results.tsv`) will look something like this:
-
-<!-- take top lines from `cat final_results.tsv` -->
-
-```text
-ligand	DG(MLE) (kcal/mol)	uncertainty (kcal/mol)
-lig_ejm_31	-0.09	0.05
-lig_ejm_42	0.7	0.1
-lig_ejm_46	-0.98	0.05
-lig_ejm_47	-0.1	0.1
-lig_ejm_48	0.53	0.09
-lig_ejm_50	0.91	0.06
-lig_ejm_43	2.0	0.2
-lig_jmc_23	-0.68	0.09
-lig_jmc_27	-1.1	0.1
-lig_jmc_28	-1.25	0.08
-``` -->
+- created a task-based campaign from an `AlchemicalNetwork` with
+  `openfe setup-task-campaign`;
+- inspected task state with `openfe status`;
+- used `openfe run-task` to claim and execute available tasks;
+- saw how completing a task makes downstream tasks available;
+- showed how multiple workers can execute tasks from the same campaign;
+- gathered results produced by a completed campaign.
