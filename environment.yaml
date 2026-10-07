@@ -18,7 +18,7 @@ dependencies:
   
   # tmp for dev build until openfe 1.13 is released
   - exorcist
-  - gufe == 1.13.0
+  - gufe == 1.13.1
   - cinnabar >=0.6.0
   - kartograf ~=2.0
   - konnektor ~=0.5.0
@@ -31,4 +31,4 @@ dependencies:
   - plugcli
 
   - pip:
-    - git+https://github.com/OpenFreeEnergy/openfe@main # use conda-forge v1.13.0 after release
+    - git+https://github.com/OpenFreeEnergy/openfe@main
