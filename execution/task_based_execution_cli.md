@@ -15,7 +15,7 @@ Three resources make up a task-based campaign:
 - the **Warehouse** stores the campaign data needed for execution, including the
   `AlchemicalNetwork`, tasks, and results;
 - the **TaskStatusDB** tracks task status and dependencies;
-- one or more **Workers** claim available tasks, execute them, and store the results.
+- calls to ``run-task`` (equivalent to the ``Worker.execute_unit()`` in the Python API) claim available tasks, execute them, and store the results.
 
 This tutorial walks through a task-based campaign using the OpenFE command-line
 interface. For the equivalent workflow using the Python API, see the
