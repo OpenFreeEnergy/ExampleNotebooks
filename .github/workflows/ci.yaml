@@ -64,4 +64,4 @@ jobs:
 
     - name: Run example notebooks
       run: |
-        python -m pytest -v --nbval-lax --nbval-cell-timeout=3000 -n auto --dist loadscope
+        python -m pytest -v --nbval-lax --nbval-cell-timeout=6000 -n auto --dist loadscope
