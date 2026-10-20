@@ -6,7 +6,7 @@ dependencies:
   - ipywidgets
   - lxml
   - nbval
-  - nglview
+  - nglview <4  # https://github.com/nglviewer/nglview/issues/1181
   - notebook
   - numpy
   - pip
@@ -20,6 +20,7 @@ dependencies:
   - konnektor ~=0.5.0
   - openfe-analysis>=0.5.0
   - lomap2>=3.2.1
+  - setuptools <80  # needed by nglview
 
   - pip:
     - git+https://github.com/OpenFreeEnergy/openfe@main
