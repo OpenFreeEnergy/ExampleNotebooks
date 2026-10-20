@@ -1,0 +1,33 @@
+[workspace]
+channels = ["conda-forge"]
+name = "OpenFE_ExampleNotebooks"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+
+[environments.default]
+no-default-feature = false 
+channels = ["conda-forge"]
+
+[environments.default.dependencies]
+coverage = "*"
+ipywidgets = "*"
+lxml = "*"
+nbval = "*"
+nglview = "*"
+notebook = "*"
+numpy = "*"
+pip = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-xdist = "*"
+python = "3.13.*"
+openfe = "1.13.*"
+cinnabar = ">=0.6.0"
+kartograf = "~=2.0"
+konnektor = "~=0.5.0"
+openfe-analysis = ">=0.5.0"
+lomap2 = ">=3.2.1"

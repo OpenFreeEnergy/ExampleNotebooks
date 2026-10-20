@@ -269,3 +269,6 @@ simulation_visualization/septop_structural_results/
 execution/task*.db
 execution/warehouse*
 execution/mcl1_result_jsons/
+# pixi environments
+.pixi/*
+!.pixi/config.toml

@@ -22,4 +22,4 @@ dependencies:
   - lomap2>=3.2.1
 
   - pip:
-    - git+https://github.com/OpenFreeEnergy/openfe@main
+    - openfe @ git+https://github.com/OpenFreeEnergy/openfe@main
