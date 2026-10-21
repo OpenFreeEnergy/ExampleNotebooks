@@ -266,6 +266,7 @@ showcase/tyk2_edge.png
 showcase/tyk2_json/
 simulation_visualization/openfe_analysis_skipped/
 simulation_visualization/septop_structural_results/
+simulation_visualization/output
 execution/task*.db
 execution/warehouse*
 execution/mcl1_result_jsons/
