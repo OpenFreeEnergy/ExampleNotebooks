@@ -19,7 +19,7 @@ Three resources make up a task-based campaign:
 
 This tutorial walks through a task-based campaign using the OpenFE command-line
 interface. For the equivalent workflow using the Python API, see the
-[Task-Based Execution with the Python API tutorial](...).
+Task-Based Execution with the Python API tutorial.
 
 > **Note:** To run this tutorial, clone the OpenFE ExampleNotebooks repository
 > and run these commands from the tutorial directory. The example input files
@@ -229,10 +229,11 @@ For example, a simple SLURM worker script could contain:
 # Activate the environment containing OpenFE
 conda activate openfe_env
 
-# continue submitting run-task in serial until the wall time is hit
+# continue submitting run-task up to 50 times (a reasonable upper limit for this campaign)
+# in serial until the wall time is hit
 # you may submit this *script* multiple times to have workers execute tasks in parallel
  
-while true; do
+for i in {1..50}; do
     openfe run-task --warehouse warehouse_mcl1/ --task-db tasks_mcl1.db --scratch scratch/
 done
 ```
