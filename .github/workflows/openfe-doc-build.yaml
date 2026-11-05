@@ -50,4 +50,4 @@ jobs:
 
       - name: Build the docs
         working-directory: openfe
-        run: pixi run -e docs build-docs
+        run: pixi run -e docs docs-build
