@@ -40,20 +40,14 @@ jobs:
         id: date
         run: echo "date=$(date +%Y-%m-%d)" >> "${GITHUB_OUTPUT}"
       
-      - name: Install doc environment
-        uses: mamba-org/setup-micromamba@v2
+      - name: Install pixi doc environment
+        uses: prefix-dev/setup-pixi@v0.11.3
         with:
-          environment-file: openfe/docs/environment.yaml
-          cache-environment: true
-          cache-downloads: true
-          cache-environment-key: environment-${{ steps.date.outputs.date }}
-          cache-downloads-key: downloads-${{ steps.date.outputs.date }}
-          init-shell: bash
+          manifest-path: openfe/pixi.toml
+          environments: docs
+          locked: true
+          cache: true
 
       - name: Build the docs
-        run: |
-          cd openfe
-          # install so that we can get a version metadata we use in docs
-          pip install . --no-deps
-          cd docs
-          make html
+        working-directory: openfe
+        run: pixi run -e docs build-docs
