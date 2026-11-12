@@ -1,4 +1,5 @@
 ligand	estimate (kcal/mol)	uncertainty (kcal/mol)
+lig_ejm_31	-9.57	0.18
 lig_ejm_42	-9.81	0.18
 lig_ejm_43	-8.29	0.18
 lig_ejm_45	-9.59	0.18
