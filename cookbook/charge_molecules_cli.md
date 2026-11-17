@@ -1,25 +1,25 @@
-# Generating Partial Charges with the OpenFE CLI
+# Assign partial charges with the CLI
 
-It is recommended to use a single set of charges for each ligand to ensure reproducibility between repeats or consistent 
-charges between different legs of a calculation involving the same ligand, like a relative binding affinity calculation for example (see [Osato et al.](https://chemrxiv.org/engage/chemrxiv/article-details/67579833085116a133e39d86)). 
- As such both the `plan-rbfe-network` and `plan-rhfe-network` commands will calculate partial charges for ligands making it expensive 
-to run multiple network mappings while finding the optimal one for the resources available. 
+This guide shows how to use the `openfe charge-molecules` command to assign partial charges to a set of ligands once,
+and store them in an SDF file that can be used with OpenFE protocols.
 
-Here we present a CLI tool to do this ahead of time, reducing overheads and further improving reproducibility.
-This tutorial will show you how to use the OpenFE CLI command `charge-molecules` to generate and store partial charges for a series of ligands 
-into an SDF file which can be used with OpenFE protocols. 
+Using a single set of charges for each ligand keeps the charges consistent between repeats and between the different
+legs of a calculation involving the same ligand. This is necessary for reproducible results: AM1-BCC charges can differ
+slightly each time they are calculated, which affects the calculated free energies
+(see [Osato et al.](https://chemrxiv.org/engage/chemrxiv/article-details/67579833085116a133e39d86)).
+`plan-rbfe-network` and `plan-rhfe-network` assign charges every time they are run, so charging the ligands once
+ahead of time also keeps the charges the same across planning runs, and saves time when you try out several network setups.
 
-## Charging Molecules
+## Charge the molecules
 
-The `charge-molecules` command allows you to generate partial charges a series of small molecules saved in SDF or MOL2 
-format using the `am1bcc` method calculated using `ambertools`:
+Pass the molecules as an SDF file, or as a directory of SDF or MOL2 files, and the name of the output SDF file:
 
 ```bash
 openfe charge-molecules -M tyk2_ligands.sdf -o charged_tyk2_ligands.sdf
 ```
 
-This will result in a new SDF file `charged_tyk2_ligands.sdf` which contains the same ligands and their partial charges 
-stored in a new SD tag like so:
+By default, the charges are calculated with the `am1bcc` method using `ambertools`.
+The output file (`charged_tyk2_ligands.sdf`) contains the same ligands, with their partial charges stored in an `atom.dprop.PartialCharge` SD tag:
 
 ```text
 lig_ejm_42
@@ -41,8 +41,8 @@ lig_ejm_42
 [continues]
 ```
 
-Generating partial charges with the `am1bcc` method can be slow as they require a semi-empirical quantum chemical calculation, 
-we can however take advantage of multiprocessing to calculate the charges in parallel for each ligand which offers a 
+Generating partial charges with the `am1bcc` method can be slow as they require a semi-empirical quantum chemical calculation. 
+We can however take advantage of multiprocessing to calculate the charges in parallel for each ligand which offers a 
 significant speed-up. The number of processors available for the workflow can be specified using the `-n` flag. For 
 example to spread out the calculation over 4 cores:
 
@@ -50,10 +50,20 @@ example to spread out the calculation over 4 cores:
 openfe charge-molecules -M tyk2_ligands.sdf -o charged_tyk2_ligands.sdf -n 4
 ```
 
-## Customizing the Charge Method
+## Use the charged ligands
 
-There are a wide range of partial charge generation methods available with `am1bcc` based schemes being most commonly 
-used with OpenFF force fields. The choice of charge scheme can be easily customised by providing a settings file in `.yaml` format. 
+Pass the output file to the planning commands in place of the original ligands:
+
+```bash
+openfe plan-rbfe-network -M charged_tyk2_ligands.sdf -p tyk2_protein.pdb -o network_setup
+```
+
+Charges that are already present in the input are used as they are, so the planning commands do not assign new ones.
+
+## Use a different charge method
+
+To use a different charge method, pass a settings file in YAML format with `-s`.
+
 For example to recreate the current default settings in the workflow you would do the following:
 
 1. Provide a file like `settings.yaml` with the desired settings:
@@ -84,7 +94,7 @@ Using Options:
 	Partial Charge Generation: am1bcc
 ```
 
-The full range of partial charge settings can be found in the snippet bellow, note that some may require installing extra packages.
+The full range of partial charge settings can be found in the snippet below, note that some may require installing extra packages.
 
 ```yaml
 partial_charge:
@@ -103,7 +113,7 @@ partial_charge:
     # forcefields: [openff-2.3.0.offxml]  # list the SMIRNOFF force field(s) used by `method: forcefield`
 ```
 
-## Overwriting Charges
+## Overwrite existing charges
 
-By default, the `charge-molecules` command will only assign partial charges to ligands which **do not** already have charges, 
-this behaviour can be changed via the `--overwrite-charges` flag which will assign new charges using the specified settings.
+By default, `charge-molecules` only assigns partial charges to ligands that **do not** already have them.
+To replace existing charges with new ones calculated using the chosen settings, add `--overwrite-charges`.
