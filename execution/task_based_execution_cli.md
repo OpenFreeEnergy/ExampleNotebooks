@@ -1,4 +1,4 @@
-# Task-Based Execution with the OpenFE CLI
+# Task-based execution with the CLI
 
 When using `openfe quickrun`, you orchestrate the campaign. You choose which
 `Transformation` to run and when to run it.
