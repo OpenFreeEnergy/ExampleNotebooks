@@ -1,4 +1,4 @@
-# RBFE with the CLI
+# Hybrid Topology RBFE with the CLI
 
 This tutorial demonstrates how to use the OpenFE CLI (Command Line Interface) to calculate free energies - with no Python at all!
 
